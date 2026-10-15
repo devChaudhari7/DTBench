@@ -1,0 +1,85 @@
+02:28:25 qwen3-4b S01 Triangle classification
+02:29:45   S01/P0_tests: 79.26s prompt=292 completion=300 finish=stop ok
+02:30:29   S01/P1_table: 44.53s prompt=421 completion=161 finish=stop ok
+02:31:23   S01/P2_repair1: 54.25s prompt=616 completion=166 finish=stop ok
+02:31:23 qwen3-4b S02 NextDate
+02:32:58   S02/P0_tests: 94.28s prompt=429 completion=349 finish=stop ok
+02:36:49   S02/P1_table: 230.94s prompt=558 completion=865 finish=stop ok
+02:44:25   S02/P2_repair1: 456.46s prompt=1705 completion=1062 finish=stop ok
+02:53:05   S02/P2_repair2: 519.51s prompt=1903 completion=1264 finish=stop ok
+02:53:05 qwen3-4b S03 Order discount
+02:55:15   S03/P0_tests: 130.2s prompt=352 completion=479 finish=stop ok
+02:56:40   S03/P1_table: 85.48s prompt=481 completion=328 finish=stop ok
+02:59:07   S03/P2_repair1: 146.63s prompt=940 completion=454 finish=stop ok
+03:01:22   S03/P2_repair2: 134.52s prompt=1072 completion=455 finish=stop ok
+03:01:22 qwen3-4b S04 BMI level
+03:03:40   S04/P0_tests: 138.34s prompt=369 completion=544 finish=stop ok
+03:04:54   S04/P1_table: 73.63s prompt=498 completion=290 finish=stop ok
+03:06:28   S04/P2_repair1: 94.37s prompt=966 completion=258 finish=stop ok
+03:07:55   S04/P2_repair2: 86.74s prompt=946 completion=280 finish=stop ok
+03:07:55 qwen3-4b S05 Pet adoption
+03:37:55   S05/P0_tests: 1800.11s prompt=None completion=None finish=error PARSE-ERROR TimeoutError: timed out
+03:48:07   S05/P1_table: 611.89s prompt=530 completion=671 finish=stop ok
+04:03:49   S05/P2_repair1: 942.28s prompt=1335 completion=839 finish=stop ok
+04:20:35   S05/P2_repair2: 1005.86s prompt=1503 completion=965 finish=stop ok
+04:20:35 qwen3-4b S06 Driver's licence
+04:20:36   S06/P0_tests: 0.68s prompt=None completion=None finish=error PARSE-ERROR RemoteDisconnected: Remote end closed connection without response
+04:20:36   S06/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 qwen3-4b S07 Vacation days
+04:20:36   S07/P0_tests: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36   S07/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 qwen3-4b S08 Mode of transportation
+04:20:36   S08/P0_tests: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36   S08/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 qwen3-4b S09 Scholarship eligibility
+04:20:36   S09/P0_tests: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36   S09/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 qwen3-4b S10 Login with lockout and OTP
+04:20:36   S10/P0_tests: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36   S10/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 qwen3-4b S11 UPI transfer screening
+04:20:36   S11/P0_tests: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36   S11/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 qwen3-4b S12 Personal-loan screening
+04:20:36   S12/P0_tests: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36   S12/P1_table: 0.0s prompt=None completion=None finish=error PARSE-ERROR URLError: <urlopen error [Errno 111] Connection refused>
+04:20:36 done
+--- 04:21:41 qwen3-4b resumed after server crash (host prompt cache disabled: --cache-ram 0)
+04:21:55 qwen3-4b S05 Pet adoption
+04:29:44   S05/P0_tests: 468.7s prompt=401 completion=1628 finish=stop ok
+04:33:02   S05/P1_table: 198.4s prompt=530 completion=671 finish=stop ok
+04:37:55   S05/P2_repair1: 293.07s prompt=1335 completion=839 finish=stop ok
+04:43:11   S05/P2_repair2: 315.93s prompt=1503 completion=965 finish=stop ok
+04:43:11 qwen3-4b S06 Driver's licence
+04:46:06   S06/P0_tests: 174.75s prompt=336 completion=704 finish=stop ok
+04:47:46   S06/P1_table: 99.85s prompt=465 completion=391 finish=stop ok
+04:51:14   S06/P2_repair1: 208.16s prompt=1035 completion=645 finish=stop ok
+04:56:30   S06/P2_repair2: 316.27s prompt=1290 completion=989 finish=stop ok
+04:56:30 qwen3-4b S07 Vacation days
+04:59:09   S07/P0_tests: 158.63s prompt=328 completion=653 finish=stop ok
+05:00:17   S07/P1_table: 68.47s prompt=457 completion=273 finish=stop ok
+05:02:12   S07/P2_repair1: 114.86s prompt=834 completion=369 finish=stop ok
+05:04:12   S07/P2_repair2: 119.32s prompt=895 completion=435 finish=stop ok
+05:04:12 qwen3-4b S08 Mode of transportation
+05:06:10   S08/P0_tests: 118.05s prompt=455 completion=433 finish=stop ok
+05:07:52   S08/P1_table: 102.21s prompt=584 completion=388 finish=stop ok
+05:07:52 qwen3-4b S09 Scholarship eligibility
+05:10:12   S09/P0_tests: 140.08s prompt=284 completion=578 finish=stop ok
+05:11:23   S09/P1_table: 71.56s prompt=413 completion=281 finish=stop ok
+05:13:13   S09/P2_repair1: 109.29s prompt=775 completion=336 finish=stop ok
+05:13:13 qwen3-4b S10 Login with lockout and OTP
+05:14:59   S10/P0_tests: 106.66s prompt=333 completion=418 finish=stop ok
+05:16:05   S10/P1_table: 66.03s prompt=462 completion=210 finish=stop ok
+05:17:22   S10/P2_repair1: 76.71s prompt=806 completion=210 finish=stop ok
+05:18:14   S10/P2_repair2: 51.82s prompt=806 completion=210 finish=stop ok
+05:18:14 qwen3-4b S11 UPI transfer screening
+05:21:03   S11/P0_tests: 169.07s prompt=313 completion=662 finish=stop ok
+05:21:53   S11/P1_table: 50.09s prompt=442 completion=176 finish=stop ok
+05:23:05   S11/P2_repair1: 71.75s prompt=728 completion=203 finish=stop ok
+05:24:26   S11/P2_repair2: 80.8s prompt=757 completion=281 finish=stop ok
+05:24:26 qwen3-4b S12 Personal-loan screening
+05:26:20   S12/P0_tests: 114.4s prompt=324 completion=442 finish=stop ok
+05:27:17   S12/P1_table: 57.13s prompt=453 completion=212 finish=stop ok
+05:28:49   S12/P2_repair1: 91.79s prompt=969 completion=228 finish=stop ok
+05:29:55   S12/P2_repair2: 66.21s prompt=816 completion=228 finish=stop ok
+05:29:55 done

@@ -1,0 +1,61 @@
+11:00:57 gemma3-4b S01 Triangle classification
+11:01:46   S01/P0_tests: 48.66s prompt=289 completion=636 finish=stop ok
+11:02:15   S01/P1_table: 29.53s prompt=422 completion=357 finish=stop ok
+11:03:02   S01/P2_repair1: 46.14s prompt=915 completion=496 finish=stop ok
+11:04:05   S01/P2_repair2: 62.97s prompt=1007 completion=708 finish=stop ok
+11:04:05 gemma3-4b S02 NextDate
+11:05:07   S02/P0_tests: 62.75s prompt=429 completion=811 finish=stop ok
+11:06:18   S02/P1_table: 70.79s prompt=562 completion=881 finish=stop ok
+11:08:15   S02/P2_repair1: 117.18s prompt=1445 completion=1325 finish=stop ok
+11:10:24   S02/P2_repair2: 128.32s prompt=2164 completion=1377 finish=stop ok
+11:10:24 gemma3-4b S03 Order discount
+11:11:41   S03/P0_tests: 77.61s prompt=356 completion=1014 finish=stop ok
+11:12:38   S03/P1_table: 56.3s prompt=489 completion=693 finish=stop ok
+11:13:36   S03/P2_repair1: 58.57s prompt=1202 completion=623 finish=stop ok
+11:14:44   S03/P2_repair2: 67.77s prompt=1314 completion=719 finish=stop ok
+11:14:44 gemma3-4b S04 BMI level
+11:16:53   S04/P0_tests: 129.09s prompt=375 completion=1688 finish=stop ok
+11:17:30   S04/P1_table: 36.5s prompt=508 completion=429 finish=stop ok
+11:18:08   S04/P2_repair1: 37.83s prompt=873 completion=404 finish=stop ok
+11:18:39   S04/P2_repair2: 31.48s prompt=873 completion=404 finish=stop ok
+11:18:39 gemma3-4b S05 Pet adoption
+11:19:35   S05/P0_tests: 55.79s prompt=405 completion=667 finish=stop ok
+11:20:19   S05/P1_table: 44.38s prompt=538 completion=548 finish=stop ok
+11:21:34   S05/P2_repair1: 74.99s prompt=1305 completion=780 finish=stop ok
+11:22:50   S05/P2_repair2: 75.89s prompt=1681 completion=780 finish=stop ok
+11:22:50 gemma3-4b S06 Driver's licence
+11:24:48   S06/P0_tests: 117.55s prompt=338 completion=1438 finish=stop ok
+11:26:07   S06/P1_table: 79.68s prompt=471 completion=950 finish=stop ok
+11:28:07   S06/P2_repair1: 119.45s prompt=1395 completion=1292 finish=stop ok
+11:29:39   S06/P2_repair2: 92.62s prompt=1696 completion=1026 finish=stop ok
+11:29:40 gemma3-4b S07 Vacation days
+11:31:16   S07/P0_tests: 96.67s prompt=330 completion=1198 finish=stop ok
+11:31:44   S07/P1_table: 27.69s prompt=463 completion=311 finish=stop ok
+11:32:18   S07/P2_repair1: 34.35s prompt=777 completion=345 finish=stop ok
+11:32:59   S07/P2_repair2: 40.86s prompt=817 completion=443 finish=stop ok
+11:32:59 gemma3-4b S08 Mode of transportation
+11:34:16   S08/P0_tests: 76.39s prompt=455 completion=930 finish=stop ok
+11:34:58   S08/P1_table: 42.32s prompt=588 completion=473 finish=stop ok
+11:35:44   S08/P2_repair1: 45.64s prompt=1047 completion=450 finish=stop ok
+11:36:25   S08/P2_repair2: 41.11s prompt=1047 completion=450 finish=stop ok
+11:36:25 gemma3-4b S09 Scholarship eligibility
+11:37:14   S09/P0_tests: 49.59s prompt=281 completion=620 finish=stop ok
+11:37:45   S09/P1_table: 30.45s prompt=414 completion=348 finish=stop ok
+11:38:13   S09/P2_repair1: 27.86s prompt=819 completion=260 finish=stop ok
+11:38:41   S09/P2_repair2: 28.22s prompt=819 completion=356 finish=stop ok
+11:38:41 gemma3-4b S10 Login with lockout and OTP
+11:39:44   S10/P0_tests: 63.52s prompt=338 completion=790 finish=stop ok
+11:40:14   S10/P1_table: 30.04s prompt=471 completion=334 finish=stop ok
+11:40:51   S10/P2_repair1: 36.21s prompt=1074 completion=320 finish=stop ok
+11:41:29   S10/P2_repair2: 38.5s prompt=1148 completion=395 finish=stop ok
+11:41:29 gemma3-4b S11 UPI transfer screening
+11:42:09   S11/P0_tests: 39.72s prompt=311 completion=492 finish=stop ok
+11:42:30   S11/P1_table: 20.95s prompt=444 completion=220 finish=stop ok
+11:42:54   S11/P2_repair1: 24.57s prompt=884 completion=204 finish=stop ok
+11:43:11   S11/P2_repair2: 16.06s prompt=884 completion=204 finish=stop ok
+11:43:11 gemma3-4b S12 Personal-loan screening
+11:44:18   S12/P0_tests: 67.8s prompt=326 completion=847 finish=stop ok
+11:44:42   S12/P1_table: 23.38s prompt=459 completion=248 finish=stop ok
+11:45:13   S12/P2_repair1: 30.83s prompt=924 completion=276 finish=stop ok
+11:46:02   S12/P2_repair2: 49.41s prompt=896 completion=544 finish=stop ok
+11:46:02 done

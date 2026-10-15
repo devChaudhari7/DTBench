@@ -1,0 +1,57 @@
+10:06:12 llama3.2-3b S01 Triangle classification
+10:06:33   S01/P0_tests: 20.57s prompt=308 completion=322 finish=stop ok
+10:06:48   S01/P1_table: 15.07s prompt=435 completion=239 finish=stop ok
+10:07:17   S01/P2_repair1: 28.7s prompt=731 completion=416 finish=stop ok
+10:07:51   S01/P2_repair2: 33.97s prompt=903 completion=493 finish=stop ok
+10:07:51 llama3.2-3b S02 NextDate
+10:09:22   S02/P0_tests: 90.91s prompt=431 completion=1427 finish=stop ok
+10:12:02   S02/P1_table: 160.53s prompt=558 completion=2263 finish=stop ok
+10:16:01   S02/P2_repair1: 238.99s prompt=2908 completion=2093 finish=stop ok
+10:19:40   S02/P2_repair2: 218.91s prompt=2908 completion=2093 finish=stop ok
+10:19:40 llama3.2-3b S03 Order discount
+10:20:14   S03/P0_tests: 33.33s prompt=354 completion=556 finish=stop ok
+10:20:37   S03/P1_table: 23.13s prompt=481 completion=382 finish=stop ok
+10:20:37 llama3.2-3b S04 BMI level
+10:22:14   S04/P0_tests: 97.39s prompt=381 completion=1546 finish=stop ok
+10:22:50   S04/P1_table: 36.14s prompt=508 completion=600 finish=stop ok
+10:23:59   S04/P2_repair1: 68.7s prompt=1180 completion=922 finish=stop ok
+10:25:05   S04/P2_repair2: 66.47s prompt=1694 completion=802 finish=stop ok
+10:25:05 llama3.2-3b S05 Pet adoption
+10:26:51   S05/P0_tests: 105.68s prompt=423 completion=1653 finish=stop ok
+10:29:45   S05/P1_table: 173.58s prompt=550 completion=2500 finish=length PARSE-ERROR invalid JSON: Expecting ',' delimiter: line 1 column 5962 (char 5961)
+10:29:45 llama3.2-3b S06 Driver's licence
+10:32:34   S06/P0_tests: 168.76s prompt=355 completion=2500 finish=length PARSE-ERROR invalid JSON: Expecting ',' delimiter: line 1 column 8397 (char 8396)
+10:32:43   S06/P1_table: 9.48s prompt=482 completion=142 finish=stop ok
+10:33:04   S06/P2_repair1: 21.04s prompt=707 completion=306 finish=stop ok
+10:33:34   S06/P2_repair2: 30.25s prompt=907 completion=440 finish=stop ok
+10:33:34 llama3.2-3b S07 Vacation days
+10:34:41   S07/P0_tests: 66.97s prompt=336 completion=1109 finish=stop ok
+10:35:18   S07/P1_table: 36.72s prompt=463 completion=616 finish=stop ok
+10:36:06   S07/P2_repair1: 48.07s prompt=1106 completion=645 finish=stop ok
+10:38:11   S07/P2_repair2: 125.2s prompt=1292 completion=1675 finish=stop ok
+10:38:11 llama3.2-3b S08 Mode of transportation
+10:39:44   S08/P0_tests: 92.34s prompt=473 completion=1445 finish=stop ok
+10:40:29   S08/P1_table: 45.56s prompt=600 completion=743 finish=stop ok
+10:42:10   S08/P2_repair1: 100.95s prompt=1378 completion=1305 finish=stop ok
+10:44:56   S08/P2_repair2: 165.66s prompt=2122 completion=1836 finish=stop ok
+10:44:56 llama3.2-3b S09 Scholarship eligibility
+10:45:21   S09/P0_tests: 25.18s prompt=299 completion=425 finish=stop ok
+10:45:31   S09/P1_table: 9.37s prompt=426 completion=142 finish=stop ok
+10:45:49   S09/P2_repair1: 18.74s prompt=655 completion=268 finish=stop ok
+10:47:24   S09/P2_repair2: 95.1s prompt=847 completion=1402 finish=stop ok
+10:47:24 llama3.2-3b S10 Login with lockout and OTP
+10:49:32   S10/P0_tests: 127.78s prompt=355 completion=1973 finish=stop ok
+10:49:54   S10/P1_table: 21.53s prompt=482 completion=355 finish=stop ok
+10:50:25   S10/P2_repair1: 31.44s prompt=1100 completion=396 finish=stop ok
+10:51:07   S10/P2_repair2: 41.66s prompt=1057 completion=597 finish=stop ok
+10:51:07 llama3.2-3b S11 UPI transfer screening
+10:51:25   S11/P0_tests: 18.31s prompt=322 completion=299 finish=stop ok
+10:51:42   S11/P1_table: 17.02s prompt=449 completion=279 finish=stop ok
+10:52:10   S11/P2_repair1: 28.2s prompt=792 completion=402 finish=stop ok
+10:52:58   S11/P2_repair2: 47.39s prompt=1015 completion=695 finish=stop ok
+10:52:58 llama3.2-3b S12 Personal-loan screening
+10:53:57   S12/P0_tests: 59.66s prompt=323 completion=989 finish=stop ok
+10:54:14   S12/P1_table: 16.89s prompt=450 completion=276 finish=stop ok
+10:54:49   S12/P2_repair1: 34.85s prompt=804 completion=487 finish=stop ok
+10:58:05   S12/P2_repair2: 195.52s prompt=1140 completion=2500 finish=length PARSE-ERROR invalid JSON: Expecting ',' delimiter: line 1 column 6420 (char 6419)
+10:58:05 done
