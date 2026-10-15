@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+results/pilot/
+paper/
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.synctex.gz
+scripts/assemble_delivery.py
+scripts/make_paper.py

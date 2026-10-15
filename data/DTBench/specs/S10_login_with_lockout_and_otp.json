@@ -1,0 +1,152 @@
+{
+  "id": "S10",
+  "name": "Login with lockout and OTP",
+  "category": "Business rules (authored)",
+  "source": "Authored for this benchmark",
+  "source_url": "",
+  "rules_text": "A web application evaluates every login attempt. If the account is already locked, the result is \"Account locked\", whatever else is true. For an account that is not locked, a wrong password gives \"Invalid credentials\", except that when the account already has 4 or more consecutive failed attempts, the wrong password locks the account and the result is \"Account locked\". If the password is correct and the login comes from a trusted device, the result is \"Access granted\". If the password is correct but the device is not trusted, the user must pass a one-time password (OTP) check: when the OTP has been verified the result is \"Access granted\", otherwise it is \"OTP required\".",
+  "clarifications": "",
+  "inputs": [
+    {
+      "name": "account_locked",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "password_correct",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "failed_attempts",
+      "type": "int",
+      "min": 0,
+      "max": 9,
+      "values": null,
+      "description": "consecutive failed attempts before this one"
+    },
+    {
+      "name": "trusted_device",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "otp_verified",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "result",
+    "type": "enum",
+    "values": [
+      "Access granted",
+      "Invalid credentials",
+      "Account locked",
+      "OTP required"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "account_locked"
+      },
+      {
+        "id": "C2",
+        "expr": "password_correct"
+      },
+      {
+        "id": "C3",
+        "expr": "failed_attempts >= 4"
+      },
+      {
+        "id": "C4",
+        "expr": "trusted_device"
+      },
+      {
+        "id": "C5",
+        "expr": "otp_verified"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": true
+        },
+        "output": "Account locked"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false
+        },
+        "output": "Invalid credentials"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": true
+        },
+        "output": "Account locked"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": true
+        },
+        "output": "Access granted"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": false,
+          "C5": true
+        },
+        "output": "Access granted"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": false,
+          "C5": false
+        },
+        "output": "OTP required"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 6,
+  "tags": [
+    "security",
+    "precedence",
+    "threshold"
+  ],
+  "reference_implementation": "reference/s10_login.py",
+  "reference_source": "\"\"\"S10 Login attempt with account lockout and OTP (authored for this benchmark).\"\"\"\n\nMAX_FAILED = 4\n\n\ndef decide(account_locked, password_correct, failed_attempts, trusted_device, otp_verified):\n    if account_locked:\n        return \"Account locked\"\n    if not password_correct:\n        if failed_attempts >= MAX_FAILED:\n            return \"Account locked\"\n        return \"Invalid credentials\"\n    if trusted_device or otp_verified:\n        return \"Access granted\"\n    return \"OTP required\"\n"
+}

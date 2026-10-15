@@ -1,0 +1,203 @@
+{
+  "id": "S01",
+  "name": "Triangle classification",
+  "category": "Textbook",
+  "source": "P. C. Jorgensen, Software Testing: A Craftsman's Approach, 4th ed., CRC Press, 2013, ch. 7; G. J. Myers et al., The Art of Software Testing, 3rd ed., Wiley, 2011",
+  "source_url": "",
+  "rules_text": "The program reads three integer side lengths a, b and c and classifies the triangle they form. If any one side is greater than or equal to the sum of the other two sides, the three sides cannot form a triangle and the output is \"Not a triangle\". Otherwise, the output is \"Equilateral\" if all three sides are equal, \"Isosceles\" if exactly two sides are equal, and \"Scalene\" if no two sides are equal.",
+  "clarifications": "",
+  "inputs": [
+    {
+      "name": "a",
+      "type": "int",
+      "min": 1,
+      "max": 200,
+      "values": null,
+      "description": "side length"
+    },
+    {
+      "name": "b",
+      "type": "int",
+      "min": 1,
+      "max": 200,
+      "values": null,
+      "description": "side length"
+    },
+    {
+      "name": "c",
+      "type": "int",
+      "min": 1,
+      "max": 200,
+      "values": null,
+      "description": "side length"
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "triangle_type",
+    "type": "enum",
+    "values": [
+      "Not a triangle",
+      "Scalene",
+      "Isosceles",
+      "Equilateral"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "a < b + c"
+      },
+      {
+        "id": "C2",
+        "expr": "b < a + c"
+      },
+      {
+        "id": "C3",
+        "expr": "c < a + b"
+      },
+      {
+        "id": "C4",
+        "expr": "a == b"
+      },
+      {
+        "id": "C5",
+        "expr": "a == c"
+      },
+      {
+        "id": "C6",
+        "expr": "b == c"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": false
+        },
+        "output": "Not a triangle"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": true,
+          "C2": false
+        },
+        "output": "Not a triangle"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": false
+        },
+        "output": "Not a triangle"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true,
+          "C5": true,
+          "C6": true
+        },
+        "output": "Equilateral"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true,
+          "C5": false,
+          "C6": false
+        },
+        "output": "Isosceles"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false,
+          "C5": true,
+          "C6": false
+        },
+        "output": "Isosceles"
+      },
+      {
+        "id": "R7",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false,
+          "C5": false,
+          "C6": true
+        },
+        "output": "Isosceles"
+      },
+      {
+        "id": "R8",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false,
+          "C5": false,
+          "C6": false
+        },
+        "output": "Scalene"
+      }
+    ]
+  },
+  "infeasible_rules": [
+    {
+      "when": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true,
+        "C6": false
+      },
+      "note": "a=b and a=c imply b=c"
+    },
+    {
+      "when": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": false,
+        "C6": true
+      },
+      "note": "a=b and b=c imply a=c"
+    },
+    {
+      "when": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": false,
+        "C5": true,
+        "C6": true
+      },
+      "note": "a=c and b=c imply a=b"
+    }
+  ],
+  "n_feasible_rules": 8,
+  "tags": [
+    "relational conditions",
+    "impossible combinations"
+  ],
+  "reference_implementation": "reference/s01_triangle.py",
+  "reference_source": "\"\"\"S01 Triangle classification (Jorgensen 2013, ch. 7; Myers et al. 2011).\"\"\"\n\n\ndef decide(a, b, c):\n    if a >= b + c or b >= a + c or c >= a + b:\n        return \"Not a triangle\"\n    if a == b and b == c:\n        return \"Equilateral\"\n    if a == b or b == c or a == c:\n        return \"Isosceles\"\n    return \"Scalene\"\n"
+}

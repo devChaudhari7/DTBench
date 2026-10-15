@@ -1,0 +1,2167 @@
+[
+  {
+    "id": "S01",
+    "name": "Triangle classification",
+    "category": "Textbook",
+    "source": "P. C. Jorgensen, Software Testing: A Craftsman's Approach, 4th ed., CRC Press, 2013, ch. 7; G. J. Myers et al., The Art of Software Testing, 3rd ed., Wiley, 2011",
+    "source_url": "",
+    "rules_text": "The program reads three integer side lengths a, b and c and classifies the triangle they form. If any one side is greater than or equal to the sum of the other two sides, the three sides cannot form a triangle and the output is \"Not a triangle\". Otherwise, the output is \"Equilateral\" if all three sides are equal, \"Isosceles\" if exactly two sides are equal, and \"Scalene\" if no two sides are equal.",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "a",
+        "type": "int",
+        "min": 1,
+        "max": 200,
+        "values": null,
+        "description": "side length"
+      },
+      {
+        "name": "b",
+        "type": "int",
+        "min": 1,
+        "max": 200,
+        "values": null,
+        "description": "side length"
+      },
+      {
+        "name": "c",
+        "type": "int",
+        "min": 1,
+        "max": 200,
+        "values": null,
+        "description": "side length"
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "triangle_type",
+      "type": "enum",
+      "values": [
+        "Not a triangle",
+        "Scalene",
+        "Isosceles",
+        "Equilateral"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "a < b + c"
+        },
+        {
+          "id": "C2",
+          "expr": "b < a + c"
+        },
+        {
+          "id": "C3",
+          "expr": "c < a + b"
+        },
+        {
+          "id": "C4",
+          "expr": "a == b"
+        },
+        {
+          "id": "C5",
+          "expr": "a == c"
+        },
+        {
+          "id": "C6",
+          "expr": "b == c"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": false
+          },
+          "output": "Not a triangle"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": true,
+            "C2": false
+          },
+          "output": "Not a triangle"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": false
+          },
+          "output": "Not a triangle"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true,
+            "C4": true,
+            "C5": true,
+            "C6": true
+          },
+          "output": "Equilateral"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true,
+            "C4": true,
+            "C5": false,
+            "C6": false
+          },
+          "output": "Isosceles"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true,
+            "C4": false,
+            "C5": true,
+            "C6": false
+          },
+          "output": "Isosceles"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true,
+            "C4": false,
+            "C5": false,
+            "C6": true
+          },
+          "output": "Isosceles"
+        },
+        {
+          "id": "R8",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true,
+            "C4": false,
+            "C5": false,
+            "C6": false
+          },
+          "output": "Scalene"
+        }
+      ]
+    },
+    "infeasible_rules": [
+      {
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true,
+          "C5": true,
+          "C6": false
+        },
+        "note": "a=b and a=c imply b=c"
+      },
+      {
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": true,
+          "C5": false,
+          "C6": true
+        },
+        "note": "a=b and b=c imply a=c"
+      },
+      {
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true,
+          "C4": false,
+          "C5": true,
+          "C6": true
+        },
+        "note": "a=c and b=c imply a=b"
+      }
+    ],
+    "n_feasible_rules": 8,
+    "tags": [
+      "relational conditions",
+      "impossible combinations"
+    ],
+    "reference_implementation": "reference/s01_triangle.py",
+    "reference_source": "\"\"\"S01 Triangle classification (Jorgensen 2013, ch. 7; Myers et al. 2011).\"\"\"\n\n\ndef decide(a, b, c):\n    if a >= b + c or b >= a + c or c >= a + b:\n        return \"Not a triangle\"\n    if a == b and b == c:\n        return \"Equilateral\"\n    if a == b or b == c or a == c:\n        return \"Isosceles\"\n    return \"Scalene\"\n"
+  },
+  {
+    "id": "S02",
+    "name": "NextDate",
+    "category": "Textbook",
+    "source": "P. C. Jorgensen, Software Testing: A Craftsman's Approach, 4th ed., CRC Press, 2013, ch. 7",
+    "source_url": "",
+    "rules_text": "Given a date as day, month and year, the program decides how the date of the next day is obtained. Months 1, 3, 5, 7, 8, 10 and 12 have 31 days; months 4, 6, 9 and 11 have 30 days; month 2 (February) has 29 days in a leap year and 28 days otherwise. A year is a leap year if it is divisible by 4 but not by 100, or if it is divisible by 400. If the day does not exist in that month and year (for example day 31 of month 4, or day 29 of February in a non-leap year), the output is \"Invalid date\". If the day is before the last day of its month, the output is \"Next day same month\". If the day is the last day of month 12, the output is \"First day of next year\". If the day is the last day of any other month, the output is \"First day of next month\".",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "day",
+        "type": "int",
+        "min": 1,
+        "max": 31,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "month",
+        "type": "int",
+        "min": 1,
+        "max": 12,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "year",
+        "type": "int",
+        "min": 1900,
+        "max": 2100,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "next_date_action",
+      "type": "enum",
+      "values": [
+        "Invalid date",
+        "Next day same month",
+        "First day of next month",
+        "First day of next year"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "month in (4, 6, 9, 11)"
+        },
+        {
+          "id": "C2",
+          "expr": "month in (1, 3, 5, 7, 8, 10)"
+        },
+        {
+          "id": "C3",
+          "expr": "month == 12"
+        },
+        {
+          "id": "C4",
+          "expr": "day <= 27"
+        },
+        {
+          "id": "C5",
+          "expr": "day == 28"
+        },
+        {
+          "id": "C6",
+          "expr": "day == 29"
+        },
+        {
+          "id": "C7",
+          "expr": "day == 30"
+        },
+        {
+          "id": "C8",
+          "expr": "(year % 4 == 0 and year % 100 != 0) or year % 400 == 0"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true,
+            "C4": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": true,
+            "C5": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": true,
+            "C6": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": true,
+            "C7": true
+          },
+          "output": "First day of next month"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": true,
+            "C4": false,
+            "C5": false,
+            "C6": false,
+            "C7": false
+          },
+          "output": "Invalid date"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C2": true,
+            "C4": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C2": true,
+            "C5": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R8",
+          "when": {
+            "C2": true,
+            "C6": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R9",
+          "when": {
+            "C2": true,
+            "C7": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R10",
+          "when": {
+            "C2": true,
+            "C4": false,
+            "C5": false,
+            "C6": false,
+            "C7": false
+          },
+          "output": "First day of next month"
+        },
+        {
+          "id": "R11",
+          "when": {
+            "C3": true,
+            "C4": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R12",
+          "when": {
+            "C3": true,
+            "C5": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R13",
+          "when": {
+            "C3": true,
+            "C6": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R14",
+          "when": {
+            "C3": true,
+            "C7": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R15",
+          "when": {
+            "C3": true,
+            "C4": false,
+            "C5": false,
+            "C6": false,
+            "C7": false
+          },
+          "output": "First day of next year"
+        },
+        {
+          "id": "R16",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R17",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C5": true,
+            "C8": true
+          },
+          "output": "Next day same month"
+        },
+        {
+          "id": "R18",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C5": true,
+            "C8": false
+          },
+          "output": "First day of next month"
+        },
+        {
+          "id": "R19",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C6": true,
+            "C8": true
+          },
+          "output": "First day of next month"
+        },
+        {
+          "id": "R20",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C6": true,
+            "C8": false
+          },
+          "output": "Invalid date"
+        },
+        {
+          "id": "R21",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C7": true
+          },
+          "output": "Invalid date"
+        },
+        {
+          "id": "R22",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": false,
+            "C6": false,
+            "C7": false
+          },
+          "output": "Invalid date"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 22,
+    "tags": [
+      "many rules",
+      "leap-year logic",
+      "invalid dates"
+    ],
+    "reference_implementation": "reference/s02_nextdate.py",
+    "reference_source": "\"\"\"S02 NextDate: which action produces the next date (Jorgensen 2013, ch. 7).\"\"\"\n\n\ndef is_leap(year):\n    return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0\n\n\ndef decide(day, month, year):\n    if month == 2:\n        if is_leap(year):\n            last = 29\n        else:\n            last = 28\n    elif month in (4, 6, 9, 11):\n        last = 30\n    else:\n        last = 31\n    if day > last:\n        return \"Invalid date\"\n    if day < last:\n        return \"Next day same month\"\n    if month == 12:\n        return \"First day of next year\"\n    return \"First day of next month\"\n"
+  },
+  {
+    "id": "S03",
+    "name": "Order discount",
+    "category": "Business rules (authored)",
+    "source": "Authored; adapted from the order-total module of the authors' earlier STQA experiment",
+    "source_url": "",
+    "rules_text": "An online store computes the discount on an order. The base discount depends on the cart value: 5% for a cart value of Rs. 1000 or more, 10% for Rs. 2000 or more, and 20% for Rs. 5000 or more; only the highest applicable tier is used, and a cart value below Rs. 1000 gets no base discount. A valid coupon adds 10 percentage points and a loyalty member gets 5 more percentage points. The total discount can never exceed 30%. If the customer enters an invalid coupon, the order is rejected and the output is \"REJECTED\" whatever the other inputs are.",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "cart_value",
+        "type": "int",
+        "min": 0,
+        "max": 20000,
+        "values": null,
+        "description": "rupees"
+      },
+      {
+        "name": "coupon",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "none",
+          "valid",
+          "invalid"
+        ],
+        "description": ""
+      },
+      {
+        "name": "member",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": "loyalty-programme member"
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "discount",
+      "type": "enum",
+      "values": [
+        "0%",
+        "5%",
+        "10%",
+        "15%",
+        "20%",
+        "25%",
+        "30%",
+        "REJECTED"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "coupon == 'invalid'"
+        },
+        {
+          "id": "C2",
+          "expr": "cart_value >= 5000"
+        },
+        {
+          "id": "C3",
+          "expr": "cart_value >= 2000"
+        },
+        {
+          "id": "C4",
+          "expr": "cart_value >= 1000"
+        },
+        {
+          "id": "C5",
+          "expr": "coupon == 'valid'"
+        },
+        {
+          "id": "C6",
+          "expr": "member"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true
+          },
+          "output": "REJECTED"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C5": false,
+            "C6": false
+          },
+          "output": "20%"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C5": false,
+            "C6": true
+          },
+          "output": "25%"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C5": true,
+            "C6": false
+          },
+          "output": "30%"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C5": true,
+            "C6": true
+          },
+          "output": "30%"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": true,
+            "C5": false,
+            "C6": false
+          },
+          "output": "10%"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": true,
+            "C5": false,
+            "C6": true
+          },
+          "output": "15%"
+        },
+        {
+          "id": "R8",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": true,
+            "C5": true,
+            "C6": false
+          },
+          "output": "20%"
+        },
+        {
+          "id": "R9",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": true,
+            "C5": true,
+            "C6": true
+          },
+          "output": "25%"
+        },
+        {
+          "id": "R10",
+          "when": {
+            "C1": false,
+            "C3": false,
+            "C4": true,
+            "C5": false,
+            "C6": false
+          },
+          "output": "5%"
+        },
+        {
+          "id": "R11",
+          "when": {
+            "C1": false,
+            "C3": false,
+            "C4": true,
+            "C5": false,
+            "C6": true
+          },
+          "output": "10%"
+        },
+        {
+          "id": "R12",
+          "when": {
+            "C1": false,
+            "C3": false,
+            "C4": true,
+            "C5": true,
+            "C6": false
+          },
+          "output": "15%"
+        },
+        {
+          "id": "R13",
+          "when": {
+            "C1": false,
+            "C3": false,
+            "C4": true,
+            "C5": true,
+            "C6": true
+          },
+          "output": "20%"
+        },
+        {
+          "id": "R14",
+          "when": {
+            "C1": false,
+            "C4": false,
+            "C5": false,
+            "C6": false
+          },
+          "output": "0%"
+        },
+        {
+          "id": "R15",
+          "when": {
+            "C1": false,
+            "C4": false,
+            "C5": false,
+            "C6": true
+          },
+          "output": "5%"
+        },
+        {
+          "id": "R16",
+          "when": {
+            "C1": false,
+            "C4": false,
+            "C5": true,
+            "C6": false
+          },
+          "output": "10%"
+        },
+        {
+          "id": "R17",
+          "when": {
+            "C1": false,
+            "C4": false,
+            "C5": true,
+            "C6": true
+          },
+          "output": "15%"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 17,
+    "tags": [
+      "tiers",
+      "cap",
+      "error rule"
+    ],
+    "reference_implementation": "reference/s03_discount.py",
+    "reference_source": "\"\"\"S03 Order discount with tiers, coupon, membership and a 30% cap.\"\"\"\n\n\ndef decide(cart_value, coupon, member):\n    if coupon == \"invalid\":\n        return \"REJECTED\"\n    if cart_value >= 5000:\n        rate = 20\n    elif cart_value >= 2000:\n        rate = 10\n    elif cart_value >= 1000:\n        rate = 5\n    else:\n        rate = 0\n    if coupon == \"valid\":\n        rate = rate + 10\n    if member:\n        rate = rate + 5\n    if rate > 30:\n        rate = 30\n    return str(rate) + \"%\"\n"
+  },
+  {
+    "id": "S04",
+    "name": "BMI level",
+    "category": "GPT-DMN",
+    "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'BMI', verbatim)",
+    "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+    "rules_text": "The BMI of a person can be calculated based on weight in kgs and length of a person in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are a Male then the BMI-level is normal but if you are a female then BMI-level is overweight.",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "gender",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "male",
+          "female"
+        ],
+        "description": ""
+      },
+      {
+        "name": "weight",
+        "type": "float",
+        "min": 30.0,
+        "max": 200.0,
+        "values": null,
+        "description": "kg"
+      },
+      {
+        "name": "length",
+        "type": "float",
+        "min": 1.4,
+        "max": 2.2,
+        "values": null,
+        "description": "m"
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "bmi_level",
+      "type": "enum",
+      "values": [
+        "Severely underweight",
+        "Underweight",
+        "Normal",
+        "Overweight",
+        "Obese"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "weight / (length * length) > 30"
+        },
+        {
+          "id": "C2",
+          "expr": "weight / (length * length) >= 25"
+        },
+        {
+          "id": "C3",
+          "expr": "weight / (length * length) >= 18.5"
+        },
+        {
+          "id": "C4",
+          "expr": "gender == 'male'"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true
+          },
+          "output": "Obese"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": true
+          },
+          "output": "Normal"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": false
+          },
+          "output": "Overweight"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C2": false,
+            "C3": true,
+            "C4": true
+          },
+          "output": "Underweight"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C2": false,
+            "C3": true,
+            "C4": false
+          },
+          "output": "Normal"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C3": false,
+            "C4": true
+          },
+          "output": "Severely underweight"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C3": false,
+            "C4": false
+          },
+          "output": "Underweight"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 7,
+    "tags": [
+      "computed quantity",
+      "decimal boundaries"
+    ],
+    "reference_implementation": "reference/s04_bmi.py",
+    "reference_source": "\"\"\"S04 BMI level (Goossens et al. 2023, GPT-DMN 'BMI').\"\"\"\n\n\ndef decide(gender, weight, length):\n    bmi = weight / (length * length)\n    if bmi > 30:\n        return \"Obese\"\n    if bmi >= 25:\n        if gender == \"male\":\n            return \"Normal\"\n        return \"Overweight\"\n    if bmi >= 18.5:\n        if gender == \"male\":\n            return \"Underweight\"\n        return \"Normal\"\n    if gender == \"male\":\n        return \"Severely underweight\"\n    return \"Underweight\"\n"
+  },
+  {
+    "id": "S05",
+    "name": "Pet adoption",
+    "category": "GPT-DMN",
+    "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'Determine pet', verbatim)",
+    "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+    "rules_text": "A couple is planning their future and is determining under which conditions a certain pet is adopted. Together they decided that if someone has allergies and that no one has  time to take care of a pet then that no pet is adopted. The couple also decided to not take in an animal if they don't have kids, don't have time even if they don't have allergies. However, if they have a an average amount of time available or a lot and even if they have allergies then they want to take in a fish. The couple decides that they also want a fish if they have kids, no allergies even if they don't have a lot of time available. The couple decides to take in a cat or a dog only if no one has allergies. A dog is taken in if they have a garden, kids and they have a lot of time. The dog is also adopted if they have a garden, no kids and have normal or a lot of time to spare. In all the remaining cases, the couple decides they want to have a cat.",
+    "clarifications": "Text kept verbatim. Interpretation used for the ground truth: 'even if they don't have a lot of time' means time is none or average.",
+    "inputs": [
+      {
+        "name": "allergies",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": "someone in the couple has allergies"
+      },
+      {
+        "name": "time",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "none",
+          "average",
+          "a lot"
+        ],
+        "description": "time available for a pet"
+      },
+      {
+        "name": "kids",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "garden",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "pet",
+      "type": "enum",
+      "values": [
+        "No pet",
+        "Fish",
+        "Cat",
+        "Dog"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "allergies"
+        },
+        {
+          "id": "C2",
+          "expr": "time == 'none'"
+        },
+        {
+          "id": "C3",
+          "expr": "time == 'a lot'"
+        },
+        {
+          "id": "C4",
+          "expr": "kids"
+        },
+        {
+          "id": "C5",
+          "expr": "garden"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true,
+            "C2": true
+          },
+          "output": "No pet"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": true,
+            "C2": false
+          },
+          "output": "Fish"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": false
+          },
+          "output": "No pet"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C3": false,
+            "C4": true
+          },
+          "output": "Fish"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": true
+          },
+          "output": "Dog"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": false
+          },
+          "output": "Cat"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C1": false,
+            "C3": true,
+            "C5": true
+          },
+          "output": "Dog"
+        },
+        {
+          "id": "R8",
+          "when": {
+            "C1": false,
+            "C3": true,
+            "C5": false
+          },
+          "output": "Cat"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 8,
+    "tags": [
+      "enumerations",
+      "default rule",
+      "ambiguous wording"
+    ],
+    "reference_implementation": "reference/s05_pet.py",
+    "reference_source": "\"\"\"S05 Pet adoption (Goossens et al. 2023, GPT-DMN 'Determine pet').\"\"\"\n\n\ndef decide(allergies, time, kids, garden):\n    if allergies:\n        if time == \"none\":\n            return \"No pet\"\n        return \"Fish\"\n    if time == \"none\" and not kids:\n        return \"No pet\"\n    if kids and time != \"a lot\":\n        return \"Fish\"\n    if garden:\n        return \"Dog\"\n    return \"Cat\"\n"
+  },
+  {
+    "id": "S06",
+    "name": "Driver's licence",
+    "category": "GPT-DMN",
+    "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description \"Driver's license\", verbatim)",
+    "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+    "rules_text": "A person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.",
+    "clarifications": "Output labels ('Eligible', 'Not eligible') defined in the data dictionary.",
+    "inputs": [
+      {
+        "name": "age",
+        "type": "int",
+        "min": 14,
+        "max": 90,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "national_resident",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "theory",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "Excellent",
+          "Good",
+          "Fail"
+        ],
+        "description": ""
+      },
+      {
+        "name": "driving",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "Excellent",
+          "Good",
+          "Fail"
+        ],
+        "description": ""
+      },
+      {
+        "name": "maneuvering",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "Excellent",
+          "Good",
+          "Fail"
+        ],
+        "description": ""
+      },
+      {
+        "name": "anticipation",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "Excellent",
+          "Good",
+          "Fail"
+        ],
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "licence",
+      "type": "enum",
+      "values": [
+        "Eligible",
+        "Not eligible"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "age >= 18"
+        },
+        {
+          "id": "C2",
+          "expr": "national_resident"
+        },
+        {
+          "id": "C3",
+          "expr": "theory == 'Fail'"
+        },
+        {
+          "id": "C4",
+          "expr": "driving == 'Fail'"
+        },
+        {
+          "id": "C5",
+          "expr": "maneuvering == 'Fail'"
+        },
+        {
+          "id": "C6",
+          "expr": "anticipation == 'Fail'"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": false
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": true,
+            "C2": false
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": false,
+            "C4": true
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": false,
+            "C4": false,
+            "C5": true
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": false,
+            "C4": false,
+            "C5": false,
+            "C6": true
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": false,
+            "C4": false,
+            "C5": false,
+            "C6": false
+          },
+          "output": "Eligible"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 7,
+    "tags": [
+      "many inputs",
+      "conjunction"
+    ],
+    "reference_implementation": "reference/s06_licence.py",
+    "reference_source": "\"\"\"S06 Driver's licence eligibility (Goossens et al. 2023, GPT-DMN \"Driver's license\").\"\"\"\n\n\ndef decide(age, national_resident, theory, driving, maneuvering, anticipation):\n    if age < 18 or not national_resident:\n        return \"Not eligible\"\n    if \"Fail\" in (theory, driving, maneuvering, anticipation):\n        return \"Not eligible\"\n    return \"Eligible\"\n"
+  },
+  {
+    "id": "S07",
+    "name": "Vacation days",
+    "category": "GPT-DMN",
+    "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'Holidays', verbatim); originally DMCommunity challenge Jan 2016 (J. Vanthienen)",
+    "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN ; https://dmcommunity.org/challenge/challenge-jan-2016/",
+    "rules_text": "Every employee receives at least 22 days. Additional days are provided according to the following criteria: Only employees younger than 18 or at least 60 years, or employees with at least 30 years of service will receive 5 extra days. Employees with at least 30 years of service and also employees of age 60 or more, receive 3 extra days, on top of possible additional days already given. If an employee has at least 15 but less than 30 years of service, 2 extra days are given. These 2 days are also provided for employees of age 45 or more. These 2 extra days can not be combined with the extra 5 days.",
+    "clarifications": "Domain constraint years_of_service <= age - 16 added in the data dictionary.",
+    "inputs": [
+      {
+        "name": "age",
+        "type": "int",
+        "min": 16,
+        "max": 70,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "years_of_service",
+        "type": "int",
+        "min": 0,
+        "max": 54,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": "years_of_service <= age - 16",
+    "constraint_description": "years_of_service <= age - 16 (nobody starts working before 16)",
+    "output": {
+      "name": "vacation_days",
+      "type": "int",
+      "values": null
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "age < 18"
+        },
+        {
+          "id": "C2",
+          "expr": "age >= 60"
+        },
+        {
+          "id": "C3",
+          "expr": "years_of_service >= 30"
+        },
+        {
+          "id": "C4",
+          "expr": "age >= 45"
+        },
+        {
+          "id": "C5",
+          "expr": "years_of_service >= 15"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true
+          },
+          "output": 27
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": false,
+            "C2": true
+          },
+          "output": 30
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": true
+          },
+          "output": 30
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": true
+          },
+          "output": 24
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": true
+          },
+          "output": 24
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": false
+          },
+          "output": 22
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 6,
+    "tags": [
+      "overlapping clauses",
+      "exception",
+      "input constraint"
+    ],
+    "reference_implementation": "reference/s07_vacation.py",
+    "reference_source": "\"\"\"S07 Vacation days (Goossens et al. 2023 'Holidays'; DMCommunity challenge Jan 2016, J. Vanthienen).\"\"\"\n\n\ndef decide(age, years_of_service):\n    days = 22\n    extra_five = age < 18 or age >= 60 or years_of_service >= 30\n    if extra_five:\n        days = days + 5\n    if years_of_service >= 30 or age >= 60:\n        days = days + 3\n    if not extra_five and (15 <= years_of_service < 30 or age >= 45):\n        days = days + 2\n    return days\n"
+  },
+  {
+    "id": "S08",
+    "name": "Mode of transportation",
+    "category": "GPT-DMN",
+    "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'mode of transportation'; three boundary phrases clarified)",
+    "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+    "rules_text": "A person has the possibility to chose out of three transportation modes: walking, bike and driving a car. This person makes their transportation mode choice based on the distance, weather and whether that person is in a hurry. If the distance is bigger or equal to 10 and the person is not in a hurry, then the bike chosen if it is sunny or cloudy and if it is rainy or freezing then the car is chosen. In any case if the distance is bigger or equal to 10 and the person is in a hurry then the model of transportation is car. For medium distances of at least 5 but less than 10 kilometers, if it is raining the car is chosen. For the same medium distance, if the person is in a hurry the car is chosen. Again for medium distances and there is no hurry to arrive, the bike chosen if it sunny or cloudy and if it is freezing then the car is chosen. For a distance of at least 2 but less than 5 kilometers, the car is chosen if it raining or if the person is in a hurry and it is sunny, cloudy or freezing outside, otherwise the bike is chosen. Finally for a small distance smaller than 2 kilometers, it the person is in a hurry the bike is chosen otherwise the person will go by foot.",
+    "clarifications": "Original boundary phrases replaced: 'more than 10' -> 'bigger or equal to 10'; 'between 5 and 10 kilometers' -> 'of at least 5 but less than 10 kilometers'; 'between 2 and 5 kilometers' -> 'of at least 2 but less than 5 kilometers'. Without these edits the original text leaves distance 10 with hurry uncovered and gives conflicting answers at exactly 5 km in freezing weather.",
+    "inputs": [
+      {
+        "name": "distance",
+        "type": "float",
+        "min": 0.0,
+        "max": 50.0,
+        "values": null,
+        "description": "km"
+      },
+      {
+        "name": "weather",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "sunny",
+          "cloudy",
+          "rainy",
+          "freezing"
+        ],
+        "description": ""
+      },
+      {
+        "name": "hurry",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": "the person is in a hurry"
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "mode",
+      "type": "enum",
+      "values": [
+        "walk",
+        "bike",
+        "car"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "distance >= 10"
+        },
+        {
+          "id": "C2",
+          "expr": "distance >= 5"
+        },
+        {
+          "id": "C3",
+          "expr": "distance >= 2"
+        },
+        {
+          "id": "C4",
+          "expr": "hurry"
+        },
+        {
+          "id": "C5",
+          "expr": "weather in ('sunny', 'cloudy')"
+        },
+        {
+          "id": "C6",
+          "expr": "weather == 'rainy'"
+        },
+        {
+          "id": "C7",
+          "expr": "weather == 'freezing'"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true,
+            "C4": false,
+            "C5": true
+          },
+          "output": "bike"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": true,
+            "C4": false,
+            "C5": false
+          },
+          "output": "car"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": true,
+            "C4": true
+          },
+          "output": "car"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C6": true
+          },
+          "output": "car"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": true,
+            "C6": false
+          },
+          "output": "car"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": false,
+            "C5": true
+          },
+          "output": "bike"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": false,
+            "C7": true
+          },
+          "output": "car"
+        },
+        {
+          "id": "R8",
+          "when": {
+            "C2": false,
+            "C3": true,
+            "C6": true
+          },
+          "output": "car"
+        },
+        {
+          "id": "R9",
+          "when": {
+            "C2": false,
+            "C3": true,
+            "C4": true,
+            "C6": false
+          },
+          "output": "car"
+        },
+        {
+          "id": "R10",
+          "when": {
+            "C2": false,
+            "C3": true,
+            "C4": false,
+            "C6": false
+          },
+          "output": "bike"
+        },
+        {
+          "id": "R11",
+          "when": {
+            "C3": false,
+            "C4": true
+          },
+          "output": "bike"
+        },
+        {
+          "id": "R12",
+          "when": {
+            "C3": false,
+            "C4": false
+          },
+          "output": "walk"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 12,
+    "tags": [
+      "distance bands",
+      "enumerations",
+      "clarified boundaries"
+    ],
+    "reference_implementation": "reference/s08_transport.py",
+    "reference_source": "\"\"\"S08 Mode of transportation (Goossens et al. 2023, GPT-DMN; boundaries clarified).\"\"\"\n\n\ndef decide(distance, weather, hurry):\n    if distance < 2:\n        if hurry:\n            return \"bike\"\n        return \"walk\"\n    if distance < 5:\n        if weather == \"rainy\" or hurry:\n            return \"car\"\n        return \"bike\"\n    if distance < 10:\n        if weather == \"rainy\" or hurry or weather == \"freezing\":\n            return \"car\"\n        return \"bike\"\n    if hurry or weather in (\"rainy\", \"freezing\"):\n        return \"car\"\n    return \"bike\"\n"
+  },
+  {
+    "id": "S09",
+    "name": "Scholarship eligibility",
+    "category": "GPT-DMN",
+    "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'scholarship', verbatim)",
+    "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+    "rules_text": "An institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.",
+    "clarifications": "Grade values (excellent, good, average, poor) and output labels defined in the data dictionary.",
+    "inputs": [
+      {
+        "name": "grades",
+        "type": "enum",
+        "min": null,
+        "max": null,
+        "values": [
+          "excellent",
+          "good",
+          "average",
+          "poor"
+        ],
+        "description": ""
+      },
+      {
+        "name": "annual_income",
+        "type": "int",
+        "min": 0,
+        "max": 200000,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "received_other_scholarship",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "scholarship",
+      "type": "enum",
+      "values": [
+        "Eligible",
+        "Not eligible"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "grades in ('excellent', 'good')"
+        },
+        {
+          "id": "C2",
+          "expr": "annual_income < 50000"
+        },
+        {
+          "id": "C3",
+          "expr": "received_other_scholarship"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": false
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": true,
+            "C2": false
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": true
+          },
+          "output": "Not eligible"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": true,
+            "C2": true,
+            "C3": false
+          },
+          "output": "Eligible"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 4,
+    "tags": [
+      "conjunction",
+      "small"
+    ],
+    "reference_implementation": "reference/s09_scholarship.py",
+    "reference_source": "\"\"\"S09 Scholarship eligibility (Goossens et al. 2023, GPT-DMN 'scholarship').\"\"\"\n\n\ndef decide(grades, annual_income, received_other_scholarship):\n    if grades in (\"excellent\", \"good\") and annual_income < 50000 and not received_other_scholarship:\n        return \"Eligible\"\n    return \"Not eligible\"\n"
+  },
+  {
+    "id": "S10",
+    "name": "Login with lockout and OTP",
+    "category": "Business rules (authored)",
+    "source": "Authored for this benchmark",
+    "source_url": "",
+    "rules_text": "A web application evaluates every login attempt. If the account is already locked, the result is \"Account locked\", whatever else is true. For an account that is not locked, a wrong password gives \"Invalid credentials\", except that when the account already has 4 or more consecutive failed attempts, the wrong password locks the account and the result is \"Account locked\". If the password is correct and the login comes from a trusted device, the result is \"Access granted\". If the password is correct but the device is not trusted, the user must pass a one-time password (OTP) check: when the OTP has been verified the result is \"Access granted\", otherwise it is \"OTP required\".",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "account_locked",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "password_correct",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "failed_attempts",
+        "type": "int",
+        "min": 0,
+        "max": 9,
+        "values": null,
+        "description": "consecutive failed attempts before this one"
+      },
+      {
+        "name": "trusted_device",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "otp_verified",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "result",
+      "type": "enum",
+      "values": [
+        "Access granted",
+        "Invalid credentials",
+        "Account locked",
+        "OTP required"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "account_locked"
+        },
+        {
+          "id": "C2",
+          "expr": "password_correct"
+        },
+        {
+          "id": "C3",
+          "expr": "failed_attempts >= 4"
+        },
+        {
+          "id": "C4",
+          "expr": "trusted_device"
+        },
+        {
+          "id": "C5",
+          "expr": "otp_verified"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true
+          },
+          "output": "Account locked"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false
+          },
+          "output": "Invalid credentials"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": true
+          },
+          "output": "Account locked"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": true
+          },
+          "output": "Access granted"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": false,
+            "C5": true
+          },
+          "output": "Access granted"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C4": false,
+            "C5": false
+          },
+          "output": "OTP required"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 6,
+    "tags": [
+      "security",
+      "precedence",
+      "threshold"
+    ],
+    "reference_implementation": "reference/s10_login.py",
+    "reference_source": "\"\"\"S10 Login attempt with account lockout and OTP (authored for this benchmark).\"\"\"\n\nMAX_FAILED = 4\n\n\ndef decide(account_locked, password_correct, failed_attempts, trusted_device, otp_verified):\n    if account_locked:\n        return \"Account locked\"\n    if not password_correct:\n        if failed_attempts >= MAX_FAILED:\n            return \"Account locked\"\n        return \"Invalid credentials\"\n    if trusted_device or otp_verified:\n        return \"Access granted\"\n    return \"OTP required\"\n"
+  },
+  {
+    "id": "S11",
+    "name": "UPI transfer screening",
+    "category": "Business rules (authored)",
+    "source": "Authored for this benchmark (simplified; not an official NPCI rule set)",
+    "source_url": "",
+    "rules_text": "A payment app screens every UPI money transfer before sending it. A transfer of more than Rs. 100000 is blocked because it exceeds the per-transaction limit, and the output is \"Blocked\". Otherwise, a transfer to a new payee (a payee added less than 24 hours ago) is put \"On hold\" if the amount is more than Rs. 5000. In all other cases, if the user is not on their registered device and the amount is more than Rs. 2000, the app asks for an OTP and the output is \"OTP required\". Every remaining transfer is \"Allowed\".",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "int",
+        "min": 1,
+        "max": 200000,
+        "values": null,
+        "description": "rupees"
+      },
+      {
+        "name": "new_payee",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "registered_device",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "decision",
+      "type": "enum",
+      "values": [
+        "Blocked",
+        "On hold",
+        "OTP required",
+        "Allowed"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "amount > 100000"
+        },
+        {
+          "id": "C2",
+          "expr": "new_payee"
+        },
+        {
+          "id": "C3",
+          "expr": "amount > 5000"
+        },
+        {
+          "id": "C4",
+          "expr": "registered_device"
+        },
+        {
+          "id": "C5",
+          "expr": "amount > 2000"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true
+          },
+          "output": "Blocked"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C3": true
+          },
+          "output": "On hold"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C3": false,
+            "C4": false,
+            "C5": true
+          },
+          "output": "OTP required"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C3": false,
+            "C4": false,
+            "C5": false
+          },
+          "output": "Allowed"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": true,
+            "C3": false,
+            "C4": true
+          },
+          "output": "Allowed"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C4": false,
+            "C5": true
+          },
+          "output": "OTP required"
+        },
+        {
+          "id": "R7",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C4": false,
+            "C5": false
+          },
+          "output": "Allowed"
+        },
+        {
+          "id": "R8",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C4": true
+          },
+          "output": "Allowed"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 8,
+    "tags": [
+      "thresholds",
+      "precedence",
+      "payments"
+    ],
+    "reference_implementation": "reference/s11_upi.py",
+    "reference_source": "\"\"\"S11 UPI transfer screening (authored for this benchmark; simplified, not an NPCI rule set).\"\"\"\n\n\ndef decide(amount, new_payee, registered_device):\n    if amount > 100000:\n        return \"Blocked\"\n    if new_payee and amount > 5000:\n        return \"On hold\"\n    if not registered_device and amount > 2000:\n        return \"OTP required\"\n    return \"Allowed\"\n"
+  },
+  {
+    "id": "S12",
+    "name": "Personal-loan screening",
+    "category": "Business rules (authored)",
+    "source": "Authored for this benchmark",
+    "source_url": "",
+    "rules_text": "A bank screens personal-loan applications. Applicants younger than 21 years are \"Rejected\". Applicants aged 21 or more are assessed on their credit score: a score below 600 is \"Rejected\" and a score of 750 or above is \"Approved\". For a credit score from 600 to 749, the application is \"Approved\" if the monthly income is at least Rs. 50000; if the income is lower, the application is \"Approved\" only when there is a co-signer, and otherwise it is \"Referred\" to a loan officer.",
+    "clarifications": "",
+    "inputs": [
+      {
+        "name": "age",
+        "type": "int",
+        "min": 18,
+        "max": 75,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "credit_score",
+        "type": "int",
+        "min": 300,
+        "max": 900,
+        "values": null,
+        "description": ""
+      },
+      {
+        "name": "monthly_income",
+        "type": "int",
+        "min": 0,
+        "max": 500000,
+        "values": null,
+        "description": "rupees"
+      },
+      {
+        "name": "has_cosigner",
+        "type": "bool",
+        "min": null,
+        "max": null,
+        "values": null,
+        "description": ""
+      }
+    ],
+    "constraint": null,
+    "constraint_description": null,
+    "output": {
+      "name": "decision",
+      "type": "enum",
+      "values": [
+        "Approved",
+        "Rejected",
+        "Referred"
+      ]
+    },
+    "ground_truth_table": {
+      "conditions": [
+        {
+          "id": "C1",
+          "expr": "age < 21"
+        },
+        {
+          "id": "C2",
+          "expr": "credit_score < 600"
+        },
+        {
+          "id": "C3",
+          "expr": "credit_score >= 750"
+        },
+        {
+          "id": "C4",
+          "expr": "monthly_income >= 50000"
+        },
+        {
+          "id": "C5",
+          "expr": "has_cosigner"
+        }
+      ],
+      "rules": [
+        {
+          "id": "R1",
+          "when": {
+            "C1": true
+          },
+          "output": "Rejected"
+        },
+        {
+          "id": "R2",
+          "when": {
+            "C1": false,
+            "C2": true
+          },
+          "output": "Rejected"
+        },
+        {
+          "id": "R3",
+          "when": {
+            "C1": false,
+            "C3": true
+          },
+          "output": "Approved"
+        },
+        {
+          "id": "R4",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": true
+          },
+          "output": "Approved"
+        },
+        {
+          "id": "R5",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": true
+          },
+          "output": "Approved"
+        },
+        {
+          "id": "R6",
+          "when": {
+            "C1": false,
+            "C2": false,
+            "C3": false,
+            "C4": false,
+            "C5": false
+          },
+          "output": "Referred"
+        }
+      ]
+    },
+    "infeasible_rules": [],
+    "n_feasible_rules": 6,
+    "tags": [
+      "thresholds",
+      "precedence",
+      "finance"
+    ],
+    "reference_implementation": "reference/s12_loan.py",
+    "reference_source": "\"\"\"S12 Personal-loan screening (authored for this benchmark).\"\"\"\n\n\ndef decide(age, credit_score, monthly_income, has_cosigner):\n    if age < 21 or credit_score < 600:\n        return \"Rejected\"\n    if credit_score >= 750 or monthly_income >= 50000 or has_cosigner:\n        return \"Approved\"\n    return \"Referred\"\n"
+  }
+]

@@ -1,0 +1,204 @@
+{
+  "id": "S08",
+  "name": "Mode of transportation",
+  "category": "GPT-DMN",
+  "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'mode of transportation'; three boundary phrases clarified)",
+  "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+  "rules_text": "A person has the possibility to chose out of three transportation modes: walking, bike and driving a car. This person makes their transportation mode choice based on the distance, weather and whether that person is in a hurry. If the distance is bigger or equal to 10 and the person is not in a hurry, then the bike chosen if it is sunny or cloudy and if it is rainy or freezing then the car is chosen. In any case if the distance is bigger or equal to 10 and the person is in a hurry then the model of transportation is car. For medium distances of at least 5 but less than 10 kilometers, if it is raining the car is chosen. For the same medium distance, if the person is in a hurry the car is chosen. Again for medium distances and there is no hurry to arrive, the bike chosen if it sunny or cloudy and if it is freezing then the car is chosen. For a distance of at least 2 but less than 5 kilometers, the car is chosen if it raining or if the person is in a hurry and it is sunny, cloudy or freezing outside, otherwise the bike is chosen. Finally for a small distance smaller than 2 kilometers, it the person is in a hurry the bike is chosen otherwise the person will go by foot.",
+  "clarifications": "Original boundary phrases replaced: 'more than 10' -> 'bigger or equal to 10'; 'between 5 and 10 kilometers' -> 'of at least 5 but less than 10 kilometers'; 'between 2 and 5 kilometers' -> 'of at least 2 but less than 5 kilometers'. Without these edits the original text leaves distance 10 with hurry uncovered and gives conflicting answers at exactly 5 km in freezing weather.",
+  "inputs": [
+    {
+      "name": "distance",
+      "type": "float",
+      "min": 0.0,
+      "max": 50.0,
+      "values": null,
+      "description": "km"
+    },
+    {
+      "name": "weather",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "sunny",
+        "cloudy",
+        "rainy",
+        "freezing"
+      ],
+      "description": ""
+    },
+    {
+      "name": "hurry",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": "the person is in a hurry"
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "mode",
+    "type": "enum",
+    "values": [
+      "walk",
+      "bike",
+      "car"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "distance >= 10"
+      },
+      {
+        "id": "C2",
+        "expr": "distance >= 5"
+      },
+      {
+        "id": "C3",
+        "expr": "distance >= 2"
+      },
+      {
+        "id": "C4",
+        "expr": "hurry"
+      },
+      {
+        "id": "C5",
+        "expr": "weather in ('sunny', 'cloudy')"
+      },
+      {
+        "id": "C6",
+        "expr": "weather == 'rainy'"
+      },
+      {
+        "id": "C7",
+        "expr": "weather == 'freezing'"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": true,
+          "C4": false,
+          "C5": true
+        },
+        "output": "bike"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": true,
+          "C4": false,
+          "C5": false
+        },
+        "output": "car"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": true,
+          "C4": true
+        },
+        "output": "car"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C6": true
+        },
+        "output": "car"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": true,
+          "C6": false
+        },
+        "output": "car"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": false,
+          "C5": true
+        },
+        "output": "bike"
+      },
+      {
+        "id": "R7",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": false,
+          "C7": true
+        },
+        "output": "car"
+      },
+      {
+        "id": "R8",
+        "when": {
+          "C2": false,
+          "C3": true,
+          "C6": true
+        },
+        "output": "car"
+      },
+      {
+        "id": "R9",
+        "when": {
+          "C2": false,
+          "C3": true,
+          "C4": true,
+          "C6": false
+        },
+        "output": "car"
+      },
+      {
+        "id": "R10",
+        "when": {
+          "C2": false,
+          "C3": true,
+          "C4": false,
+          "C6": false
+        },
+        "output": "bike"
+      },
+      {
+        "id": "R11",
+        "when": {
+          "C3": false,
+          "C4": true
+        },
+        "output": "bike"
+      },
+      {
+        "id": "R12",
+        "when": {
+          "C3": false,
+          "C4": false
+        },
+        "output": "walk"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 12,
+  "tags": [
+    "distance bands",
+    "enumerations",
+    "clarified boundaries"
+  ],
+  "reference_implementation": "reference/s08_transport.py",
+  "reference_source": "\"\"\"S08 Mode of transportation (Goossens et al. 2023, GPT-DMN; boundaries clarified).\"\"\"\n\n\ndef decide(distance, weather, hurry):\n    if distance < 2:\n        if hurry:\n            return \"bike\"\n        return \"walk\"\n    if distance < 5:\n        if weather == \"rainy\" or hurry:\n            return \"car\"\n        return \"bike\"\n    if distance < 10:\n        if weather == \"rainy\" or hurry or weather == \"freezing\":\n            return \"car\"\n        return \"bike\"\n    if hurry or weather in (\"rainy\", \"freezing\"):\n        return \"car\"\n    return \"bike\"\n"
+}

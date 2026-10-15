@@ -1,0 +1,168 @@
+{
+  "id": "S05",
+  "name": "Pet adoption",
+  "category": "GPT-DMN",
+  "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'Determine pet', verbatim)",
+  "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+  "rules_text": "A couple is planning their future and is determining under which conditions a certain pet is adopted. Together they decided that if someone has allergies and that no one has  time to take care of a pet then that no pet is adopted. The couple also decided to not take in an animal if they don't have kids, don't have time even if they don't have allergies. However, if they have a an average amount of time available or a lot and even if they have allergies then they want to take in a fish. The couple decides that they also want a fish if they have kids, no allergies even if they don't have a lot of time available. The couple decides to take in a cat or a dog only if no one has allergies. A dog is taken in if they have a garden, kids and they have a lot of time. The dog is also adopted if they have a garden, no kids and have normal or a lot of time to spare. In all the remaining cases, the couple decides they want to have a cat.",
+  "clarifications": "Text kept verbatim. Interpretation used for the ground truth: 'even if they don't have a lot of time' means time is none or average.",
+  "inputs": [
+    {
+      "name": "allergies",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": "someone in the couple has allergies"
+    },
+    {
+      "name": "time",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "none",
+        "average",
+        "a lot"
+      ],
+      "description": "time available for a pet"
+    },
+    {
+      "name": "kids",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "garden",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "pet",
+    "type": "enum",
+    "values": [
+      "No pet",
+      "Fish",
+      "Cat",
+      "Dog"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "allergies"
+      },
+      {
+        "id": "C2",
+        "expr": "time == 'none'"
+      },
+      {
+        "id": "C3",
+        "expr": "time == 'a lot'"
+      },
+      {
+        "id": "C4",
+        "expr": "kids"
+      },
+      {
+        "id": "C5",
+        "expr": "garden"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": true,
+          "C2": true
+        },
+        "output": "No pet"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": true,
+          "C2": false
+        },
+        "output": "Fish"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C4": false
+        },
+        "output": "No pet"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": false,
+          "C3": false,
+          "C4": true
+        },
+        "output": "Fish"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": false,
+          "C5": true
+        },
+        "output": "Dog"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": false,
+          "C5": false
+        },
+        "output": "Cat"
+      },
+      {
+        "id": "R7",
+        "when": {
+          "C1": false,
+          "C3": true,
+          "C5": true
+        },
+        "output": "Dog"
+      },
+      {
+        "id": "R8",
+        "when": {
+          "C1": false,
+          "C3": true,
+          "C5": false
+        },
+        "output": "Cat"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 8,
+  "tags": [
+    "enumerations",
+    "default rule",
+    "ambiguous wording"
+  ],
+  "reference_implementation": "reference/s05_pet.py",
+  "reference_source": "\"\"\"S05 Pet adoption (Goossens et al. 2023, GPT-DMN 'Determine pet').\"\"\"\n\n\ndef decide(allergies, time, kids, garden):\n    if allergies:\n        if time == \"none\":\n            return \"No pet\"\n        return \"Fish\"\n    if time == \"none\" and not kids:\n        return \"No pet\"\n    if kids and time != \"a lot\":\n        return \"Fish\"\n    if garden:\n        return \"Dog\"\n    return \"Cat\"\n"
+}

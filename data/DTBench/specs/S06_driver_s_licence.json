@@ -1,0 +1,192 @@
+{
+  "id": "S06",
+  "name": "Driver's licence",
+  "category": "GPT-DMN",
+  "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description \"Driver's license\", verbatim)",
+  "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+  "rules_text": "A person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.",
+  "clarifications": "Output labels ('Eligible', 'Not eligible') defined in the data dictionary.",
+  "inputs": [
+    {
+      "name": "age",
+      "type": "int",
+      "min": 14,
+      "max": 90,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "national_resident",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "theory",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "Excellent",
+        "Good",
+        "Fail"
+      ],
+      "description": ""
+    },
+    {
+      "name": "driving",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "Excellent",
+        "Good",
+        "Fail"
+      ],
+      "description": ""
+    },
+    {
+      "name": "maneuvering",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "Excellent",
+        "Good",
+        "Fail"
+      ],
+      "description": ""
+    },
+    {
+      "name": "anticipation",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "Excellent",
+        "Good",
+        "Fail"
+      ],
+      "description": ""
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "licence",
+    "type": "enum",
+    "values": [
+      "Eligible",
+      "Not eligible"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "age >= 18"
+      },
+      {
+        "id": "C2",
+        "expr": "national_resident"
+      },
+      {
+        "id": "C3",
+        "expr": "theory == 'Fail'"
+      },
+      {
+        "id": "C4",
+        "expr": "driving == 'Fail'"
+      },
+      {
+        "id": "C5",
+        "expr": "maneuvering == 'Fail'"
+      },
+      {
+        "id": "C6",
+        "expr": "anticipation == 'Fail'"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": false
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": true,
+          "C2": false
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": false,
+          "C4": true
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": false,
+          "C4": false,
+          "C5": true
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": false,
+          "C4": false,
+          "C5": false,
+          "C6": true
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R7",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": false,
+          "C4": false,
+          "C5": false,
+          "C6": false
+        },
+        "output": "Eligible"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 7,
+  "tags": [
+    "many inputs",
+    "conjunction"
+  ],
+  "reference_implementation": "reference/s06_licence.py",
+  "reference_source": "\"\"\"S06 Driver's licence eligibility (Goossens et al. 2023, GPT-DMN \"Driver's license\").\"\"\"\n\n\ndef decide(age, national_resident, theory, driving, maneuvering, anticipation):\n    if age < 18 or not national_resident:\n        return \"Not eligible\"\n    if \"Fail\" in (theory, driving, maneuvering, anticipation):\n        return \"Not eligible\"\n    return \"Eligible\"\n"
+}

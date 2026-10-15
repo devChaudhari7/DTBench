@@ -1,0 +1,125 @@
+{
+  "id": "S07",
+  "name": "Vacation days",
+  "category": "GPT-DMN",
+  "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'Holidays', verbatim); originally DMCommunity challenge Jan 2016 (J. Vanthienen)",
+  "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN ; https://dmcommunity.org/challenge/challenge-jan-2016/",
+  "rules_text": "Every employee receives at least 22 days. Additional days are provided according to the following criteria: Only employees younger than 18 or at least 60 years, or employees with at least 30 years of service will receive 5 extra days. Employees with at least 30 years of service and also employees of age 60 or more, receive 3 extra days, on top of possible additional days already given. If an employee has at least 15 but less than 30 years of service, 2 extra days are given. These 2 days are also provided for employees of age 45 or more. These 2 extra days can not be combined with the extra 5 days.",
+  "clarifications": "Domain constraint years_of_service <= age - 16 added in the data dictionary.",
+  "inputs": [
+    {
+      "name": "age",
+      "type": "int",
+      "min": 16,
+      "max": 70,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "years_of_service",
+      "type": "int",
+      "min": 0,
+      "max": 54,
+      "values": null,
+      "description": ""
+    }
+  ],
+  "constraint": "years_of_service <= age - 16",
+  "constraint_description": "years_of_service <= age - 16 (nobody starts working before 16)",
+  "output": {
+    "name": "vacation_days",
+    "type": "int",
+    "values": null
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "age < 18"
+      },
+      {
+        "id": "C2",
+        "expr": "age >= 60"
+      },
+      {
+        "id": "C3",
+        "expr": "years_of_service >= 30"
+      },
+      {
+        "id": "C4",
+        "expr": "age >= 45"
+      },
+      {
+        "id": "C5",
+        "expr": "years_of_service >= 15"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": true
+        },
+        "output": 27
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": false,
+          "C2": true
+        },
+        "output": 30
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": true
+        },
+        "output": 30
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": true
+        },
+        "output": 24
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": false,
+          "C5": true
+        },
+        "output": 24
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": false,
+          "C5": false
+        },
+        "output": 22
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 6,
+  "tags": [
+    "overlapping clauses",
+    "exception",
+    "input constraint"
+  ],
+  "reference_implementation": "reference/s07_vacation.py",
+  "reference_source": "\"\"\"S07 Vacation days (Goossens et al. 2023 'Holidays'; DMCommunity challenge Jan 2016, J. Vanthienen).\"\"\"\n\n\ndef decide(age, years_of_service):\n    days = 22\n    extra_five = age < 18 or age >= 60 or years_of_service >= 30\n    if extra_five:\n        days = days + 5\n    if years_of_service >= 30 or age >= 60:\n        days = days + 3\n    if not extra_five and (15 <= years_of_service < 30 or age >= 45):\n        days = days + 2\n    return days\n"
+}

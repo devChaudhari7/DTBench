@@ -1,0 +1,269 @@
+{
+  "id": "S03",
+  "name": "Order discount",
+  "category": "Business rules (authored)",
+  "source": "Authored; adapted from the order-total module of the authors' earlier STQA experiment",
+  "source_url": "",
+  "rules_text": "An online store computes the discount on an order. The base discount depends on the cart value: 5% for a cart value of Rs. 1000 or more, 10% for Rs. 2000 or more, and 20% for Rs. 5000 or more; only the highest applicable tier is used, and a cart value below Rs. 1000 gets no base discount. A valid coupon adds 10 percentage points and a loyalty member gets 5 more percentage points. The total discount can never exceed 30%. If the customer enters an invalid coupon, the order is rejected and the output is \"REJECTED\" whatever the other inputs are.",
+  "clarifications": "",
+  "inputs": [
+    {
+      "name": "cart_value",
+      "type": "int",
+      "min": 0,
+      "max": 20000,
+      "values": null,
+      "description": "rupees"
+    },
+    {
+      "name": "coupon",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "none",
+        "valid",
+        "invalid"
+      ],
+      "description": ""
+    },
+    {
+      "name": "member",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": "loyalty-programme member"
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "discount",
+    "type": "enum",
+    "values": [
+      "0%",
+      "5%",
+      "10%",
+      "15%",
+      "20%",
+      "25%",
+      "30%",
+      "REJECTED"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "coupon == 'invalid'"
+      },
+      {
+        "id": "C2",
+        "expr": "cart_value >= 5000"
+      },
+      {
+        "id": "C3",
+        "expr": "cart_value >= 2000"
+      },
+      {
+        "id": "C4",
+        "expr": "cart_value >= 1000"
+      },
+      {
+        "id": "C5",
+        "expr": "coupon == 'valid'"
+      },
+      {
+        "id": "C6",
+        "expr": "member"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": true
+        },
+        "output": "REJECTED"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C5": false,
+          "C6": false
+        },
+        "output": "20%"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C5": false,
+          "C6": true
+        },
+        "output": "25%"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C5": true,
+          "C6": false
+        },
+        "output": "30%"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": false,
+          "C2": true,
+          "C5": true,
+          "C6": true
+        },
+        "output": "30%"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": true,
+          "C5": false,
+          "C6": false
+        },
+        "output": "10%"
+      },
+      {
+        "id": "R7",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": true,
+          "C5": false,
+          "C6": true
+        },
+        "output": "15%"
+      },
+      {
+        "id": "R8",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": true,
+          "C5": true,
+          "C6": false
+        },
+        "output": "20%"
+      },
+      {
+        "id": "R9",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": true,
+          "C5": true,
+          "C6": true
+        },
+        "output": "25%"
+      },
+      {
+        "id": "R10",
+        "when": {
+          "C1": false,
+          "C3": false,
+          "C4": true,
+          "C5": false,
+          "C6": false
+        },
+        "output": "5%"
+      },
+      {
+        "id": "R11",
+        "when": {
+          "C1": false,
+          "C3": false,
+          "C4": true,
+          "C5": false,
+          "C6": true
+        },
+        "output": "10%"
+      },
+      {
+        "id": "R12",
+        "when": {
+          "C1": false,
+          "C3": false,
+          "C4": true,
+          "C5": true,
+          "C6": false
+        },
+        "output": "15%"
+      },
+      {
+        "id": "R13",
+        "when": {
+          "C1": false,
+          "C3": false,
+          "C4": true,
+          "C5": true,
+          "C6": true
+        },
+        "output": "20%"
+      },
+      {
+        "id": "R14",
+        "when": {
+          "C1": false,
+          "C4": false,
+          "C5": false,
+          "C6": false
+        },
+        "output": "0%"
+      },
+      {
+        "id": "R15",
+        "when": {
+          "C1": false,
+          "C4": false,
+          "C5": false,
+          "C6": true
+        },
+        "output": "5%"
+      },
+      {
+        "id": "R16",
+        "when": {
+          "C1": false,
+          "C4": false,
+          "C5": true,
+          "C6": false
+        },
+        "output": "10%"
+      },
+      {
+        "id": "R17",
+        "when": {
+          "C1": false,
+          "C4": false,
+          "C5": true,
+          "C6": true
+        },
+        "output": "15%"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 17,
+  "tags": [
+    "tiers",
+    "cap",
+    "error rule"
+  ],
+  "reference_implementation": "reference/s03_discount.py",
+  "reference_source": "\"\"\"S03 Order discount with tiers, coupon, membership and a 30% cap.\"\"\"\n\n\ndef decide(cart_value, coupon, member):\n    if coupon == \"invalid\":\n        return \"REJECTED\"\n    if cart_value >= 5000:\n        rate = 20\n    elif cart_value >= 2000:\n        rate = 10\n    elif cart_value >= 1000:\n        rate = 5\n    else:\n        rate = 0\n    if coupon == \"valid\":\n        rate = rate + 10\n    if member:\n        rate = rate + 5\n    if rate > 30:\n        rate = 30\n    return str(rate) + \"%\"\n"
+}

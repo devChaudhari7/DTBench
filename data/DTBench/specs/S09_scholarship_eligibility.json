@@ -1,0 +1,109 @@
+{
+  "id": "S09",
+  "name": "Scholarship eligibility",
+  "category": "GPT-DMN",
+  "source": "A. Goossens, S. Vandevelde, J. Vanthienen and J. Vennekens, \"GPT-3 for Decision Logic Modeling\", RuleML+RR 2023 Companion, CEUR-WS Vol. 3485 (description 'scholarship', verbatim)",
+  "source_url": "https://gitlab.com/EAVISE/sva/GPT-DMN",
+  "rules_text": "An institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.",
+  "clarifications": "Grade values (excellent, good, average, poor) and output labels defined in the data dictionary.",
+  "inputs": [
+    {
+      "name": "grades",
+      "type": "enum",
+      "min": null,
+      "max": null,
+      "values": [
+        "excellent",
+        "good",
+        "average",
+        "poor"
+      ],
+      "description": ""
+    },
+    {
+      "name": "annual_income",
+      "type": "int",
+      "min": 0,
+      "max": 200000,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "received_other_scholarship",
+      "type": "bool",
+      "min": null,
+      "max": null,
+      "values": null,
+      "description": ""
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "scholarship",
+    "type": "enum",
+    "values": [
+      "Eligible",
+      "Not eligible"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "grades in ('excellent', 'good')"
+      },
+      {
+        "id": "C2",
+        "expr": "annual_income < 50000"
+      },
+      {
+        "id": "C3",
+        "expr": "received_other_scholarship"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": false
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": true,
+          "C2": false
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": true
+        },
+        "output": "Not eligible"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": true,
+          "C2": true,
+          "C3": false
+        },
+        "output": "Eligible"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 4,
+  "tags": [
+    "conjunction",
+    "small"
+  ],
+  "reference_implementation": "reference/s09_scholarship.py",
+  "reference_source": "\"\"\"S09 Scholarship eligibility (Goossens et al. 2023, GPT-DMN 'scholarship').\"\"\"\n\n\ndef decide(grades, annual_income, received_other_scholarship):\n    if grades in (\"excellent\", \"good\") and annual_income < 50000 and not received_other_scholarship:\n        return \"Eligible\"\n    return \"Not eligible\"\n"
+}

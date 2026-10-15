@@ -1,0 +1,300 @@
+{
+  "id": "S02",
+  "name": "NextDate",
+  "category": "Textbook",
+  "source": "P. C. Jorgensen, Software Testing: A Craftsman's Approach, 4th ed., CRC Press, 2013, ch. 7",
+  "source_url": "",
+  "rules_text": "Given a date as day, month and year, the program decides how the date of the next day is obtained. Months 1, 3, 5, 7, 8, 10 and 12 have 31 days; months 4, 6, 9 and 11 have 30 days; month 2 (February) has 29 days in a leap year and 28 days otherwise. A year is a leap year if it is divisible by 4 but not by 100, or if it is divisible by 400. If the day does not exist in that month and year (for example day 31 of month 4, or day 29 of February in a non-leap year), the output is \"Invalid date\". If the day is before the last day of its month, the output is \"Next day same month\". If the day is the last day of month 12, the output is \"First day of next year\". If the day is the last day of any other month, the output is \"First day of next month\".",
+  "clarifications": "",
+  "inputs": [
+    {
+      "name": "day",
+      "type": "int",
+      "min": 1,
+      "max": 31,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "month",
+      "type": "int",
+      "min": 1,
+      "max": 12,
+      "values": null,
+      "description": ""
+    },
+    {
+      "name": "year",
+      "type": "int",
+      "min": 1900,
+      "max": 2100,
+      "values": null,
+      "description": ""
+    }
+  ],
+  "constraint": null,
+  "constraint_description": null,
+  "output": {
+    "name": "next_date_action",
+    "type": "enum",
+    "values": [
+      "Invalid date",
+      "Next day same month",
+      "First day of next month",
+      "First day of next year"
+    ]
+  },
+  "ground_truth_table": {
+    "conditions": [
+      {
+        "id": "C1",
+        "expr": "month in (4, 6, 9, 11)"
+      },
+      {
+        "id": "C2",
+        "expr": "month in (1, 3, 5, 7, 8, 10)"
+      },
+      {
+        "id": "C3",
+        "expr": "month == 12"
+      },
+      {
+        "id": "C4",
+        "expr": "day <= 27"
+      },
+      {
+        "id": "C5",
+        "expr": "day == 28"
+      },
+      {
+        "id": "C6",
+        "expr": "day == 29"
+      },
+      {
+        "id": "C7",
+        "expr": "day == 30"
+      },
+      {
+        "id": "C8",
+        "expr": "(year % 4 == 0 and year % 100 != 0) or year % 400 == 0"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R1",
+        "when": {
+          "C1": true,
+          "C4": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R2",
+        "when": {
+          "C1": true,
+          "C5": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R3",
+        "when": {
+          "C1": true,
+          "C6": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R4",
+        "when": {
+          "C1": true,
+          "C7": true
+        },
+        "output": "First day of next month"
+      },
+      {
+        "id": "R5",
+        "when": {
+          "C1": true,
+          "C4": false,
+          "C5": false,
+          "C6": false,
+          "C7": false
+        },
+        "output": "Invalid date"
+      },
+      {
+        "id": "R6",
+        "when": {
+          "C2": true,
+          "C4": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R7",
+        "when": {
+          "C2": true,
+          "C5": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R8",
+        "when": {
+          "C2": true,
+          "C6": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R9",
+        "when": {
+          "C2": true,
+          "C7": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R10",
+        "when": {
+          "C2": true,
+          "C4": false,
+          "C5": false,
+          "C6": false,
+          "C7": false
+        },
+        "output": "First day of next month"
+      },
+      {
+        "id": "R11",
+        "when": {
+          "C3": true,
+          "C4": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R12",
+        "when": {
+          "C3": true,
+          "C5": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R13",
+        "when": {
+          "C3": true,
+          "C6": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R14",
+        "when": {
+          "C3": true,
+          "C7": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R15",
+        "when": {
+          "C3": true,
+          "C4": false,
+          "C5": false,
+          "C6": false,
+          "C7": false
+        },
+        "output": "First day of next year"
+      },
+      {
+        "id": "R16",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R17",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C5": true,
+          "C8": true
+        },
+        "output": "Next day same month"
+      },
+      {
+        "id": "R18",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C5": true,
+          "C8": false
+        },
+        "output": "First day of next month"
+      },
+      {
+        "id": "R19",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C6": true,
+          "C8": true
+        },
+        "output": "First day of next month"
+      },
+      {
+        "id": "R20",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C6": true,
+          "C8": false
+        },
+        "output": "Invalid date"
+      },
+      {
+        "id": "R21",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C7": true
+        },
+        "output": "Invalid date"
+      },
+      {
+        "id": "R22",
+        "when": {
+          "C1": false,
+          "C2": false,
+          "C3": false,
+          "C4": false,
+          "C5": false,
+          "C6": false,
+          "C7": false
+        },
+        "output": "Invalid date"
+      }
+    ]
+  },
+  "infeasible_rules": [],
+  "n_feasible_rules": 22,
+  "tags": [
+    "many rules",
+    "leap-year logic",
+    "invalid dates"
+  ],
+  "reference_implementation": "reference/s02_nextdate.py",
+  "reference_source": "\"\"\"S02 NextDate: which action produces the next date (Jorgensen 2013, ch. 7).\"\"\"\n\n\ndef is_leap(year):\n    return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0\n\n\ndef decide(day, month, year):\n    if month == 2:\n        if is_leap(year):\n            last = 29\n        else:\n            last = 28\n    elif month in (4, 6, 9, 11):\n        last = 30\n    else:\n        last = 31\n    if day > last:\n        return \"Invalid date\"\n    if day < last:\n        return \"Next day same month\"\n    if month == 12:\n        return \"First day of next year\"\n    return \"First day of next month\"\n"
+}

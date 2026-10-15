@@ -1,0 +1,24 @@
+{"inputs": {"allergies": false, "time": "none", "kids": false, "garden": false}, "gt_rule": "R3", "expected": "No pet"}
+{"inputs": {"allergies": false, "time": "none", "kids": false, "garden": true}, "gt_rule": "R3", "expected": "No pet"}
+{"inputs": {"allergies": false, "time": "none", "kids": true, "garden": false}, "gt_rule": "R4", "expected": "Fish"}
+{"inputs": {"allergies": false, "time": "none", "kids": true, "garden": true}, "gt_rule": "R4", "expected": "Fish"}
+{"inputs": {"allergies": false, "time": "average", "kids": false, "garden": false}, "gt_rule": "R6", "expected": "Cat"}
+{"inputs": {"allergies": false, "time": "average", "kids": false, "garden": true}, "gt_rule": "R5", "expected": "Dog"}
+{"inputs": {"allergies": false, "time": "average", "kids": true, "garden": false}, "gt_rule": "R4", "expected": "Fish"}
+{"inputs": {"allergies": false, "time": "average", "kids": true, "garden": true}, "gt_rule": "R4", "expected": "Fish"}
+{"inputs": {"allergies": false, "time": "a lot", "kids": false, "garden": false}, "gt_rule": "R8", "expected": "Cat"}
+{"inputs": {"allergies": false, "time": "a lot", "kids": false, "garden": true}, "gt_rule": "R7", "expected": "Dog"}
+{"inputs": {"allergies": false, "time": "a lot", "kids": true, "garden": false}, "gt_rule": "R8", "expected": "Cat"}
+{"inputs": {"allergies": false, "time": "a lot", "kids": true, "garden": true}, "gt_rule": "R7", "expected": "Dog"}
+{"inputs": {"allergies": true, "time": "none", "kids": false, "garden": false}, "gt_rule": "R1", "expected": "No pet"}
+{"inputs": {"allergies": true, "time": "none", "kids": false, "garden": true}, "gt_rule": "R1", "expected": "No pet"}
+{"inputs": {"allergies": true, "time": "none", "kids": true, "garden": false}, "gt_rule": "R1", "expected": "No pet"}
+{"inputs": {"allergies": true, "time": "none", "kids": true, "garden": true}, "gt_rule": "R1", "expected": "No pet"}
+{"inputs": {"allergies": true, "time": "average", "kids": false, "garden": false}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "average", "kids": false, "garden": true}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "average", "kids": true, "garden": false}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "average", "kids": true, "garden": true}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "a lot", "kids": false, "garden": false}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "a lot", "kids": false, "garden": true}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "a lot", "kids": true, "garden": false}, "gt_rule": "R2", "expected": "Fish"}
+{"inputs": {"allergies": true, "time": "a lot", "kids": true, "garden": true}, "gt_rule": "R2", "expected": "Fish"}
