@@ -1,0 +1,161 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA web application evaluates every login attempt. If the account is already locked, the result is \"Account locked\", whatever else is true. For an account that is not locked, a wrong password gives \"Invalid credentials\", except that when the account already has 4 or more consecutive failed attempts, the wrong password locks the account and the result is \"Account locked\". If the password is correct and the login comes from a trusted device, the result is \"Access granted\". If the password is correct but the device is not trusted, the user must pass a one-time password (OTP) check: when the OTP has been verified the result is \"Access granted\", otherwise it is \"OTP required\".\n\nINPUTS\n- account_locked: true or false\n- password_correct: true or false\n- failed_attempts: integer from 0 to 9 (consecutive failed attempts before this one)\n- trusted_device: true or false\n- otp_verified: true or false\n\nOUTPUT\n- result: one of \"Access granted\", \"Invalid credentials\", \"Account locked\", \"OTP required\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"account_locked == True\"},{\"id\":\"C2\",\"expr\":\"password_correct == False\"},{\"id\":\"C3\",\"expr\":\"failed_attempts >= 4\"},{\"id\":\"C4\",\"expr\":\"trusted_device == True\"},{\"id\":\"C5\",\"expr\":\"otp_verified == True\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true},\"output\":\"Account locked\"},{\"id\":\"R2\",\"when\":{\"C2\":true,\"C3\":false},\"output\":\"Invalid credentials\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Invalid credentials\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true},\"output\":\"Account locked\"},{\"id\":\"R5\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":true},\"output\":\"Access granted\"},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false},\"output\":\"OTP required\"},{\"id\":\"R7\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":false,\"C5\":false},\"output\":\"Account locked\"},{\"id\":\"R8\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":true,\"C5\":false},\"output\":\"Access granted\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=false (C1=false, C2=true, C3=true, C4=false, C5=false).\n- Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=true (C1=false, C2=true, C3=true, C4=false, C5=true).\n- Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=true, otp_verified=false (C1=false, C2=true, C3=true, C4=true, C5=false).\n- Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").\n- Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").\n- Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").\n- In total, 6 reachable combinations of your conditions match no rule and 4 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"account_locked == True\"},{\"id\":\"C2\",\"expr\":\"password_correct == False\"},{\"id\":\"C3\",\"expr\":\"failed_attempts >= 4\"},{\"id\":\"C4\",\"expr\":\"trusted_device == True\"},{\"id\":\"C5\",\"expr\":\"otp_verified == True\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true},\"output\":\"Account locked\"},{\"id\":\"R2\",\"when\":{\"C2\":true,\"C3\":false},\"output\":\"Invalid credentials\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Invalid credentials\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true},\"output\":\"Account locked\"},{\"id\":\"R5\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":true},\"output\":\"Access granted\"},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false},\"output\":\"OTP required\"},{\"id\":\"R7\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":false,\"C5\":false},\"output\":\"Account locked\"},{\"id\":\"R8\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":true,\"C5\":false},\"output\":\"Access granted\"},{\"id\":\"R9\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":false,\"C5\":false},\"output\":\"Invalid credentials\"},{\"id\":\"R10\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":true,\"C5\":true},\"output\":\"Access granted\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 395,
+  "prompt_tokens": 1148,
+  "total_tokens": 1543,
+  "prompt_tokens_details": {
+   "cached_tokens": 557
+  }
+ },
+ "timings": {
+  "cache_n": 557,
+  "prompt_n": 591,
+  "prompt_ms": 6092.55,
+  "prompt_per_token_ms": 10.308883248730965,
+  "prompt_per_second": 97.00371765516901,
+  "predicted_n": 395,
+  "predicted_ms": 32391.651,
+  "predicted_per_token_ms": 82.21231218274112,
+  "predicted_per_second": 12.163628213949329
+ },
+ "seconds": 38.5,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "account_locked == True"
+   },
+   {
+    "id": "C2",
+    "expr": "password_correct == False"
+   },
+   {
+    "id": "C3",
+    "expr": "failed_attempts >= 4"
+   },
+   {
+    "id": "C4",
+    "expr": "trusted_device == True"
+   },
+   {
+    "id": "C5",
+    "expr": "otp_verified == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C3": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "Access granted"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false
+    },
+    "output": "Access granted"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true
+    },
+    "output": "Access granted"
+   }
+  ]
+ },
+ "parse_error": null
+}

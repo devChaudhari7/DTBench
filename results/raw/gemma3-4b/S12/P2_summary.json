@@ -1,0 +1,182 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 21"
+   },
+   {
+    "id": "C2",
+    "expr": "credit_score < 600"
+   },
+   {
+    "id": "C3",
+    "expr": "credit_score >= 750"
+   },
+   {
+    "id": "C4",
+    "expr": "monthly_income < 50000"
+   },
+   {
+    "id": "C5",
+    "expr": "has_cosigner == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C4": true,
+     "C5": false
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "age": true,
+     "credit_score": true,
+     "monthly_income": true,
+     "has_cosigner": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "age": true,
+     "credit_score": true,
+     "monthly_income": true,
+     "has_cosigner": false
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "age": true,
+     "credit_score": false,
+     "monthly_income": true,
+     "has_cosigner": true
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "age": true,
+     "credit_score": false,
+     "monthly_income": true,
+     "has_cosigner": false
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "age": false,
+     "credit_score": true,
+     "monthly_income": true,
+     "has_cosigner": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "age": false,
+     "credit_score": true,
+     "monthly_income": true,
+     "has_cosigner": false
+    },
+    "output": "Referred"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input age=21, credit_score=600, monthly_income=50000, has_cosigner=false (C1=false, C2=false, C3=false, C4=false, C5=false).",
+    "Missing combination: no rule matches the input age=21, credit_score=600, monthly_income=50000, has_cosigner=true (C1=false, C2=false, C3=false, C4=false, C5=true).",
+    "Conflict: the input age=18, credit_score=300, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R2 gives \"Rejected\", R5 gives \"Referred\").",
+    "Conflict: the input age=18, credit_score=300, monthly_income=0, has_cosigner=true matches several rules with different outputs (R1 gives \"Rejected\", R2 gives \"Rejected\", R4 gives \"Approved\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R5 gives \"Referred\").",
+    "In total, 2 reachable combinations of your conditions match no rule and 11 match rules with different outputs."
+   ],
+   "gap_combinations": 2,
+   "conflict_combinations": 11,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input age=21, credit_score=600, monthly_income=50000, has_cosigner=true (C1=false, C2=false, C3=false, C4=false, C5=true).",
+    "Conflict: the input age=18, credit_score=300, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R2 gives \"Rejected\", R5 gives \"Referred\").",
+    "Conflict: the input age=18, credit_score=300, monthly_income=0, has_cosigner=true matches several rules with different outputs (R1 gives \"Rejected\", R2 gives \"Rejected\", R4 gives \"Approved\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R5 gives \"Referred\").",
+    "In total, 1 reachable combinations of your conditions match no rule and 11 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 11,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Rule R7 refers to condition \"age\", which is not defined.",
+    "Rule R7 refers to condition \"credit_score\", which is not defined.",
+    "Rule R7 refers to condition \"monthly_income\", which is not defined.",
+    "Rule R7 refers to condition \"has_cosigner\", which is not defined.",
+    "Rule R8 refers to condition \"age\", which is not defined.",
+    "Rule R8 refers to condition \"credit_score\", which is not defined.",
+    "In total, 1 reachable combinations of your conditions match no rule and 11 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 11,
+   "problems": 24,
+   "final_check_only": true
+  }
+ ]
+}

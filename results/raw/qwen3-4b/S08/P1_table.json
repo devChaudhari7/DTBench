@@ -1,0 +1,163 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA person has the possibility to chose out of three transportation modes: walking, bike and driving a car. This person makes their transportation mode choice based on the distance, weather and whether that person is in a hurry. If the distance is bigger or equal to 10 and the person is not in a hurry, then the bike chosen if it is sunny or cloudy and if it is rainy or freezing then the car is chosen. In any case if the distance is bigger or equal to 10 and the person is in a hurry then the model of transportation is car. For medium distances of at least 5 but less than 10 kilometers, if it is raining the car is chosen. For the same medium distance, if the person is in a hurry the car is chosen. Again for medium distances and there is no hurry to arrive, the bike chosen if it sunny or cloudy and if it is freezing then the car is chosen. For a distance of at least 2 but less than 5 kilometers, the car is chosen if it raining or if the person is in a hurry and it is sunny, cloudy or freezing outside, otherwise the bike is chosen. Finally for a small distance smaller than 2 kilometers, it the person is in a hurry the bike is chosen otherwise the person will go by foot.\n\nINPUTS\n- distance: decimal number from 0.0 to 50.0 (km)\n- weather: one of \"sunny\", \"cloudy\", \"rainy\", \"freezing\"\n- hurry: true or false (the person is in a hurry)\n\nOUTPUT\n- mode: one of \"walk\", \"bike\", \"car\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"distance >= 10\"},{\"id\":\"C2\",\"expr\":\"distance >= 5 and distance < 10\"},{\"id\":\"C3\",\"expr\":\"distance >= 2 and distance < 5\"},{\"id\":\"C4\",\"expr\":\"distance < 2\"},{\"id\":\"C5\",\"expr\":\"hurry == True\"},{\"id\":\"C6\",\"expr\":\"weather == 'sunny' or weather == 'cloudy'\"},{\"id\":\"C7\",\"expr\":\"weather == 'rainy' or weather == 'freezing'\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C5\":true},\"output\":\"car\"},{\"id\":\"R2\",\"when\":{\"C1\":true,\"C5\":false,\"C6\":true},\"output\":\"bike\"},{\"id\":\"R3\",\"when\":{\"C1\":true,\"C5\":false,\"C7\":true},\"output\":\"car\"},{\"id\":\"R4\",\"when\":{\"C2\":true,\"C5\":true},\"output\":\"car\"},{\"id\":\"R5\",\"when\":{\"C2\":true,\"C5\":false,\"C6\":true},\"output\":\"car\"},{\"id\":\"R6\",\"when\":{\"C2\":true,\"C5\":false,\"C7\":true},\"output\":\"car\"},{\"id\":\"R7\",\"when\":{\"C3\":true,\"C5\":true},\"output\":\"car\"},{\"id\":\"R8\",\"when\":{\"C3\":true,\"C5\":false,\"C6\":true},\"output\":\"bike\"},{\"id\":\"R9\",\"when\":{\"C3\":true,\"C5\":false,\"C7\":true},\"output\":\"car\"},{\"id\":\"R10\",\"when\":{\"C4\":true,\"C5\":true},\"output\":\"bike\"},{\"id\":\"R11\",\"when\":{\"C4\":true,\"C5\":false},\"output\":\"walk\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 388,
+  "prompt_tokens": 584,
+  "total_tokens": 972,
+  "prompt_tokens_details": {
+   "cached_tokens": 375
+  }
+ },
+ "timings": {
+  "cache_n": 375,
+  "prompt_n": 209,
+  "prompt_ms": 9194.248,
+  "prompt_per_token_ms": 43.99161722488038,
+  "prompt_per_second": 22.731603498187127,
+  "predicted_n": 388,
+  "predicted_ms": 93007.113,
+  "predicted_per_token_ms": 240.3284573643411,
+  "predicted_per_second": 4.160972075329336
+ },
+ "seconds": 102.21,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "distance >= 10"
+   },
+   {
+    "id": "C2",
+    "expr": "distance >= 5 and distance < 10"
+   },
+   {
+    "id": "C3",
+    "expr": "distance >= 2 and distance < 5"
+   },
+   {
+    "id": "C4",
+    "expr": "distance < 2"
+   },
+   {
+    "id": "C5",
+    "expr": "hurry == True"
+   },
+   {
+    "id": "C6",
+    "expr": "weather == 'sunny' or weather == 'cloudy'"
+   },
+   {
+    "id": "C7",
+    "expr": "weather == 'rainy' or weather == 'freezing'"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": true,
+     "C5": false,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C2": true,
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C2": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C2": true,
+     "C5": false,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C3": true,
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C3": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C3": true,
+     "C5": false,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C4": true,
+     "C5": false
+    },
+    "output": "walk"
+   }
+  ]
+ },
+ "parse_error": null
+}

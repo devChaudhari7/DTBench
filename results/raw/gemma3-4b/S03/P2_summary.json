@@ -1,0 +1,240 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "cart_value >= 1000"
+   },
+   {
+    "id": "C2",
+    "expr": "cart_value >= 2000"
+   },
+   {
+    "id": "C3",
+    "expr": "cart_value >= 5000"
+   },
+   {
+    "id": "C4",
+    "expr": "coupon == 'valid'"
+   },
+   {
+    "id": "C5",
+    "expr": "coupon == 'invalid'"
+   },
+   {
+    "id": "C6",
+    "expr": "member"
+   },
+   {
+    "id": "C7",
+    "expr": "cart_value < 1000"
+   },
+   {
+    "id": "C8",
+    "expr": "cart_value < 2000"
+   },
+   {
+    "id": "C9",
+    "expr": "cart_value < 5000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false
+    },
+    "output": "10%"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": false
+    },
+    "output": "REJECTED"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "15%"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "25%"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "30%"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=false (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=true).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=true (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=true).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=false (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false, C7=true).",
+    "In total, 22 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 22,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=true (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=true, C8=true, C9=true).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=false (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false, C7=true, C8=true, C9=true).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=true (C1=false, C2=false, C3=false, C4=true, C5=false, C6=true, C7=true, C8=true, C9=true).",
+    "In total, 21 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 21,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=true (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=true, C8=true, C9=true).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=false (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false, C7=true, C8=true, C9=true).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=true (C1=false, C2=false, C3=false, C4=true, C5=false, C6=true, C7=true, C8=true, C9=true).",
+    "In total, 21 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 21,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

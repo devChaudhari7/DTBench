@@ -1,0 +1,186 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn online store computes the discount on an order. The base discount depends on the cart value: 5% for a cart value of Rs. 1000 or more, 10% for Rs. 2000 or more, and 20% for Rs. 5000 or more; only the highest applicable tier is used, and a cart value below Rs. 1000 gets no base discount. A valid coupon adds 10 percentage points and a loyalty member gets 5 more percentage points. The total discount can never exceed 30%. If the customer enters an invalid coupon, the order is rejected and the output is \"REJECTED\" whatever the other inputs are.\n\nINPUTS\n- cart_value: integer from 0 to 20000 (rupees)\n- coupon: one of \"none\", \"valid\", \"invalid\"\n- member: true or false (loyalty-programme member)\n\nOUTPUT\n- discount: one of \"0%\", \"5%\", \"10%\", \"15%\", \"20%\", \"25%\", \"30%\", \"REJECTED\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{ \"conditions\": [ {\"id\": \"C1\", \"expr\": \"cart_value >= 1000\"}, {\"id\": \"C2\", \"expr\": \"cart_value >= 2000\"}, {\"id\": \"C3\", \"expr\": \"cart_value >= 5000\"}, {\"id\": \"C4\", \"expr\": \"coupon == 'valid'\"}, {\"id\": \"C5\", \"expr\": \"coupon == 'invalid'\"}, {\"id\": \"C6\", \"expr\": \"member\"}, {\"id\": \"C7\", \"expr\": \"cart_value < 1000\"} ], \"rules\": [ { \"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": true}, \"output\": \"0%\" }, { \"id\": \"R2\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": false, \"C4\": true, \"C5\": false, \"C6\": false, \"C7\": false}, \"output\": \"10%\" }, { \"id\": \"R3\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": true, \"C4\": true, \"C5\": false, \"C6\": false, \"C7\": false}, \"output\": \"20%\" }, { \"id\": \"R4\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": true, \"C6\": false, \"C7\": false}, \"output\": \"REJECTED\" }, { \"id\": \"R5\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": true, \"C5\": false, \"C6\": true, \"C7\": false}, \"output\": \"15%\" }, { \"id\": \"R6\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": true, \"C7\": false}, \"output\": \"20%\" }, { \"id\": \"R7\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": true, \"C7\": false}, \"output\": \"20%\" }, { \"id\": \"R8\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": true, \"C4\": false, \"C5\": false, \"C6\": true, \"C7\": false}, \"output\": \"25%\" }, { \"id\": \"R9\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": true, \"C7\": false}, \"output\": \"30%\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 693,
+  "prompt_tokens": 489,
+  "total_tokens": 1182,
+  "prompt_tokens_details": {
+   "cached_tokens": 1
+  }
+ },
+ "timings": {
+  "cache_n": 1,
+  "prompt_n": 488,
+  "prompt_ms": 4360.939,
+  "prompt_per_token_ms": 8.936350409836066,
+  "prompt_per_second": 111.90250540078638,
+  "predicted_n": 693,
+  "predicted_ms": 51936.599,
+  "predicted_per_token_ms": 75.05288872832371,
+  "predicted_per_second": 13.323937518511753
+ },
+ "seconds": 56.3,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "cart_value >= 1000"
+   },
+   {
+    "id": "C2",
+    "expr": "cart_value >= 2000"
+   },
+   {
+    "id": "C3",
+    "expr": "cart_value >= 5000"
+   },
+   {
+    "id": "C4",
+    "expr": "coupon == 'valid'"
+   },
+   {
+    "id": "C5",
+    "expr": "coupon == 'invalid'"
+   },
+   {
+    "id": "C6",
+    "expr": "member"
+   },
+   {
+    "id": "C7",
+    "expr": "cart_value < 1000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false
+    },
+    "output": "10%"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": false
+    },
+    "output": "REJECTED"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "15%"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "25%"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "30%"
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,97 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nThe program reads three integer side lengths a, b and c and classifies the triangle they form. If any one side is greater than or equal to the sum of the other two sides, the three sides cannot form a triangle and the output is \"Not a triangle\". Otherwise, the output is \"Equilateral\" if all three sides are equal, \"Isosceles\" if exactly two sides are equal, and \"Scalene\" if no two sides are equal.\n\nINPUTS\n- a: integer from 1 to 200 (side length)\n- b: integer from 1 to 200 (side length)\n- c: integer from 1 to 200 (side length)\n\nOUTPUT\n- triangle_type: one of \"Not a triangle\", \"Scalene\", \"Isosceles\", \"Equilateral\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"a + b > c\"}, {\"id\": \"C2\", \"expr\": \"a == b\"}, {\"id\": \"C3\", \"expr\": \"a == c\"}, {\"id\": \"C4\", \"expr\": \"b == c\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false}, \"output\": \"Not a triangle\"}, {\"id\": \"R2\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": false, \"C4\": false}, \"output\": \"Equilateral\"}, {\"id\": \"R3\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": true, \"C4\": false}, \"output\": \"Isosceles\"}, {\"id\": \"R4\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": true}, \"output\": \"Scalene\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 239,
+  "prompt_tokens": 435,
+  "total_tokens": 674,
+  "prompt_tokens_details": {
+   "cached_tokens": 228
+  }
+ },
+ "timings": {
+  "cache_n": 228,
+  "prompt_n": 207,
+  "prompt_ms": 1707.507,
+  "prompt_per_token_ms": 8.248826086956521,
+  "prompt_per_second": 121.22937124123064,
+  "predicted_n": 239,
+  "predicted_ms": 13358.427,
+  "predicted_per_token_ms": 56.12784453781512,
+  "predicted_per_second": 17.816468960005547
+ },
+ "seconds": 15.07,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "a + b > c"
+   },
+   {
+    "id": "C2",
+    "expr": "a == b"
+   },
+   {
+    "id": "C3",
+    "expr": "a == c"
+   },
+   {
+    "id": "C4",
+    "expr": "b == c"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false
+    },
+    "output": "Equilateral"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false
+    },
+    "output": "Isosceles"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true
+    },
+    "output": "Scalene"
+   }
+  ]
+ },
+ "parse_error": null
+}

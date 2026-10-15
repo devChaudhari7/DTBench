@@ -1,0 +1,89 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.\n\nINPUTS\n- age: integer from 14 to 90\n- national_resident: true or false\n- theory: one of \"Excellent\", \"Good\", \"Fail\"\n- driving: one of \"Excellent\", \"Good\", \"Fail\"\n- maneuvering: one of \"Excellent\", \"Good\", \"Fail\"\n- anticipation: one of \"Excellent\", \"Good\", \"Fail\"\n\nOUTPUT\n- licence: one of \"Eligible\", \"Not eligible\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"age >= 18 and national_resident and (theory == 'Excellent' or theory == 'Good' or theory == 'Fail') and (driving == 'Excellent' or driving == 'Good' or driving == 'Fail') and (maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail') and (anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail')\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false},\"output\":\"Eligible\"}]}\n\nPROBLEMS FOUND\n- Rule R1 refers to condition \"C2\", which is not defined.\n- Missing combination: no rule matches the input age=14, national_resident=false, theory=\"Excellent\", driving=\"Excellent\", maneuvering=\"Excellent\", anticipation=\"Excellent\" (C1=false).\n- Missing combination: no rule matches the input age=18, national_resident=true, theory=\"Excellent\", driving=\"Excellent\", maneuvering=\"Excellent\", anticipation=\"Excellent\" (C1=true).\n- In total, 2 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"age >= 18 and national_resident\"},{\"id\":\"C2\",\"expr\":\"theory == 'Excellent' or theory == 'Good' or theory == 'Fail'\"},{\"id\":\"C3\",\"expr\":\"driving == 'Excellent' or driving == 'Good' or driving == 'Fail'\"},{\"id\":\"C4\",\"expr\":\"maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail'\"},{\"id\":\"C5\",\"expr\":\"anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail'\"},{\"id\":\"C6\",\"expr\":\"(theory == 'Excellent' or theory == 'Good' or theory == 'Fail') and (driving == 'Excellent' or driving == 'Good' or driving == 'Fail') and (maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail') and (anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail')\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true},\"output\":\"Eligible\"},{\"id\":\"R2\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":false},\"output\":\"Not eligible\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 306,
+  "prompt_tokens": 707,
+  "total_tokens": 1013,
+  "prompt_tokens_details": {
+   "cached_tokens": 275
+  }
+ },
+ "timings": {
+  "cache_n": 275,
+  "prompt_n": 432,
+  "prompt_ms": 3410.067,
+  "prompt_per_token_ms": 7.893673611111111,
+  "prompt_per_second": 126.68372791502337,
+  "predicted_n": 306,
+  "predicted_ms": 17607.476,
+  "predicted_per_token_ms": 57.729429508196716,
+  "predicted_per_second": 17.322187461735005
+ },
+ "seconds": 21.04,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age >= 18 and national_resident"
+   },
+   {
+    "id": "C2",
+    "expr": "theory == 'Excellent' or theory == 'Good' or theory == 'Fail'"
+   },
+   {
+    "id": "C3",
+    "expr": "driving == 'Excellent' or driving == 'Good' or driving == 'Fail'"
+   },
+   {
+    "id": "C4",
+    "expr": "maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail'"
+   },
+   {
+    "id": "C5",
+    "expr": "anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail'"
+   },
+   {
+    "id": "C6",
+    "expr": "(theory == 'Excellent' or theory == 'Good' or theory == 'Fail') and (driving == 'Excellent' or driving == 'Good' or driving == 'Fail') and (maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail') and (anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail')"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Not eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

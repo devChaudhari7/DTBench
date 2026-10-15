@@ -1,0 +1,140 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "distance >= 10"
+   },
+   {
+    "id": "C2",
+    "expr": "distance >= 5 and distance < 10"
+   },
+   {
+    "id": "C3",
+    "expr": "distance >= 2 and distance < 5"
+   },
+   {
+    "id": "C4",
+    "expr": "distance < 2"
+   },
+   {
+    "id": "C5",
+    "expr": "hurry == True"
+   },
+   {
+    "id": "C6",
+    "expr": "weather == 'sunny' or weather == 'cloudy'"
+   },
+   {
+    "id": "C7",
+    "expr": "weather == 'rainy' or weather == 'freezing'"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": true,
+     "C5": false,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C2": true,
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C2": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C2": true,
+     "C5": false,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C3": true,
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C3": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C3": true,
+     "C5": false,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C4": true,
+     "C5": false
+    },
+    "output": "walk"
+   }
+  ]
+ },
+ "changed": false,
+ "history": [
+  {
+   "round": 1,
+   "issues": [],
+   "gap_combinations": 0,
+   "conflict_combinations": 0,
+   "problems": 0
+  }
+ ]
+}

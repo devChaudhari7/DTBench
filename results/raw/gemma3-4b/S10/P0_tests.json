@@ -1,0 +1,209 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA web application evaluates every login attempt. If the account is already locked, the result is \"Account locked\", whatever else is true. For an account that is not locked, a wrong password gives \"Invalid credentials\", except that when the account already has 4 or more consecutive failed attempts, the wrong password locks the account and the result is \"Account locked\". If the password is correct and the login comes from a trusted device, the result is \"Access granted\". If the password is correct but the device is not trusted, the user must pass a one-time password (OTP) check: when the OTP has been verified the result is \"Access granted\", otherwise it is \"OTP required\".\n\nINPUTS\n- account_locked: true or false\n- password_correct: true or false\n- failed_attempts: integer from 0 to 9 (consecutive failed attempts before this one)\n- trusted_device: true or false\n- otp_verified: true or false\n\nOUTPUT\n- result: one of \"Access granted\", \"Invalid credentials\", \"Account locked\", \"OTP required\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{ \"tests\": [ {\"inputs\": {\"account_locked\": true, \"password_correct\": true, \"failed_attempts\": 0, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Access granted\"}, {\"inputs\": {\"account_locked\": true, \"password_correct\": true, \"failed_attempts\": 0, \"trusted_device\": false, \"otp_verified\": true}, \"expected\": \"OTP required\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 0, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Access granted\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": false, \"failed_attempts\": 0, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Invalid credentials\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 1, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Access granted\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 2, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Access granted\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 3, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Access granted\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 4, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Access granted\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 5, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Account locked\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 6, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Account locked\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 7, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Account locked\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 8, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Account locked\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 9, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Account locked\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": true, \"failed_attempts\": 0, \"trusted_device\": false, \"otp_verified\": true}, \"expected\": \"OTP required\"}, {\"inputs\": {\"account_locked\": false, \"password_correct\": false, \"failed_attempts\": 0, \"trusted_device\": false, \"otp_verified\": true}, \"expected\": \"Invalid credentials\"}, {\"inputs\": {\"account_locked\": true, \"password_correct\": false, \"failed_attempts\": 0, \"trusted_device\": true, \"otp_verified\": true}, \"expected\": \"Account locked\"}, {\"inputs\": {\"account_locked\": true, \"password_correct\": false, \"failed_attempts\": 0, \"trusted_device\": false, \"otp_verified\": true}, \"expected\": \"Account locked\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 790,
+  "prompt_tokens": 338,
+  "total_tokens": 1128,
+  "prompt_tokens_details": {
+   "cached_tokens": 14
+  }
+ },
+ "timings": {
+  "cache_n": 14,
+  "prompt_n": 324,
+  "prompt_ms": 3104.774,
+  "prompt_per_token_ms": 9.582635802469136,
+  "prompt_per_second": 104.35542168286645,
+  "predicted_n": 790,
+  "predicted_ms": 60411.1,
+  "predicted_per_token_ms": 76.56666666666666,
+  "predicted_per_second": 13.0605137135394
+ },
+ "seconds": 63.52,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "account_locked": true,
+     "password_correct": true,
+     "failed_attempts": 0,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Access granted"
+   },
+   {
+    "inputs": {
+     "account_locked": true,
+     "password_correct": true,
+     "failed_attempts": 0,
+     "trusted_device": false,
+     "otp_verified": true
+    },
+    "expected": "OTP required"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 0,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Access granted"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": false,
+     "failed_attempts": 0,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Invalid credentials"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 1,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Access granted"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 2,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Access granted"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 3,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Access granted"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 4,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Access granted"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 5,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 6,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 7,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 8,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 9,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": true,
+     "failed_attempts": 0,
+     "trusted_device": false,
+     "otp_verified": true
+    },
+    "expected": "OTP required"
+   },
+   {
+    "inputs": {
+     "account_locked": false,
+     "password_correct": false,
+     "failed_attempts": 0,
+     "trusted_device": false,
+     "otp_verified": true
+    },
+    "expected": "Invalid credentials"
+   },
+   {
+    "inputs": {
+     "account_locked": true,
+     "password_correct": false,
+     "failed_attempts": 0,
+     "trusted_device": true,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   },
+   {
+    "inputs": {
+     "account_locked": true,
+     "password_correct": false,
+     "failed_attempts": 0,
+     "trusted_device": false,
+     "otp_verified": true
+    },
+    "expected": "Account locked"
+   }
+  ]
+ },
+ "parse_error": null
+}

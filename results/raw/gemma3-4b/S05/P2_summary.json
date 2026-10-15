@@ -1,0 +1,268 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "allergies == True"
+   },
+   {
+    "id": "C2",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C3",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C4",
+    "expr": "kids == False"
+   },
+   {
+    "id": "C5",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C6",
+    "expr": "kids == False"
+   },
+   {
+    "id": "C7",
+    "expr": "time == 'average' or time == 'a lot'"
+   },
+   {
+    "id": "C8",
+    "expr": "allergies == True"
+   },
+   {
+    "id": "C9",
+    "expr": "kids == True"
+   },
+   {
+    "id": "C10",
+    "expr": "allergies == False"
+   },
+   {
+    "id": "C11",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C12",
+    "expr": "kids == False"
+   },
+   {
+    "id": "C13",
+    "expr": "garden == True"
+   },
+   {
+    "id": "C14",
+    "expr": "kids == True"
+   },
+   {
+    "id": "C15",
+    "expr": "time == 'a lot'"
+   },
+   {
+    "id": "C16",
+    "expr": "allergies == False"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C6": true,
+     "C5": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C8": true,
+     "C7": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C9": true,
+     "C10": true,
+     "C7": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C13": true,
+     "C14": true,
+     "C15": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C13": true,
+     "C14": false,
+     "C16": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C12": true
+    },
+    "output": "Cat"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C4": true,
+     "C5": true,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": true,
+     "C11": true,
+     "C12": false,
+     "C13": false,
+     "C14": true,
+     "C15": false,
+     "C16": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C4": true,
+     "C5": true,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": true,
+     "C11": true,
+     "C12": false,
+     "C13": true,
+     "C14": true,
+     "C15": false,
+     "C16": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C4": false,
+     "C5": true,
+     "C6": true,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": true,
+     "C11": true,
+     "C12": false,
+     "C13": false,
+     "C14": true,
+     "C15": false,
+     "C16": true
+    },
+    "output": "Cat"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C4": false,
+     "C5": true,
+     "C6": true,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": true,
+     "C11": true,
+     "C12": false,
+     "C13": true,
+     "C14": false,
+     "C15": false,
+     "C16": true
+    },
+    "output": "Cat"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=false (C1=false, C2=true, C3=true, C4=false, C5=true, C6=false, C7=false, C8=false, C9=true, C10=true, C11=true, C12=false, C13=false, C14=true, C15=false, C16=true).",
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=true (C1=false, C2=true, C3=true, C4=false, C5=true, C6=false, C7=false, C8=false, C9=true, C10=true, C11=true, C12=false, C13=true, C14=true, C15=false, C16=true).",
+    "Conflict: the input allergies=false, time=\"none\", kids=false, garden=false matches several rules with different outputs (R2 gives \"No pet\", R3 gives \"No pet\", R8 gives \"Cat\").",
+    "Conflict: the input allergies=false, time=\"none\", kids=false, garden=true matches several rules with different outputs (R2 gives \"No pet\", R3 gives \"No pet\", R7 gives \"Dog\", R8 gives \"Cat\").",
+    "Conflict: the input allergies=false, time=\"average\", kids=false, garden=true matches several rules with different outputs (R7 gives \"Dog\", R8 gives \"Cat\").",
+    "In total, 2 reachable combinations of your conditions match no rule and 12 match rules with different outputs."
+   ],
+   "gap_combinations": 2,
+   "conflict_combinations": 12,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=false (C1=false, C2=true, C3=true, C4=false, C5=true, C6=false, C7=false, C8=false, C9=true, C10=true, C11=true, C12=false, C13=false, C14=true, C15=false, C16=true).",
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=true (C1=false, C2=true, C3=true, C4=false, C5=true, C6=false, C7=false, C8=false, C9=true, C10=true, C11=true, C12=false, C13=true, C14=true, C15=false, C16=true).",
+    "Conflict: the input allergies=false, time=\"none\", kids=false, garden=false matches several rules with different outputs (R2 gives \"No pet\", R3 gives \"No pet\", R8 gives \"Cat\").",
+    "Conflict: the input allergies=false, time=\"none\", kids=false, garden=true matches several rules with different outputs (R2 gives \"No pet\", R3 gives \"No pet\", R7 gives \"Dog\", R8 gives \"Cat\").",
+    "Conflict: the input allergies=false, time=\"average\", kids=false, garden=true matches several rules with different outputs (R7 gives \"Dog\", R8 gives \"Cat\").",
+    "In total, 2 reachable combinations of your conditions match no rule and 12 match rules with different outputs."
+   ],
+   "gap_combinations": 2,
+   "conflict_combinations": 12,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=false (C1=false, C2=true, C3=true, C4=false, C5=true, C6=false, C7=false, C8=false, C9=true, C10=true, C11=true, C12=false, C13=false, C14=true, C15=false, C16=true).",
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=true (C1=false, C2=true, C3=true, C4=false, C5=true, C6=false, C7=false, C8=false, C9=true, C10=true, C11=true, C12=false, C13=true, C14=true, C15=false, C16=true).",
+    "Conflict: the input allergies=false, time=\"none\", kids=false, garden=false matches several rules with different outputs (R2 gives \"No pet\", R3 gives \"No pet\", R8 gives \"Cat\").",
+    "Conflict: the input allergies=false, time=\"none\", kids=false, garden=true matches several rules with different outputs (R2 gives \"No pet\", R3 gives \"No pet\", R7 gives \"Dog\", R8 gives \"Cat\").",
+    "Conflict: the input allergies=false, time=\"average\", kids=false, garden=true matches several rules with different outputs (R7 gives \"Dog\", R8 gives \"Cat\").",
+    "In total, 2 reachable combinations of your conditions match no rule and 12 match rules with different outputs."
+   ],
+   "gap_combinations": 2,
+   "conflict_combinations": 12,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

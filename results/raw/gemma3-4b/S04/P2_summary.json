@@ -1,0 +1,136 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "gender == 'male'"
+   },
+   {
+    "id": "C2",
+    "expr": "gender == 'female'"
+   },
+   {
+    "id": "C3",
+    "expr": "weight >= 30.0"
+   },
+   {
+    "id": "C4",
+    "expr": "weight <= 200.0"
+   },
+   {
+    "id": "C5",
+    "expr": "length >= 1.4"
+   },
+   {
+    "id": "C6",
+    "expr": "length <= 2.2"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C3": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Obese"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C3": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Severely underweight"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C2": true,
+     "C3": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Underweight"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": true,
+     "C3": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "Normal"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C2": true,
+     "C3": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "Overweight"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C3": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Normal"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C2": true,
+     "C3": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Overweight"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input gender=\"female\", weight=30, length=1.4 (C1=false, C2=true, C3=true, C4=true, C5=true, C6=true).",
+    "In total, 1 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input gender=\"female\", weight=30, length=1.4 (C1=false, C2=true, C3=true, C4=true, C5=true, C6=true).",
+    "In total, 1 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input gender=\"female\", weight=30, length=1.4 (C1=false, C2=true, C3=true, C4=true, C5=true, C6=true).",
+    "In total, 1 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

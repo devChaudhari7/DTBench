@@ -1,0 +1,193 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nGiven a date as day, month and year, the program decides how the date of the next day is obtained. Months 1, 3, 5, 7, 8, 10 and 12 have 31 days; months 4, 6, 9 and 11 have 30 days; month 2 (February) has 29 days in a leap year and 28 days otherwise. A year is a leap year if it is divisible by 4 but not by 100, or if it is divisible by 400. If the day does not exist in that month and year (for example day 31 of month 4, or day 29 of February in a non-leap year), the output is \"Invalid date\". If the day is before the last day of its month, the output is \"Next day same month\". If the day is the last day of month 12, the output is \"First day of next year\". If the day is the last day of any other month, the output is \"First day of next month\".\n\nINPUTS\n- day: integer from 1 to 31\n- month: integer from 1 to 12\n- year: integer from 1900 to 2100\n\nOUTPUT\n- next_date_action: one of \"Invalid date\", \"Next day same month\", \"First day of next month\", \"First day of next year\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"day > 31\"},{\"id\":\"C2\",\"expr\":\"month < 1 or month > 12\"},{\"id\":\"C3\",\"expr\":\"day == 31 and month in (4, 6, 9, 11)\"},{\"id\":\"C4\",\"expr\":\"day == 29 and month == 2 and not (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))\"},{\"id\":\"C5\",\"expr\":\"day == 29 and month == 2 and (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))\"},{\"id\":\"C6\",\"expr\":\"day < 31 and month in (1, 3, 5, 7, 8, 10, 12) and not (day == 31 and month in (4, 6, 9, 11))\"},{\"id\":\"C7\",\"expr\":\"day == 31 and month in (1, 3, 5, 7, 8, 10, 12)\"},{\"id\":\"C8\",\"expr\":\"day == 30 and month in (4, 6, 9, 11)\"},{\"id\":\"C9\",\"expr\":\"day == 31 and month == 12\"},{\"id\":\"C10\",\"expr\":\"day == 1 and month == 1 and year == 1900\"},{\"id\":\"C11\",\"expr\":\"day == 31 and month == 1\"},{\"id\":\"C12\",\"expr\":\"day == 31 and month == 2\"},{\"id\":\"C13\",\"expr\":\"day == 31 and month == 3\"},{\"id\":\"C14\",\"expr\":\"day == 31 and month == 4\"},{\"id\":\"C15\",\"expr\":\"day == 31 and month == 5\"},{\"id\":\"C16\",\"expr\":\"day == 31 and month == 6\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true,\"C5\":false,\"C6\":false,\"C7\":false,\"C8\":false,\"C9\":false,\"C10\":false,\"C11\":false,\"C12\":false,\"C13\":false,\"C14\":false,\"C15\":false,\"C16\":false},\"output\":\"Invalid date\"},{\"id\":\"R2\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false,\"C8\":false,\"C9\":false,\"C10\":false,\"C11\":false,\"C12\":false,\"C13\":false,\"C14\":false,\"C15\":false,\"C16\":false},\"output\":\"Next day same month\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":false,\"C7\":true,\"C8\":false,\"C9\":false,\"C10\":false,\"C11\":false,\"C12\":false,\"C13\":false,\"C14\":false,\"C15\":false,\"C16\":false},\"output\":\"First day of next month\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":false,\"C7\":false,\"C8\":false,\"C9\":true,\"C10\":false,\"C11\":false,\"C12\":false,\"C13\":false,\"C14\":false,\"C15\":false,\"C16\":false},\"output\":\"First day of next year\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 865,
+  "prompt_tokens": 558,
+  "total_tokens": 1423,
+  "prompt_tokens_details": {
+   "cached_tokens": 349
+  }
+ },
+ "timings": {
+  "cache_n": 349,
+  "prompt_n": 209,
+  "prompt_ms": 8509.964,
+  "prompt_per_token_ms": 40.71753110047847,
+  "prompt_per_second": 24.55944584489429,
+  "predicted_n": 865,
+  "predicted_ms": 222343.602,
+  "predicted_per_token_ms": 257.3421319444445,
+  "predicted_per_second": 3.8858774987372917
+ },
+ "seconds": 230.94,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "day > 31"
+   },
+   {
+    "id": "C2",
+    "expr": "month < 1 or month > 12"
+   },
+   {
+    "id": "C3",
+    "expr": "day == 31 and month in (4, 6, 9, 11)"
+   },
+   {
+    "id": "C4",
+    "expr": "day == 29 and month == 2 and not (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))"
+   },
+   {
+    "id": "C5",
+    "expr": "day == 29 and month == 2 and (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))"
+   },
+   {
+    "id": "C6",
+    "expr": "day < 31 and month in (1, 3, 5, 7, 8, 10, 12) and not (day == 31 and month in (4, 6, 9, 11))"
+   },
+   {
+    "id": "C7",
+    "expr": "day == 31 and month in (1, 3, 5, 7, 8, 10, 12)"
+   },
+   {
+    "id": "C8",
+    "expr": "day == 30 and month in (4, 6, 9, 11)"
+   },
+   {
+    "id": "C9",
+    "expr": "day == 31 and month == 12"
+   },
+   {
+    "id": "C10",
+    "expr": "day == 1 and month == 1 and year == 1900"
+   },
+   {
+    "id": "C11",
+    "expr": "day == 31 and month == 1"
+   },
+   {
+    "id": "C12",
+    "expr": "day == 31 and month == 2"
+   },
+   {
+    "id": "C13",
+    "expr": "day == 31 and month == 3"
+   },
+   {
+    "id": "C14",
+    "expr": "day == 31 and month == 4"
+   },
+   {
+    "id": "C15",
+    "expr": "day == 31 and month == 5"
+   },
+   {
+    "id": "C16",
+    "expr": "day == 31 and month == 6"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Invalid date"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Next day same month"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "First day of next month"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "First day of next year"
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,98 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA bank screens personal-loan applications. Applicants younger than 21 years are \"Rejected\". Applicants aged 21 or more are assessed on their credit score: a score below 600 is \"Rejected\" and a score of 750 or above is \"Approved\". For a credit score from 600 to 749, the application is \"Approved\" if the monthly income is at least Rs. 50000; if the income is lower, the application is \"Approved\" only when there is a co-signer, and otherwise it is \"Referred\" to a loan officer.\n\nINPUTS\n- age: integer from 18 to 75\n- credit_score: integer from 300 to 900\n- monthly_income: integer from 0 to 500000 (rupees)\n- has_cosigner: true or false\n\nOUTPUT\n- decision: one of \"Approved\", \"Rejected\", \"Referred\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{ \"conditions\": [ {\"id\": \"C1\", \"expr\": \"age < 21\" }, {\"id\": \"C2\", \"expr\": \"credit_score < 600\" }, {\"id\": \"C3\", \"expr\": \"credit_score >= 750\" }, {\"id\": \"C4\", \"expr\": \"monthly_income < 50000\" }, {\"id\": \"C5\", \"expr\": \"has_cosigner == True\" }], \"rules\": [ { \"id\": \"R1\", \"when\": {\"C1\": true}, \"output\": \"Rejected\" }, { \"id\": \"R2\", \"when\": {\"C2\": true}, \"output\": \"Rejected\" }, { \"id\": \"R3\", \"when\": {\"C3\": true}, \"output\": \"Approved\" }, { \"id\": \"R4\", \"when\": {\"C4\": true, \"C5\": true}, \"output\": \"Approved\" }, { \"id\": \"R5\", \"when\": {\"C4\": true, \"C5\": false}, \"output\": \"Referred\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 248,
+  "prompt_tokens": 459,
+  "total_tokens": 707,
+  "prompt_tokens_details": {
+   "cached_tokens": 9
+  }
+ },
+ "timings": {
+  "cache_n": 9,
+  "prompt_n": 450,
+  "prompt_ms": 4401.747,
+  "prompt_per_token_ms": 9.78166,
+  "prompt_per_second": 102.23213646763432,
+  "predicted_n": 248,
+  "predicted_ms": 18975.683,
+  "predicted_per_token_ms": 76.82462753036438,
+  "predicted_per_second": 13.01665926860182
+ },
+ "seconds": 23.38,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 21"
+   },
+   {
+    "id": "C2",
+    "expr": "credit_score < 600"
+   },
+   {
+    "id": "C3",
+    "expr": "credit_score >= 750"
+   },
+   {
+    "id": "C4",
+    "expr": "monthly_income < 50000"
+   },
+   {
+    "id": "C5",
+    "expr": "has_cosigner == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C4": true,
+     "C5": false
+    },
+    "output": "Referred"
+   }
+  ]
+ },
+ "parse_error": null
+}

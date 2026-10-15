@@ -1,0 +1,176 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "cart_value >= 1000"
+   },
+   {
+    "id": "C2",
+    "expr": "cart_value >= 2000"
+   },
+   {
+    "id": "C3",
+    "expr": "cart_value >= 5000"
+   },
+   {
+    "id": "C4",
+    "expr": "coupon == 'valid'"
+   },
+   {
+    "id": "C5",
+    "expr": "member == true"
+   },
+   {
+    "id": "C6",
+    "expr": "coupon == 'invalid'"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "5%"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false
+    },
+    "output": "15%"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "25%"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "30%"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C6": true
+    },
+    "output": "REJECTED"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "25%"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=false (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=true (C1=false, C2=false, C3=false, C4=false, C5=true, C6=false).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=false (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false).",
+    "In total, 11 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 11,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=true (C1=false, C2=false, C3=false, C4=true, C5=true, C6=false).",
+    "Missing combination: no rule matches the input cart_value=1000, coupon=\"none\", member=true (C1=true, C2=false, C3=false, C4=false, C5=true, C6=false).",
+    "Missing combination: no rule matches the input cart_value=1000, coupon=\"valid\", member=true (C1=true, C2=false, C3=false, C4=true, C5=true, C6=false).",
+    "In total, 8 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 8,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=true (C1=false, C2=false, C3=false, C4=false, C5=true, C6=false).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=false (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false).",
+    "Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=true (C1=false, C2=false, C3=false, C4=true, C5=true, C6=false).",
+    "Conflict: the input cart_value=1000, coupon=\"valid\", member=true matches several rules with different outputs (R4 gives \"20%\", R9 gives \"25%\").",
+    "In total, 9 reachable combinations of your conditions match no rule and 1 match rules with different outputs."
+   ],
+   "gap_combinations": 9,
+   "conflict_combinations": 1,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

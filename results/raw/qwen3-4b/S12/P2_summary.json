@@ -1,0 +1,122 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 21"
+   },
+   {
+    "id": "C2",
+    "expr": "credit_score >= 750"
+   },
+   {
+    "id": "C3",
+    "expr": "credit_score < 600"
+   },
+   {
+    "id": "C4",
+    "expr": "credit_score >= 600 and credit_score <= 749"
+   },
+   {
+    "id": "C5",
+    "expr": "monthly_income >= 50000"
+   },
+   {
+    "id": "C6",
+    "expr": "has_cosigner"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C3": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C4": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C4": true,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C2": true
+    },
+    "output": "Approved"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input age=21, credit_score=750, monthly_income=0, has_cosigner=false (C1=false, C2=true, C3=false, C4=false, C5=false, C6=false).",
+    "Missing combination: no rule matches the input age=21, credit_score=750, monthly_income=0, has_cosigner=true (C1=false, C2=true, C3=false, C4=false, C5=false, C6=true).",
+    "Missing combination: no rule matches the input age=21, credit_score=750, monthly_income=50000, has_cosigner=false (C1=false, C2=true, C3=false, C4=false, C5=true, C6=false).",
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R5 gives \"Referred\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=true matches several rules with different outputs (R1 gives \"Rejected\", R4 gives \"Approved\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=50000, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R3 gives \"Approved\").",
+    "In total, 4 reachable combinations of your conditions match no rule and 4 match rules with different outputs."
+   ],
+   "gap_combinations": 4,
+   "conflict_combinations": 4,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R5 gives \"Referred\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=true matches several rules with different outputs (R1 gives \"Rejected\", R4 gives \"Approved\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=50000, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R3 gives \"Approved\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 8 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 8,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R5 gives \"Referred\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=true matches several rules with different outputs (R1 gives \"Rejected\", R4 gives \"Approved\").",
+    "Conflict: the input age=18, credit_score=600, monthly_income=50000, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R3 gives \"Approved\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 8 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 8,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

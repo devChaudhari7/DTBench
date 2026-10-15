@@ -1,0 +1,117 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "account_locked == true"
+   },
+   {
+    "id": "C2",
+    "expr": "password_correct == false"
+   },
+   {
+    "id": "C3",
+    "expr": "failed_attempts >= 4"
+   },
+   {
+    "id": "C4",
+    "expr": "trusted_device == true"
+   },
+   {
+    "id": "C5",
+    "expr": "otp_verified == true"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C3": true
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C2": true,
+     "C3": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C2": false,
+     "C4": true
+    },
+    "output": "Access granted"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C2": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "Access granted"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C2": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "OTP required"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 12 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 12,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 12 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 12,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R3 gives \"Invalid credentials\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 12 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 12,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

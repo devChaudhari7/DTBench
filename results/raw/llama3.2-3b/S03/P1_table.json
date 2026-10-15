@@ -1,0 +1,127 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn online store computes the discount on an order. The base discount depends on the cart value: 5% for a cart value of Rs. 1000 or more, 10% for Rs. 2000 or more, and 20% for Rs. 5000 or more; only the highest applicable tier is used, and a cart value below Rs. 1000 gets no base discount. A valid coupon adds 10 percentage points and a loyalty member gets 5 more percentage points. The total discount can never exceed 30%. If the customer enters an invalid coupon, the order is rejected and the output is \"REJECTED\" whatever the other inputs are.\n\nINPUTS\n- cart_value: integer from 0 to 20000 (rupees)\n- coupon: one of \"none\", \"valid\", \"invalid\"\n- member: true or false (loyalty-programme member)\n\nOUTPUT\n- discount: one of \"0%\", \"5%\", \"10%\", \"15%\", \"20%\", \"25%\", \"30%\", \"REJECTED\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"cart_value < 1000\"}, {\"id\": \"C2\", \"expr\": \"cart_value >= 1000 and cart_value < 2000\"}, {\"id\": \"C3\", \"expr\": \"cart_value >= 2000 and cart_value < 5000\"}, {\"id\": \"C4\", \"expr\": \"cart_value >= 5000\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false}, \"output\": \"0%\"}, {\"id\": \"R2\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": false, \"C4\": false}, \"output\": \"10%\"}, {\"id\": \"R3\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": true, \"C4\": false}, \"output\": \"20%\"}, {\"id\": \"R4\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": true}, \"output\": \"25%\"}, {\"id\": \"R5\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false}, \"output\": \"REJECTED\"}, {\"id\": \"R6\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": false, \"C4\": true}, \"output\": \"15%\"}, {\"id\": \"R7\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": true, \"C4\": true}, \"output\": \"30%\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 382,
+  "prompt_tokens": 481,
+  "total_tokens": 863,
+  "prompt_tokens_details": {
+   "cached_tokens": 274
+  }
+ },
+ "timings": {
+  "cache_n": 274,
+  "prompt_n": 207,
+  "prompt_ms": 1700.846,
+  "prompt_per_token_ms": 8.216647342995168,
+  "prompt_per_second": 121.70414017494824,
+  "predicted_n": 382,
+  "predicted_ms": 21428.26,
+  "predicted_per_token_ms": 56.24215223097112,
+  "predicted_per_second": 17.780258406422174
+ },
+ "seconds": 23.13,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "cart_value < 1000"
+   },
+   {
+    "id": "C2",
+    "expr": "cart_value >= 1000 and cart_value < 2000"
+   },
+   {
+    "id": "C3",
+    "expr": "cart_value >= 2000 and cart_value < 5000"
+   },
+   {
+    "id": "C4",
+    "expr": "cart_value >= 5000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false
+    },
+    "output": "10%"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true
+    },
+    "output": "25%"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "REJECTED"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true
+    },
+    "output": "15%"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": "30%"
+   }
+  ]
+ },
+ "parse_error": null
+}

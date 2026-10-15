@@ -1,0 +1,109 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA bank screens personal-loan applications. Applicants younger than 21 years are \"Rejected\". Applicants aged 21 or more are assessed on their credit score: a score below 600 is \"Rejected\" and a score of 750 or above is \"Approved\". For a credit score from 600 to 749, the application is \"Approved\" if the monthly income is at least Rs. 50000; if the income is lower, the application is \"Approved\" only when there is a co-signer, and otherwise it is \"Referred\" to a loan officer.\n\nINPUTS\n- age: integer from 18 to 75\n- credit_score: integer from 300 to 900\n- monthly_income: integer from 0 to 500000 (rupees)\n- has_cosigner: true or false\n\nOUTPUT\n- decision: one of \"Approved\", \"Rejected\", \"Referred\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"age < 21\"},{\"id\":\"C2\",\"expr\":\"credit_score < 600\"},{\"id\":\"C3\",\"expr\":\"credit_score >= 750\"},{\"id\":\"C4\",\"expr\":\"monthly_income < 50000\"},{\"id\":\"C5\",\"expr\":\"has_cosigner == True\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true},\"output\":\"Rejected\"},{\"id\":\"R2\",\"when\":{\"C2\":true},\"output\":\"Rejected\"},{\"id\":\"R3\",\"when\":{\"C3\":true},\"output\":\"Approved\"},{\"id\":\"R4\",\"when\":{\"C4\":true,\"C5\":true},\"output\":\"Approved\"},{\"id\":\"R5\",\"when\":{\"C4\":true,\"C5\":false},\"output\":\"Referred\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input age=21, credit_score=600, monthly_income=50000, has_cosigner=false (C1=false, C2=false, C3=false, C4=false, C5=false).\n- Missing combination: no rule matches the input age=21, credit_score=600, monthly_income=50000, has_cosigner=true (C1=false, C2=false, C3=false, C4=false, C5=true).\n- Conflict: the input age=18, credit_score=300, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R2 gives \"Rejected\", R5 gives \"Referred\").\n- Conflict: the input age=18, credit_score=300, monthly_income=0, has_cosigner=true matches several rules with different outputs (R1 gives \"Rejected\", R2 gives \"Rejected\", R4 gives \"Approved\").\n- Conflict: the input age=18, credit_score=600, monthly_income=0, has_cosigner=false matches several rules with different outputs (R1 gives \"Rejected\", R5 gives \"Referred\").\n- In total, 2 reachable combinations of your conditions match no rule and 11 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"age < 21\"}, {\"id\": \"C2\", \"expr\": \"credit_score < 600\"}, {\"id\": \"C3\", \"expr\": \"credit_score >= 750\"}, {\"id\": \"C4\", \"expr\": \"monthly_income < 50000\"}, {\"id\": \"C5\", \"expr\": \"has_cosigner == True\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true}, \"output\": \"Rejected\"}, {\"id\": \"R2\", \"when\": {\"C2\": true}, \"output\": \"Rejected\"}, {\"id\": \"R3\", \"when\": {\"C3\": true}, \"output\": \"Approved\"}, {\"id\": \"R4\", \"when\": {\"C4\": true, \"C5\": true}, \"output\": \"Approved\"}, {\"id\": \"R5\", \"when\": {\"C4\": true, \"C5\": false}, \"output\": \"Referred\"}, {\"id\": \"R6\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false}, \"output\": \"Referred\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 276,
+  "prompt_tokens": 924,
+  "total_tokens": 1200,
+  "prompt_tokens_details": {
+   "cached_tokens": 8
+  }
+ },
+ "timings": {
+  "cache_n": 8,
+  "prompt_n": 916,
+  "prompt_ms": 9126.922,
+  "prompt_per_token_ms": 9.96388864628821,
+  "prompt_per_second": 100.36242229307975,
+  "predicted_n": 276,
+  "predicted_ms": 21691.825,
+  "predicted_per_token_ms": 78.87936363636364,
+  "predicted_per_second": 12.677587063329156
+ },
+ "seconds": 30.83,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 21"
+   },
+   {
+    "id": "C2",
+    "expr": "credit_score < 600"
+   },
+   {
+    "id": "C3",
+    "expr": "credit_score >= 750"
+   },
+   {
+    "id": "C4",
+    "expr": "monthly_income < 50000"
+   },
+   {
+    "id": "C5",
+    "expr": "has_cosigner == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true
+    },
+    "output": "Rejected"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "Approved"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C4": true,
+     "C5": false
+    },
+    "output": "Referred"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Referred"
+   }
+  ]
+ },
+ "parse_error": null
+}

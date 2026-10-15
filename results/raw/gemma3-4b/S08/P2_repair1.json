@@ -1,0 +1,150 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA person has the possibility to chose out of three transportation modes: walking, bike and driving a car. This person makes their transportation mode choice based on the distance, weather and whether that person is in a hurry. If the distance is bigger or equal to 10 and the person is not in a hurry, then the bike chosen if it is sunny or cloudy and if it is rainy or freezing then the car is chosen. In any case if the distance is bigger or equal to 10 and the person is in a hurry then the model of transportation is car. For medium distances of at least 5 but less than 10 kilometers, if it is raining the car is chosen. For the same medium distance, if the person is in a hurry the car is chosen. Again for medium distances and there is no hurry to arrive, the bike chosen if it sunny or cloudy and if it is freezing then the car is chosen. For a distance of at least 2 but less than 5 kilometers, the car is chosen if it raining or if the person is in a hurry and it is sunny, cloudy or freezing outside, otherwise the bike is chosen. Finally for a small distance smaller than 2 kilometers, it the person is in a hurry the bike is chosen otherwise the person will go by foot.\n\nINPUTS\n- distance: decimal number from 0.0 to 50.0 (km)\n- weather: one of \"sunny\", \"cloudy\", \"rainy\", \"freezing\"\n- hurry: true or false (the person is in a hurry)\n\nOUTPUT\n- mode: one of \"walk\", \"bike\", \"car\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"distance >= 10\"},{\"id\":\"C2\",\"expr\":\"not hurry\"},{\"id\":\"C3\",\"expr\":\"distance >= 5 and distance < 10\"},{\"id\":\"C4\",\"expr\":\"weather == 'rainy'\"},{\"id\":\"C5\",\"expr\":\"hurry\"},{\"id\":\"C6\",\"expr\":\"weather == 'sunny' or weather == 'cloudy'\"},{\"id\":\"C7\",\"expr\":\"weather == 'freezing'\"},{\"id\":\"C8\",\"expr\":\"distance >= 2 and distance < 5\"},{\"id\":\"C9\",\"expr\":\"weather == 'rainy' or (weather == 'sunny' or weather == 'cloudy' or weather == 'freezing') and hurry\"},{\"id\":\"C10\",\"expr\":\"distance < 2\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false},\"output\":\"car\"},{\"id\":\"R2\",\"when\":{\"C1\":true,\"C2\":true},\"output\":\"bike\"},{\"id\":\"R3\",\"when\":{\"C3\":true,\"C6\":true},\"output\":\"bike\"},{\"id\":\"R4\",\"when\":{\"C3\":true,\"C7\":true},\"output\":\"car\"},{\"id\":\"R5\",\"when\":{\"C4\":true},\"output\":\"car\"},{\"id\":\"R6\",\"when\":{\"C5\":true},\"output\":\"car\"},{\"id\":\"R7\",\"when\":{\"C8\":true,\"C9\":false},\"output\":\"bike\"},{\"id\":\"R8\",\"when\":{\"C8\":true,\"C9\":true},\"output\":\"car\"},{\"id\":\"R9\",\"when\":{\"C10\":true},\"output\":\"walk\"}]}\n\nPROBLEMS FOUND\n- Conflict: the input distance=0, weather=\"sunny\", hurry=true matches several rules with different outputs (R6 gives \"car\", R9 gives \"walk\").\n- Conflict: the input distance=0, weather=\"rainy\", hurry=false matches several rules with different outputs (R5 gives \"car\", R9 gives \"walk\").\n- Conflict: the input distance=0, weather=\"rainy\", hurry=true matches several rules with different outputs (R5 gives \"car\", R6 gives \"car\", R9 gives \"walk\").\n- In total, 0 reachable combinations of your conditions match no rule and 6 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"distance >= 10\"}, {\"id\": \"C2\", \"expr\": \"not hurry\"}, {\"id\": \"C3\", \"expr\": \"distance >= 5 and distance < 10\"}, {\"id\": \"C4\", \"expr\": \"weather == 'rainy'\"}, {\"id\": \"C5\", \"expr\": \"hurry\"}, {\"id\": \"C6\", \"expr\": \"weather == 'sunny' or weather == 'cloudy'\"}, {\"id\": \"C7\", \"expr\": \"weather == 'freezing'\"}, {\"id\": \"C8\", \"expr\": \"distance >= 2 and distance < 5\"}, {\"id\": \"C9\", \"expr\": \"weather == 'rainy' or (weather == 'sunny' or weather == 'cloudy' or weather == 'freezing') and hurry\"}, {\"id\": \"C10\", \"expr\": \"distance < 2\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": \"car\"}, {\"id\": \"R2\", \"when\": {\"C1\": true, \"C2\": true}, \"output\": \"car\"}, {\"id\": \"R3\", \"when\": {\"C3\": true, \"C6\": true}, \"output\": \"bike\"}, {\"id\": \"R4\", \"when\": {\"C3\": true, \"C7\": true}, \"output\": \"car\"}, {\"id\": \"R5\", \"when\": {\"C4\": true}, \"output\": \"car\"}, {\"id\": \"R6\", \"when\": {\"C5\": true}, \"output\": \"car\"}, {\"id\": \"R7\", \"when\": {\"C8\": true, \"C9\": false}, \"output\": \"bike\"}, {\"id\": \"R8\", \"when\": {\"C8\": true, \"C9\": true}, \"output\": \"car\"}, {\"id\": \"R9\", \"when\": {\"C10\": true}, \"output\": \"walk\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 450,
+  "prompt_tokens": 1047,
+  "total_tokens": 1497,
+  "prompt_tokens_details": {
+   "cached_tokens": 71
+  }
+ },
+ "timings": {
+  "cache_n": 71,
+  "prompt_n": 976,
+  "prompt_ms": 9532.634,
+  "prompt_per_token_ms": 9.767043032786885,
+  "prompt_per_second": 102.38513300730942,
+  "predicted_n": 450,
+  "predicted_ms": 36098.335,
+  "predicted_per_token_ms": 80.39718262806235,
+  "predicted_per_second": 12.438246805565964
+ },
+ "seconds": 45.64,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "distance >= 10"
+   },
+   {
+    "id": "C2",
+    "expr": "not hurry"
+   },
+   {
+    "id": "C3",
+    "expr": "distance >= 5 and distance < 10"
+   },
+   {
+    "id": "C4",
+    "expr": "weather == 'rainy'"
+   },
+   {
+    "id": "C5",
+    "expr": "hurry"
+   },
+   {
+    "id": "C6",
+    "expr": "weather == 'sunny' or weather == 'cloudy'"
+   },
+   {
+    "id": "C7",
+    "expr": "weather == 'freezing'"
+   },
+   {
+    "id": "C8",
+    "expr": "distance >= 2 and distance < 5"
+   },
+   {
+    "id": "C9",
+    "expr": "weather == 'rainy' or (weather == 'sunny' or weather == 'cloudy' or weather == 'freezing') and hurry"
+   },
+   {
+    "id": "C10",
+    "expr": "distance < 2"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false
+    },
+    "output": "car"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true,
+     "C6": true
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C3": true,
+     "C7": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C4": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C5": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C8": true,
+     "C9": false
+    },
+    "output": "bike"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C8": true,
+     "C9": true
+    },
+    "output": "car"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C10": true
+    },
+    "output": "walk"
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,186 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "weight/(length*length) < 18.5 and gender == 'male'"
+   },
+   {
+    "id": "C2",
+    "expr": "weight/(length*length) < 18.5 and gender == 'female'"
+   },
+   {
+    "id": "C3",
+    "expr": "weight/(length*length) >= 18.5 and weight/(length*length) < 25 and gender == 'male'"
+   },
+   {
+    "id": "C4",
+    "expr": "weight/(length*length) >= 18.5 and weight/(length*length) < 25 and gender == 'female'"
+   },
+   {
+    "id": "C5",
+    "expr": "weight/(length*length) >= 25 and weight/(length*length) < 30 and gender == 'male'"
+   },
+   {
+    "id": "C6",
+    "expr": "weight/(length*length) >= 25 and weight/(length*length) < 30 and gender == 'female'"
+   },
+   {
+    "id": "C7",
+    "expr": "weight/(length*length) >= 30 and gender == 'male'"
+   },
+   {
+    "id": "C8",
+    "expr": "weight/(length*length) >= 30 and gender == 'female'"
+   },
+   {
+    "id": "C9",
+    "expr": "weight/(length*length) >= 55.64 and gender == 'male'"
+   },
+   {
+    "id": "C10",
+    "expr": "weight/(length*length) >= 55.64 and gender == 'female'"
+   },
+   {
+    "id": "C11",
+    "expr": "weight/(length*length) >= 85.05 and gender == 'male'"
+   },
+   {
+    "id": "C12",
+    "expr": "weight/(length*length) >= 85.05 and gender == 'female'"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": false,
+     "C11": false,
+     "C12": false
+    },
+    "output": "Severely underweight"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false
+    },
+    "output": "Underweight"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false
+    },
+    "output": "Normal"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false
+    },
+    "output": "Overweight"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": true,
+     "C8": true,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false
+    },
+    "output": "Obese"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input gender=\"male\", weight=55.64, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=true, C6=false, C7=false, C8=false).",
+    "Missing combination: no rule matches the input gender=\"male\", weight=85.05, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=true, C8=false).",
+    "Missing combination: no rule matches the input gender=\"female\", weight=55.64, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=false, C8=false).",
+    "In total, 4 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 4,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input gender=\"male\", weight=30, length=1.4 (C1=true, C2=false, C3=false, C4=false, C5=false, C6=false, C7=false, C8=false, C9=false, C10=false, C11=true, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input gender=\"male\", weight=55.64, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=true, C6=false, C7=false, C8=false, C9=false, C10=false, C11=true, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input gender=\"male\", weight=85.05, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=true, C8=false, C9=true, C10=false, C11=true, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "In total, 12 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 12,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input gender=\"male\", weight=30, length=1.4 (C1=true, C2=false, C3=false, C4=false, C5=false, C6=false, C7=false, C8=false, C9=false, C10=false, C11=false, C12=false).",
+    "Missing combination: no rule matches the input gender=\"male\", weight=55.64, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=true, C6=false, C7=false, C8=false, C9=false, C10=false, C11=false, C12=false).",
+    "Missing combination: no rule matches the input gender=\"male\", weight=85.05, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=true, C8=false, C9=false, C10=false, C11=false, C12=false).",
+    "In total, 9 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 9,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

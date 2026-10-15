@@ -1,0 +1,90 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA payment app screens every UPI money transfer before sending it. A transfer of more than Rs. 100000 is blocked because it exceeds the per-transaction limit, and the output is \"Blocked\". Otherwise, a transfer to a new payee (a payee added less than 24 hours ago) is put \"On hold\" if the amount is more than Rs. 5000. In all other cases, if the user is not on their registered device and the amount is more than Rs. 2000, the app asks for an OTP and the output is \"OTP required\". Every remaining transfer is \"Allowed\".\n\nINPUTS\n- amount: integer from 1 to 200000 (rupees)\n- new_payee: true or false\n- registered_device: true or false\n\nOUTPUT\n- decision: one of \"Blocked\", \"On hold\", \"OTP required\", \"Allowed\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{ \"conditions\": [ {\"id\": \"C1\", \"expr\": \"amount > 100000\"}, {\"id\": \"C2\", \"expr\": \"new_payee == True\"}, {\"id\": \"C3\", \"expr\": \"registered_device == False\"}, {\"id\": \"C4\", \"expr\": \"amount > 5000\"} ], \"rules\": [ { \"id\": \"R1\", \"when\": { \"C1\": true }, \"output\": \"Blocked\" }, { \"id\": \"R2\", \"when\": { \"C2\": true, \"C4\": true }, \"output\": \"On hold\" }, { \"id\": \"R3\", \"when\": { \"C3\": true, \"C4\": true }, \"output\": \"OTP required\" }, { \"id\": \"R4\", \"when\": { \"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false }, \"output\": \"Allowed\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 220,
+  "prompt_tokens": 444,
+  "total_tokens": 664,
+  "prompt_tokens_details": {
+   "cached_tokens": 11
+  }
+ },
+ "timings": {
+  "cache_n": 11,
+  "prompt_n": 433,
+  "prompt_ms": 4243.521,
+  "prompt_per_token_ms": 9.800279445727481,
+  "prompt_per_second": 102.03790672886974,
+  "predicted_n": 220,
+  "predicted_ms": 16698.825,
+  "predicted_per_token_ms": 76.25034246575343,
+  "predicted_per_second": 13.11469519562005
+ },
+ "seconds": 20.95,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "amount > 100000"
+   },
+   {
+    "id": "C2",
+    "expr": "new_payee == True"
+   },
+   {
+    "id": "C3",
+    "expr": "registered_device == False"
+   },
+   {
+    "id": "C4",
+    "expr": "amount > 5000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Blocked"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C4": true
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true,
+     "C4": true
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "Allowed"
+   }
+  ]
+ },
+ "parse_error": null
+}

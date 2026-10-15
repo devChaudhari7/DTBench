@@ -1,0 +1,108 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nThe BMI of a person can be calculated based on weight in kgs and length of a person in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are a Male then the BMI-level is normal but if you are a female then BMI-level is overweight.\n\nINPUTS\n- gender: one of \"male\", \"female\"\n- weight: decimal number from 30.0 to 200.0 (kg)\n- length: decimal number from 1.4 to 2.2 (m)\n\nOUTPUT\n- bmi_level: one of \"Severely underweight\", \"Underweight\", \"Normal\", \"Overweight\", \"Obese\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"weight / (length * length) > 30\"},{\"id\":\"C2\",\"expr\":\"weight / (length * length) <= 18.5\"},{\"id\":\"C3\",\"expr\":\"gender == 'male'\"},{\"id\":\"C4\",\"expr\":\"weight / (length * length) >= 18.5 and weight / (length * length) < 25\"},{\"id\":\"C5\",\"expr\":\"weight / (length * length) >= 25 and weight / (length * length) < 30\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true},\"output\":\"Obese\"},{\"id\":\"R2\",\"when\":{\"C2\":true,\"C3\":true},\"output\":\"Severely underweight\"},{\"id\":\"R3\",\"when\":{\"C2\":true,\"C3\":false},\"output\":\"Underweight\"},{\"id\":\"R4\",\"when\":{\"C4\":true,\"C3\":true},\"output\":\"Normal\"},{\"id\":\"R5\",\"when\":{\"C4\":true,\"C3\":false},\"output\":\"Overweight\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input gender=\"male\", weight=55.64, length=1.4 (C1=false, C2=false, C3=true, C4=false, C5=true).\n- Missing combination: no rule matches the input gender=\"female\", weight=55.64, length=1.4 (C1=false, C2=false, C3=false, C4=false, C5=true).\n- Missing combination: no rule matches the input gender=\"male\", weight=63.075, length=1.45 (C1=false, C2=false, C3=true, C4=false, C5=false).\n- Conflict: the input gender=\"female\", weight=70.3462, length=1.95 matches several rules with different outputs (R3 gives \"Underweight\", R5 gives \"Overweight\").\n- Conflict: the input gender=\"male\", weight=86.3136, length=2.16 matches several rules with different outputs (R2 gives \"Severely underweight\", R4 gives \"Normal\").\n- In total, 4 reachable combinations of your conditions match no rule and 2 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"weight / (length * length) > 30\"},{\"id\":\"C2\",\"expr\":\"weight / (length * length) <= 18.5\"},{\"id\":\"C3\",\"expr\":\"gender == 'male'\"},{\"id\":\"C4\",\"expr\":\"weight / (length * length) >= 18.5 and weight / (length * length) < 25\"},{\"id\":\"C5\",\"expr\":\"weight / (length * length) >= 25 and weight / (length * length) < 30\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true},\"output\":\"Obese\"},{\"id\":\"R2\",\"when\":{\"C2\":true,\"C3\":true},\"output\":\"Severely underweight\"},{\"id\":\"R3\",\"when\":{\"C2\":true,\"C3\":false},\"output\":\"Underweight\"},{\"id\":\"R4\",\"when\":{\"C4\":true,\"C3\":true},\"output\":\"Normal\"},{\"id\":\"R5\",\"when\":{\"C5\":true,\"C3\":false},\"output\":\"Overweight\"},{\"id\":\"R6\",\"when\":{\"C5\":true,\"C3\":true},\"output\":\"Overweight\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 258,
+  "prompt_tokens": 966,
+  "total_tokens": 1224,
+  "prompt_tokens_details": {
+   "cached_tokens": 289
+  }
+ },
+ "timings": {
+  "cache_n": 289,
+  "prompt_n": 677,
+  "prompt_ms": 28379.301,
+  "prompt_per_token_ms": 41.919203840472676,
+  "prompt_per_second": 23.855414902572832,
+  "predicted_n": 258,
+  "predicted_ms": 65883.562,
+  "predicted_per_token_ms": 256.3562723735409,
+  "predicted_per_second": 3.900821270106798
+ },
+ "seconds": 94.37,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "weight / (length * length) > 30"
+   },
+   {
+    "id": "C2",
+    "expr": "weight / (length * length) <= 18.5"
+   },
+   {
+    "id": "C3",
+    "expr": "gender == 'male'"
+   },
+   {
+    "id": "C4",
+    "expr": "weight / (length * length) >= 18.5 and weight / (length * length) < 25"
+   },
+   {
+    "id": "C5",
+    "expr": "weight / (length * length) >= 25 and weight / (length * length) < 30"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Obese"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C3": true
+    },
+    "output": "Severely underweight"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C2": true,
+     "C3": false
+    },
+    "output": "Underweight"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C4": true,
+     "C3": true
+    },
+    "output": "Normal"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C5": true,
+     "C3": false
+    },
+    "output": "Overweight"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C5": true,
+     "C3": true
+    },
+    "output": "Overweight"
+   }
+  ]
+ },
+ "parse_error": null
+}

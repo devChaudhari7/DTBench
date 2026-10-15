@@ -42,7 +42,7 @@ from dtbench.derive import derive_tests
 from dtbench.test_eval import assess_tests
 from dtbench import mutation
 pd.set_option("display.max_colwidth", 120)
-print("repository:", ROOT)
+print("repository folder:", ROOT.name, "| specifications:", len(SPECS))
 """)
 md("## 1. Benchmark")
 code("""

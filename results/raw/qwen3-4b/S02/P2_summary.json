@@ -1,0 +1,288 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "day > 31"
+   },
+   {
+    "id": "C2",
+    "expr": "month < 1 or month > 12"
+   },
+   {
+    "id": "C3",
+    "expr": "day == 31 and month in (4, 6, 9, 11)"
+   },
+   {
+    "id": "C4",
+    "expr": "day == 29 and month == 2 and not (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))"
+   },
+   {
+    "id": "C5",
+    "expr": "day == 29 and month == 2 and (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))"
+   },
+   {
+    "id": "C6",
+    "expr": "day < 31 and month in (1, 3, 5, 7, 8, 10, 12) and not (day == 31 and month in (4, 6, 9, 11))"
+   },
+   {
+    "id": "C7",
+    "expr": "day == 31 and month in (1, 3, 5, 7, 8, 10, 12)"
+   },
+   {
+    "id": "C8",
+    "expr": "day == 30 and month in (4, 6, 9, 11)"
+   },
+   {
+    "id": "C9",
+    "expr": "day == 31 and month == 12"
+   },
+   {
+    "id": "C10",
+    "expr": "day == 1 and month == 1 and year == 1900"
+   },
+   {
+    "id": "C11",
+    "expr": "day == 31 and month == 1"
+   },
+   {
+    "id": "C12",
+    "expr": "day == 31 and month == 2"
+   },
+   {
+    "id": "C13",
+    "expr": "day == 31 and month == 3"
+   },
+   {
+    "id": "C14",
+    "expr": "day == 31 and month == 4"
+   },
+   {
+    "id": "C15",
+    "expr": "day == 31 and month == 5"
+   },
+   {
+    "id": "C16",
+    "expr": "day == 31 and month == 6"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Invalid date"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Next day same month"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "First day of next month"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": true,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "First day of next year"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Invalid date"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Invalid date"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": true,
+     "C9": false,
+     "C10": false,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "Invalid date"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false,
+     "C9": false,
+     "C10": true,
+     "C11": false,
+     "C12": false,
+     "C13": false,
+     "C14": false,
+     "C15": false,
+     "C16": false
+    },
+    "output": "First day of next year"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input day=1, month=1, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=false, C8=false, C9=false, C10=true, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input day=1, month=2, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=false, C8=false, C9=false, C10=false, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input day=29, month=2, year=1900 (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false, C7=false, C8=false, C9=false, C10=false, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "In total, 13 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 13,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input day=1, month=1, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=false, C8=false, C9=false, C10=true, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input day=1, month=2, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=false, C8=false, C9=false, C10=false, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input day=30, month=4, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=false, C8=true, C9=false, C10=false, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "In total, 11 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 11,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input day=1, month=1, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=false, C8=false, C9=false, C10=true, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input day=1, month=2, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=false, C8=false, C9=false, C10=false, C11=false, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "Missing combination: no rule matches the input day=31, month=1, year=1900 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=true, C8=false, C9=false, C10=false, C11=true, C12=false, C13=false, C14=false, C15=false, C16=false).",
+    "In total, 10 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 10,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

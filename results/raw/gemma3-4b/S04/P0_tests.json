@@ -1,0 +1,423 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nThe BMI of a person can be calculated based on weight in kgs and length of a person in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are a Male then the BMI-level is normal but if you are a female then BMI-level is overweight.\n\nINPUTS\n- gender: one of \"male\", \"female\"\n- weight: decimal number from 30.0 to 200.0 (kg)\n- length: decimal number from 1.4 to 2.2 (m)\n\nOUTPUT\n- bmi_level: one of \"Severely underweight\", \"Underweight\", \"Normal\", \"Overweight\", \"Obese\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{ \"tests\": [ { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" }, { \"inputs\": { \"gender\": \"male\", \"weight\": 30.0, \"length\": 1.4 }, \"expected\": \"Normal\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 1688,
+  "prompt_tokens": 375,
+  "total_tokens": 2063,
+  "prompt_tokens_details": {
+   "cached_tokens": 1
+  }
+ },
+ "timings": {
+  "cache_n": 1,
+  "prompt_n": 374,
+  "prompt_ms": 3379.133,
+  "prompt_per_token_ms": 9.035114973262031,
+  "prompt_per_second": 110.67927779107836,
+  "predicted_n": 1688,
+  "predicted_ms": 125709.565,
+  "predicted_per_token_ms": 74.51663604030824,
+  "predicted_per_second": 13.419822111388264
+ },
+ "seconds": 129.09,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 30.0,
+     "length": 1.4
+    },
+    "expected": "Normal"
+   }
+  ]
+ },
+ "parse_error": null
+}

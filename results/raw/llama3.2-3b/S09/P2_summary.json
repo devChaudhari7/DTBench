@@ -1,0 +1,503 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "grades == 'excellent' or grades == 'good'"
+   },
+   {
+    "id": "C2",
+    "expr": "annual_income < 50000"
+   },
+   {
+    "id": "C3",
+    "expr": "received_other_scholarship == False"
+   },
+   {
+    "id": "C4",
+    "expr": "annual_income <= 0"
+   },
+   {
+    "id": "C5",
+    "expr": "grades == 'average' or grades == 'poor'"
+   },
+   {
+    "id": "C6",
+    "expr": "annual_income > 50000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R13",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R14",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R15",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R16",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R17",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R18",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R19",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R20",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R21",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R22",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R23",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R24",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R25",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R26",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R27",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R28",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R29",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R30",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R31",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R32",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R33",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R34",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R35",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R36",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R37",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R38",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R39",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R40",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R41",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R42",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R43",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R44",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R45",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R46",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R47",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R48",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input grades=\"excellent\", annual_income=0, received_other_scholarship=true (C1=true, C2=true, C3=false).",
+    "Missing combination: no rule matches the input grades=\"excellent\", annual_income=50000, received_other_scholarship=false (C1=true, C2=false, C3=true).",
+    "Missing combination: no rule matches the input grades=\"average\", annual_income=0, received_other_scholarship=false (C1=false, C2=true, C3=true).",
+    "In total, 6 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 6,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input grades=\"excellent\", annual_income=50000, received_other_scholarship=false (C1=true, C2=false, C3=true, C4=false, C5=false, C6=false).",
+    "Missing combination: no rule matches the input grades=\"excellent\", annual_income=50001, received_other_scholarship=false (C1=true, C2=false, C3=true, C4=false, C5=false, C6=true).",
+    "Missing combination: no rule matches the input grades=\"average\", annual_income=0, received_other_scholarship=true (C1=false, C2=true, C3=false, C4=true, C5=true, C6=false).",
+    "In total, 4 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 4,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Conflict: the input grades=\"excellent\", annual_income=0, received_other_scholarship=true matches several rules with different outputs (R1 gives \"Eligible\", R10 gives \"Not eligible\", R13 gives \"Not eligible\", R27 gives \"Not eligible\", R30 gives \"Not eligible\", R33 gives \"Not eligible\", R36 gives \"Not eligible\", R39 gives \"Not eligible\", R42 gives \"Not eligible\", R45 gives \"Not eligible\", R48 gives \"Not eligible\").",
+    "Conflict: the input grades=\"excellent\", annual_income=1, received_other_scholarship=true matches several rules with different outputs (R1 gives \"Eligible\", R10 gives \"Not eligible\", R13 gives \"Not eligible\", R27 gives \"Not eligible\", R30 gives \"Not eligible\", R33 gives \"Not eligible\", R36 gives \"Not eligible\", R39 gives \"Not eligible\", R42 gives \"Not eligible\", R45 gives \"Not eligible\", R48 gives \"Not eligible\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 2 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 2,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

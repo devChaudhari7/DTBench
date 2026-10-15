@@ -1,0 +1,147 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.\n\nINPUTS\n- grades: one of \"excellent\", \"good\", \"average\", \"poor\"\n- annual_income: integer from 0 to 200000\n- received_other_scholarship: true or false\n\nOUTPUT\n- scholarship: one of \"Eligible\", \"Not eligible\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"grades == 'excellent'\"},{\"id\":\"C2\",\"expr\":\"grades == 'good'\"},{\"id\":\"C3\",\"expr\":\"annual_income <= 50000\"},{\"id\":\"C4\",\"expr\":\"received_other_scholarship == True\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":true,\"C4\":false},\"output\":\"Eligible\"},{\"id\":\"R2\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true,\"C4\":false},\"output\":\"Eligible\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R4\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R5\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false},\"output\":\"Not eligible\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input grades=\"excellent\", annual_income=0, received_other_scholarship=true (C1=true, C2=false, C3=true, C4=true).\n- Missing combination: no rule matches the input grades=\"excellent\", annual_income=50001, received_other_scholarship=false (C1=true, C2=false, C3=false, C4=false).\n- Missing combination: no rule matches the input grades=\"good\", annual_income=0, received_other_scholarship=true (C1=false, C2=true, C3=true, C4=true).\n- In total, 6 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"grades == 'excellent'\"},{\"id\":\"C2\",\"expr\":\"grades == 'good'\"},{\"id\":\"C3\",\"expr\":\"annual_income <= 50000\"},{\"id\":\"C4\",\"expr\":\"received_other_scholarship == True\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":true,\"C4\":false},\"output\":\"Eligible\"},{\"id\":\"R2\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true,\"C4\":false},\"output\":\"Eligible\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R4\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R5\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false},\"output\":\"Not eligible\"},{\"id\":\"R7\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":true,\"C4\":false},\"output\":\"Eligible\"},{\"id\":\"R8\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false,\"C4\":true},\"output\":\"Not eligible\"},{\"id\":\"R9\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false},\"output\":\"Not eligible\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 356,
+  "prompt_tokens": 819,
+  "total_tokens": 1175,
+  "prompt_tokens_details": {
+   "cached_tokens": 814
+  }
+ },
+ "timings": {
+  "cache_n": 814,
+  "prompt_n": 5,
+  "prompt_ms": 234.756,
+  "prompt_per_token_ms": 46.9512,
+  "prompt_per_second": 21.29871015011331,
+  "predicted_n": 356,
+  "predicted_ms": 27973.726,
+  "predicted_per_token_ms": 78.79922816901409,
+  "predicted_per_second": 12.690479630779254
+ },
+ "seconds": 28.22,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "grades == 'excellent'"
+   },
+   {
+    "id": "C2",
+    "expr": "grades == 'good'"
+   },
+   {
+    "id": "C3",
+    "expr": "annual_income <= 50000"
+   },
+   {
+    "id": "C4",
+    "expr": "received_other_scholarship == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": false
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": false
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": false
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "Not eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

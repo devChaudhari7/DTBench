@@ -1,0 +1,282 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA bank screens personal-loan applications. Applicants younger than 21 years are \"Rejected\". Applicants aged 21 or more are assessed on their credit score: a score below 600 is \"Rejected\" and a score of 750 or above is \"Approved\". For a credit score from 600 to 749, the application is \"Approved\" if the monthly income is at least Rs. 50000; if the income is lower, the application is \"Approved\" only when there is a co-signer, and otherwise it is \"Referred\" to a loan officer.\n\nINPUTS\n- age: integer from 18 to 75\n- credit_score: integer from 300 to 900\n- monthly_income: integer from 0 to 500000 (rupees)\n- has_cosigner: true or false\n\nOUTPUT\n- decision: one of \"Approved\", \"Rejected\", \"Referred\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{\"tests\": [{\"inputs\": {\"age\": 18, \"credit_score\": 300, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Rejected\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 300, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 300, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 600, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Referred\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 600, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 600, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 749, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 749, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 18, \"credit_score\": 749, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 300, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Rejected\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 300, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 300, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 600, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Referred\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 600, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 600, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 749, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 749, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 21, \"credit_score\": 749, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 300, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Rejected\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 300, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 300, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 600, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Referred\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 600, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 600, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 749, \"monthly_income\": 0, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 749, \"monthly_income\": 50000, \"has_cosigner\": false}, \"expected\": \"Approved\"}, {\"inputs\": {\"age\": 75, \"credit_score\": 749, \"monthly_income\": 0, \"has_cosigner\": true}, \"expected\": \"Approved\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 989,
+  "prompt_tokens": 323,
+  "total_tokens": 1312,
+  "prompt_tokens_details": {
+   "cached_tokens": 58
+  }
+ },
+ "timings": {
+  "cache_n": 58,
+  "prompt_n": 265,
+  "prompt_ms": 2088.77,
+  "prompt_per_token_ms": 7.882150943396226,
+  "prompt_per_second": 126.8689228589074,
+  "predicted_n": 989,
+  "predicted_ms": 57541.845,
+  "predicted_per_token_ms": 58.240733805668015,
+  "predicted_per_second": 17.170113332306254
+ },
+ "seconds": 59.66,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 300,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Rejected"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 300,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 300,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 600,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Referred"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 600,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 600,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 749,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 749,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "credit_score": 749,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 300,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Rejected"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 300,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 300,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 600,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Referred"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 600,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 600,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 749,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 749,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "credit_score": 749,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 300,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Rejected"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 300,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 300,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 600,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Referred"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 600,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 600,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 749,
+     "monthly_income": 0,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 749,
+     "monthly_income": 50000,
+     "has_cosigner": false
+    },
+    "expected": "Approved"
+   },
+   {
+    "inputs": {
+     "age": 75,
+     "credit_score": 749,
+     "monthly_income": 0,
+     "has_cosigner": true
+    },
+    "expected": "Approved"
+   }
+  ]
+ },
+ "parse_error": null
+}

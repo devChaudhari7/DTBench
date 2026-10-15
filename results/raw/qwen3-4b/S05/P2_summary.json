@@ -1,0 +1,324 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "allergies == True"
+   },
+   {
+    "id": "C2",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C3",
+    "expr": "time == 'average'"
+   },
+   {
+    "id": "C4",
+    "expr": "time == 'a lot'"
+   },
+   {
+    "id": "C5",
+    "expr": "kids == True"
+   },
+   {
+    "id": "C6",
+    "expr": "garden == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Cat"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R13",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R14",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Cat"
+   },
+   {
+    "id": "R15",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R16",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R17",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R18",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R19",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Cat"
+   },
+   {
+    "id": "R20",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": true,
+     "C6": false
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R21",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Fish"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=false, garden=true (C1=false, C2=true, C3=false, C4=false, C5=false, C6=true).",
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=false (C1=false, C2=true, C3=false, C4=false, C5=true, C6=false).",
+    "Missing combination: no rule matches the input allergies=false, time=\"none\", kids=true, garden=true (C1=false, C2=true, C3=false, C4=false, C5=true, C6=true).",
+    "In total, 18 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 18,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input allergies=false, time=\"average\", kids=false, garden=true (C1=false, C2=false, C3=true, C4=false, C5=false, C6=true).",
+    "Missing combination: no rule matches the input allergies=false, time=\"average\", kids=true, garden=false (C1=false, C2=false, C3=true, C4=false, C5=true, C6=false).",
+    "Missing combination: no rule matches the input allergies=false, time=\"average\", kids=true, garden=true (C1=false, C2=false, C3=true, C4=false, C5=true, C6=true).",
+    "In total, 15 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 15,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input allergies=false, time=\"a lot\", kids=true, garden=false (C1=false, C2=false, C3=false, C4=true, C5=true, C6=false).",
+    "Missing combination: no rule matches the input allergies=true, time=\"none\", kids=false, garden=true (C1=true, C2=true, C3=false, C4=false, C5=false, C6=true).",
+    "Missing combination: no rule matches the input allergies=true, time=\"none\", kids=true, garden=false (C1=true, C2=true, C3=false, C4=false, C5=true, C6=false).",
+    "In total, 12 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 12,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.\n\nINPUTS\n- age: integer from 14 to 90\n- national_resident: true or false\n- theory: one of \"Excellent\", \"Good\", \"Fail\"\n- driving: one of \"Excellent\", \"Good\", \"Fail\"\n- maneuvering: one of \"Excellent\", \"Good\", \"Fail\"\n- anticipation: one of \"Excellent\", \"Good\", \"Fail\"\n\nOUTPUT\n- licence: one of \"Eligible\", \"Not eligible\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{\"tests\": [{\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Excellent\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Excellent\"}, \"expected\": \"Eligible\"}, {\"inputs\": {\"age\": 17, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Excellent\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Excellent\"}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": false, \"theory\": \"Excellent\", \"driving\": \"Excellent\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Excellent\"}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Fail\", \"driving\": \"Excellent\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Excellent\"}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Fail\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Excellent\"}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Excellent\", \"maneuvering\": \"Fail\", \"anticipation\": \"Excellent\"}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Excellent\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Fail\"}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"age\": 20, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Excellent\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Excellent\"}, \"expected\": \"Eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Good\", \"driving\": \"Good\", \"maneuvering\": \"Good\", \"anticipation\": \"Good\"}, \"expected\": \"Eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Excellent\", \"driving\": \"Good\", \"maneuvering\": \"Good\", \"anticipation\": \"Good\"}, \"expected\": \"Eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Good\", \"driving\": \"Excellent\", \"maneuvering\": \"Good\", \"anticipation\": \"Good\"}, \"expected\": \"Eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Good\", \"driving\": \"Good\", \"maneuvering\": \"Excellent\", \"anticipation\": \"Good\"}, \"expected\": \"Eligible\"}, {\"inputs\": {\"age\": 18, \"national_resident\": true, \"theory\": \"Good\", \"driving\": \"Good\", \"maneuvering\": \"Good\", \"anticipation\": \"Fail\"}, \"expected\": \"Not eligible\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 704,
+  "prompt_tokens": 336,
+  "total_tokens": 1040,
+  "prompt_tokens_details": {
+   "cached_tokens": 36
+  }
+ },
+ "timings": {
+  "cache_n": 36,
+  "prompt_n": 300,
+  "prompt_ms": 12074.996,
+  "prompt_per_token_ms": 40.249986666666665,
+  "prompt_per_second": 24.844728727032294,
+  "predicted_n": 704,
+  "predicted_ms": 162671.993,
+  "predicted_per_token_ms": 231.3968605974395,
+  "predicted_per_second": 4.321579806303842
+ },
+ "seconds": 174.75,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Excellent",
+     "maneuvering": "Excellent",
+     "anticipation": "Excellent"
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "age": 17,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Excellent",
+     "maneuvering": "Excellent",
+     "anticipation": "Excellent"
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": false,
+     "theory": "Excellent",
+     "driving": "Excellent",
+     "maneuvering": "Excellent",
+     "anticipation": "Excellent"
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Fail",
+     "driving": "Excellent",
+     "maneuvering": "Excellent",
+     "anticipation": "Excellent"
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Fail",
+     "maneuvering": "Excellent",
+     "anticipation": "Excellent"
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Excellent",
+     "maneuvering": "Fail",
+     "anticipation": "Excellent"
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Excellent",
+     "maneuvering": "Excellent",
+     "anticipation": "Fail"
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "age": 20,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Excellent",
+     "maneuvering": "Excellent",
+     "anticipation": "Excellent"
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Good",
+     "driving": "Good",
+     "maneuvering": "Good",
+     "anticipation": "Good"
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Excellent",
+     "driving": "Good",
+     "maneuvering": "Good",
+     "anticipation": "Good"
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Good",
+     "driving": "Excellent",
+     "maneuvering": "Good",
+     "anticipation": "Good"
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Good",
+     "driving": "Good",
+     "maneuvering": "Excellent",
+     "anticipation": "Good"
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "national_resident": true,
+     "theory": "Good",
+     "driving": "Good",
+     "maneuvering": "Good",
+     "anticipation": "Fail"
+    },
+    "expected": "Not eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

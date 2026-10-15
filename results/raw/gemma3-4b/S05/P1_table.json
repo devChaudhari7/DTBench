@@ -1,0 +1,171 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA couple is planning their future and is determining under which conditions a certain pet is adopted. Together they decided that if someone has allergies and that no one has  time to take care of a pet then that no pet is adopted. The couple also decided to not take in an animal if they don't have kids, don't have time even if they don't have allergies. However, if they have a an average amount of time available or a lot and even if they have allergies then they want to take in a fish. The couple decides that they also want a fish if they have kids, no allergies even if they don't have a lot of time available. The couple decides to take in a cat or a dog only if no one has allergies. A dog is taken in if they have a garden, kids and they have a lot of time. The dog is also adopted if they have a garden, no kids and have normal or a lot of time to spare. In all the remaining cases, the couple decides they want to have a cat.\n\nINPUTS\n- allergies: true or false (someone in the couple has allergies)\n- time: one of \"none\", \"average\", \"a lot\" (time available for a pet)\n- kids: true or false\n- garden: true or false\n\nOUTPUT\n- pet: one of \"No pet\", \"Fish\", \"Cat\", \"Dog\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{ \"conditions\": [ {\"id\": \"C1\", \"expr\": \"allergies == True\"}, {\"id\": \"C2\", \"expr\": \"time == 'none'\"}, {\"id\": \"C3\", \"expr\": \"time == 'none'\"}, {\"id\": \"C4\", \"expr\": \"kids == False\"}, {\"id\": \"C5\", \"expr\": \"time == 'none'\"}, {\"id\": \"C6\", \"expr\": \"kids == False\"}, {\"id\": \"C7\", \"expr\": \"time == 'average' or time == 'a lot'\"}, {\"id\": \"C8\", \"expr\": \"allergies == True\"}, {\"id\": \"C9\", \"expr\": \"kids == True\"}, {\"id\": \"C10\", \"expr\": \"allergies == False\"}, {\"id\": \"C11\", \"expr\": \"time == 'none'\"}, {\"id\": \"C12\", \"expr\": \"kids == False\"}, {\"id\": \"C13\", \"expr\": \"garden == True\"}, {\"id\": \"C14\", \"expr\": \"kids == True\"}, {\"id\": \"C15\", \"expr\": \"time == 'a lot'\"}, {\"id\": \"C16\", \"expr\": \"allergies == False\"} ], \"rules\": [ { \"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": true}, \"output\": \"No pet\" }, { \"id\": \"R2\", \"when\": {\"C4\": true, \"C5\": true}, \"output\": \"No pet\" }, { \"id\": \"R3\", \"when\": {\"C6\": true, \"C5\": true}, \"output\": \"No pet\" }, { \"id\": \"R4\", \"when\": {\"C8\": true, \"C7\": true}, \"output\": \"Fish\" }, { \"id\": \"R5\", \"when\": {\"C9\": true, \"C10\": true, \"C7\": true}, \"output\": \"Fish\" }, { \"id\": \"R6\", \"when\": {\"C13\": true, \"C14\": true, \"C15\": true}, \"output\": \"Dog\" }, { \"id\": \"R7\", \"when\": {\"C13\": true, \"C14\": false, \"C16\": true}, \"output\": \"Dog\" }, { \"id\": \"R8\", \"when\": {\"C12\": true}, \"output\": \"Cat\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 548,
+  "prompt_tokens": 538,
+  "total_tokens": 1086,
+  "prompt_tokens_details": {
+   "cached_tokens": 1
+  }
+ },
+ "timings": {
+  "cache_n": 1,
+  "prompt_n": 537,
+  "prompt_ms": 5038.295,
+  "prompt_per_token_ms": 9.38229981378026,
+  "prompt_per_second": 106.58367562836237,
+  "predicted_n": 548,
+  "predicted_ms": 39331.976,
+  "predicted_per_token_ms": 71.90489213893967,
+  "predicted_per_second": 13.907259579330567
+ },
+ "seconds": 44.38,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "allergies == True"
+   },
+   {
+    "id": "C2",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C3",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C4",
+    "expr": "kids == False"
+   },
+   {
+    "id": "C5",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C6",
+    "expr": "kids == False"
+   },
+   {
+    "id": "C7",
+    "expr": "time == 'average' or time == 'a lot'"
+   },
+   {
+    "id": "C8",
+    "expr": "allergies == True"
+   },
+   {
+    "id": "C9",
+    "expr": "kids == True"
+   },
+   {
+    "id": "C10",
+    "expr": "allergies == False"
+   },
+   {
+    "id": "C11",
+    "expr": "time == 'none'"
+   },
+   {
+    "id": "C12",
+    "expr": "kids == False"
+   },
+   {
+    "id": "C13",
+    "expr": "garden == True"
+   },
+   {
+    "id": "C14",
+    "expr": "kids == True"
+   },
+   {
+    "id": "C15",
+    "expr": "time == 'a lot'"
+   },
+   {
+    "id": "C16",
+    "expr": "allergies == False"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C6": true,
+     "C5": true
+    },
+    "output": "No pet"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C8": true,
+     "C7": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C9": true,
+     "C10": true,
+     "C7": true
+    },
+    "output": "Fish"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C13": true,
+     "C14": true,
+     "C15": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C13": true,
+     "C14": false,
+     "C16": true
+    },
+    "output": "Dog"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C12": true
+    },
+    "output": "Cat"
+   }
+  ]
+ },
+ "parse_error": null
+}

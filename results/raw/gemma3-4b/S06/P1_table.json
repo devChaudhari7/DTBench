@@ -1,0 +1,245 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.\n\nINPUTS\n- age: integer from 14 to 90\n- national_resident: true or false\n- theory: one of \"Excellent\", \"Good\", \"Fail\"\n- driving: one of \"Excellent\", \"Good\", \"Fail\"\n- maneuvering: one of \"Excellent\", \"Good\", \"Fail\"\n- anticipation: one of \"Excellent\", \"Good\", \"Fail\"\n\nOUTPUT\n- licence: one of \"Eligible\", \"Not eligible\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{ \"conditions\": [ {\"id\": \"C1\", \"expr\": \"age >= 18\"}, {\"id\": \"C2\", \"expr\": \"national_resident == True\"}, {\"id\": \"C3\", \"expr\": \"theory == 'Excellent'\"}, {\"id\": \"C4\", \"expr\": \"driving == 'Excellent'\"}, {\"id\": \"C5\", \"expr\": \"maneuvering == 'Excellent'\"}, {\"id\": \"C6\", \"expr\": \"anticipation == 'Excellent'\"} ], \"rules\": [ { \"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": true, \"C4\": true, \"C5\": true, \"C6\": true}, \"output\": \"Eligible\" }, { \"id\": \"R2\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": true, \"C4\": true, \"C5\": true, \"C6\": false}, \"output\": \"Not eligible\" }, { \"id\": \"R3\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": true, \"C4\": false, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R4\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": true, \"C4\": false, \"C5\": false, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R5\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": true, \"C4\": false, \"C5\": false, \"C6\": false}, \"output\": \"Not eligible\" }, { \"id\": \"R6\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": true, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R7\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": true, \"C5\": false, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R8\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": false, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R9\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R10\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": true, \"C4\": true, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R11\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": true, \"C4\": true, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R12\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": true, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R13\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": false, \"C5\": true, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R14\", \"when\": {\"C1\": true, \"C2\": true, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": true}, \"output\": \"Not eligible\" }, { \"id\": \"R15\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false}, \"output\": \"Not eligible\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 950,
+  "prompt_tokens": 471,
+  "total_tokens": 1421,
+  "prompt_tokens_details": {
+   "cached_tokens": 20
+  }
+ },
+ "timings": {
+  "cache_n": 20,
+  "prompt_n": 451,
+  "prompt_ms": 4333.777,
+  "prompt_per_token_ms": 9.609261640798227,
+  "prompt_per_second": 104.06626829206948,
+  "predicted_n": 950,
+  "predicted_ms": 75341.791,
+  "predicted_per_token_ms": 79.39071759747102,
+  "predicted_per_second": 12.595930988685948
+ },
+ "seconds": 79.68,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age >= 18"
+   },
+   {
+    "id": "C2",
+    "expr": "national_resident == True"
+   },
+   {
+    "id": "C3",
+    "expr": "theory == 'Excellent'"
+   },
+   {
+    "id": "C4",
+    "expr": "driving == 'Excellent'"
+   },
+   {
+    "id": "C5",
+    "expr": "maneuvering == 'Excellent'"
+   },
+   {
+    "id": "C6",
+    "expr": "anticipation == 'Excellent'"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C6": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R13",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R14",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R15",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Not eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

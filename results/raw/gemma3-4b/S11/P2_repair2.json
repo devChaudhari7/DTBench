@@ -1,0 +1,90 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA payment app screens every UPI money transfer before sending it. A transfer of more than Rs. 100000 is blocked because it exceeds the per-transaction limit, and the output is \"Blocked\". Otherwise, a transfer to a new payee (a payee added less than 24 hours ago) is put \"On hold\" if the amount is more than Rs. 5000. In all other cases, if the user is not on their registered device and the amount is more than Rs. 2000, the app asks for an OTP and the output is \"OTP required\". Every remaining transfer is \"Allowed\".\n\nINPUTS\n- amount: integer from 1 to 200000 (rupees)\n- new_payee: true or false\n- registered_device: true or false\n\nOUTPUT\n- decision: one of \"Blocked\", \"On hold\", \"OTP required\", \"Allowed\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"amount > 100000\"},{\"id\":\"C2\",\"expr\":\"new_payee == True\"},{\"id\":\"C3\",\"expr\":\"registered_device == False\"},{\"id\":\"C4\",\"expr\":\"amount > 5000\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true},\"output\":\"Blocked\"},{\"id\":\"R2\",\"when\":{\"C2\":true,\"C4\":true},\"output\":\"On hold\"},{\"id\":\"R3\",\"when\":{\"C3\":true,\"C4\":true},\"output\":\"OTP required\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false},\"output\":\"Allowed\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input amount=1, new_payee=false, registered_device=false (C1=false, C2=false, C3=true, C4=false).\n- Missing combination: no rule matches the input amount=1, new_payee=true, registered_device=false (C1=false, C2=true, C3=true, C4=false).\n- Missing combination: no rule matches the input amount=1, new_payee=true, registered_device=true (C1=false, C2=true, C3=false, C4=false).\n- Conflict: the input amount=5001, new_payee=true, registered_device=false matches several rules with different outputs (R2 gives \"On hold\", R3 gives \"OTP required\").\n- Conflict: the input amount=100001, new_payee=false, registered_device=false matches several rules with different outputs (R1 gives \"Blocked\", R3 gives \"OTP required\").\n- Conflict: the input amount=100001, new_payee=true, registered_device=false matches several rules with different outputs (R1 gives \"Blocked\", R2 gives \"On hold\", R3 gives \"OTP required\").\n- In total, 4 reachable combinations of your conditions match no rule and 4 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"amount > 100000\"}, {\"id\": \"C2\", \"expr\": \"new_payee == True\"}, {\"id\": \"C3\", \"expr\": \"registered_device == False\"}, {\"id\": \"C4\", \"expr\": \"amount > 5000\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true}, \"output\": \"Blocked\"}, {\"id\": \"R2\", \"when\": {\"C2\": true, \"C4\": true}, \"output\": \"On hold\"}, {\"id\": \"R3\", \"when\": {\"C3\": true, \"C4\": true}, \"output\": \"OTP required\"}, {\"id\": \"R4\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false}, \"output\": \"Allowed\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 204,
+  "prompt_tokens": 884,
+  "total_tokens": 1088,
+  "prompt_tokens_details": {
+   "cached_tokens": 879
+  }
+ },
+ "timings": {
+  "cache_n": 879,
+  "prompt_n": 5,
+  "prompt_ms": 254.711,
+  "prompt_per_token_ms": 50.9422,
+  "prompt_per_second": 19.630090573237904,
+  "predicted_n": 204,
+  "predicted_ms": 15796.964,
+  "predicted_per_token_ms": 77.8175566502463,
+  "predicted_per_second": 12.850570527349433
+ },
+ "seconds": 16.06,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "amount > 100000"
+   },
+   {
+    "id": "C2",
+    "expr": "new_payee == True"
+   },
+   {
+    "id": "C3",
+    "expr": "registered_device == False"
+   },
+   {
+    "id": "C4",
+    "expr": "amount > 5000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Blocked"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C4": true
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true,
+     "C4": true
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": "Allowed"
+   }
+  ]
+ },
+ "parse_error": null
+}

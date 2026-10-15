@@ -1,0 +1,191 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn online store computes the discount on an order. The base discount depends on the cart value: 5% for a cart value of Rs. 1000 or more, 10% for Rs. 2000 or more, and 20% for Rs. 5000 or more; only the highest applicable tier is used, and a cart value below Rs. 1000 gets no base discount. A valid coupon adds 10 percentage points and a loyalty member gets 5 more percentage points. The total discount can never exceed 30%. If the customer enters an invalid coupon, the order is rejected and the output is \"REJECTED\" whatever the other inputs are.\n\nINPUTS\n- cart_value: integer from 0 to 20000 (rupees)\n- coupon: one of \"none\", \"valid\", \"invalid\"\n- member: true or false (loyalty-programme member)\n\nOUTPUT\n- discount: one of \"0%\", \"5%\", \"10%\", \"15%\", \"20%\", \"25%\", \"30%\", \"REJECTED\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{\"tests\": [{\"inputs\": {\"cart_value\": 1500, \"coupon\": \"none\", \"member\": false}, \"expected\": \"0%\"}, {\"inputs\": {\"cart_value\": 1000, \"coupon\": \"none\", \"member\": false}, \"expected\": \"0%\"}, {\"inputs\": {\"cart_value\": 2000, \"coupon\": \"none\", \"member\": false}, \"expected\": \"0%\"}, {\"inputs\": {\"cart_value\": 5000, \"coupon\": \"none\", \"member\": false}, \"expected\": \"20%\"}, {\"inputs\": {\"cart_value\": 1000, \"coupon\": \"none\", \"member\": true}, \"expected\": \"5%\"}, {\"inputs\": {\"cart_value\": 2000, \"coupon\": \"none\", \"member\": true}, \"expected\": \"10%\"}, {\"inputs\": {\"cart_value\": 5000, \"coupon\": \"none\", \"member\": true}, \"expected\": \"15%\"}, {\"inputs\": {\"cart_value\": 1000, \"coupon\": \"valid\", \"member\": false}, \"expected\": \"15%\"}, {\"inputs\": {\"cart_value\": 2000, \"coupon\": \"valid\", \"member\": false}, \"expected\": \"15%\"}, {\"inputs\": {\"cart_value\": 5000, \"coupon\": \"valid\", \"member\": false}, \"expected\": \"20%\"}, {\"inputs\": {\"cart_value\": 1000, \"coupon\": \"valid\", \"member\": true}, \"expected\": \"15%\"}, {\"inputs\": {\"cart_value\": 2000, \"coupon\": \"valid\", \"member\": true}, \"expected\": \"15%\"}, {\"inputs\": {\"cart_value\": 5000, \"coupon\": \"valid\", \"member\": true}, \"expected\": \"20%\"}, {\"inputs\": {\"cart_value\": 1000, \"coupon\": \"invalid\", \"member\": false}, \"expected\": \"REJECTED\"}, {\"inputs\": {\"cart_value\": 2000, \"coupon\": \"invalid\", \"member\": false}, \"expected\": \"REJECTED\"}, {\"inputs\": {\"cart_value\": 5000, \"coupon\": \"invalid\", \"member\": false}, \"expected\": \"REJECTED\"}, {\"inputs\": {\"cart_value\": 1000, \"coupon\": \"invalid\", \"member\": true}, \"expected\": \"REJECTED\"}, {\"inputs\": {\"cart_value\": 2000, \"coupon\": \"invalid\", \"member\": true}, \"expected\": \"REJECTED\"}, {\"inputs\": {\"cart_value\": 5000, \"coupon\": \"invalid\", \"member\": true}, \"expected\": \"REJECTED\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 556,
+  "prompt_tokens": 354,
+  "total_tokens": 910,
+  "prompt_tokens_details": {
+   "cached_tokens": 57
+  }
+ },
+ "timings": {
+  "cache_n": 57,
+  "prompt_n": 297,
+  "prompt_ms": 2341.94,
+  "prompt_per_token_ms": 7.8853198653198655,
+  "prompt_per_second": 126.8179372656857,
+  "predicted_n": 556,
+  "predicted_ms": 30986.235,
+  "predicted_per_token_ms": 55.83105405405406,
+  "predicted_per_second": 17.91117894768435
+ },
+ "seconds": 33.33,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "cart_value": 1500,
+     "coupon": "none",
+     "member": false
+    },
+    "expected": "0%"
+   },
+   {
+    "inputs": {
+     "cart_value": 1000,
+     "coupon": "none",
+     "member": false
+    },
+    "expected": "0%"
+   },
+   {
+    "inputs": {
+     "cart_value": 2000,
+     "coupon": "none",
+     "member": false
+    },
+    "expected": "0%"
+   },
+   {
+    "inputs": {
+     "cart_value": 5000,
+     "coupon": "none",
+     "member": false
+    },
+    "expected": "20%"
+   },
+   {
+    "inputs": {
+     "cart_value": 1000,
+     "coupon": "none",
+     "member": true
+    },
+    "expected": "5%"
+   },
+   {
+    "inputs": {
+     "cart_value": 2000,
+     "coupon": "none",
+     "member": true
+    },
+    "expected": "10%"
+   },
+   {
+    "inputs": {
+     "cart_value": 5000,
+     "coupon": "none",
+     "member": true
+    },
+    "expected": "15%"
+   },
+   {
+    "inputs": {
+     "cart_value": 1000,
+     "coupon": "valid",
+     "member": false
+    },
+    "expected": "15%"
+   },
+   {
+    "inputs": {
+     "cart_value": 2000,
+     "coupon": "valid",
+     "member": false
+    },
+    "expected": "15%"
+   },
+   {
+    "inputs": {
+     "cart_value": 5000,
+     "coupon": "valid",
+     "member": false
+    },
+    "expected": "20%"
+   },
+   {
+    "inputs": {
+     "cart_value": 1000,
+     "coupon": "valid",
+     "member": true
+    },
+    "expected": "15%"
+   },
+   {
+    "inputs": {
+     "cart_value": 2000,
+     "coupon": "valid",
+     "member": true
+    },
+    "expected": "15%"
+   },
+   {
+    "inputs": {
+     "cart_value": 5000,
+     "coupon": "valid",
+     "member": true
+    },
+    "expected": "20%"
+   },
+   {
+    "inputs": {
+     "cart_value": 1000,
+     "coupon": "invalid",
+     "member": false
+    },
+    "expected": "REJECTED"
+   },
+   {
+    "inputs": {
+     "cart_value": 2000,
+     "coupon": "invalid",
+     "member": false
+    },
+    "expected": "REJECTED"
+   },
+   {
+    "inputs": {
+     "cart_value": 5000,
+     "coupon": "invalid",
+     "member": false
+    },
+    "expected": "REJECTED"
+   },
+   {
+    "inputs": {
+     "cart_value": 1000,
+     "coupon": "invalid",
+     "member": true
+    },
+    "expected": "REJECTED"
+   },
+   {
+    "inputs": {
+     "cart_value": 2000,
+     "coupon": "invalid",
+     "member": true
+    },
+    "expected": "REJECTED"
+   },
+   {
+    "inputs": {
+     "cart_value": 5000,
+     "coupon": "invalid",
+     "member": true
+    },
+    "expected": "REJECTED"
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,127 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nThe program reads three integer side lengths a, b and c and classifies the triangle they form. If any one side is greater than or equal to the sum of the other two sides, the three sides cannot form a triangle and the output is \"Not a triangle\". Otherwise, the output is \"Equilateral\" if all three sides are equal, \"Isosceles\" if exactly two sides are equal, and \"Scalene\" if no two sides are equal.\n\nINPUTS\n- a: integer from 1 to 200 (side length)\n- b: integer from 1 to 200 (side length)\n- c: integer from 1 to 200 (side length)\n\nOUTPUT\n- triangle_type: one of \"Not a triangle\", \"Scalene\", \"Isosceles\", \"Equilateral\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{\"tests\": [{\"inputs\": {\"a\": 1, \"b\": 2, \"c\": 3}, \"expected\": \"Not a triangle\"}, {\"inputs\": {\"a\": 1, \"b\": 1, \"c\": 1}, \"expected\": \"Equilateral\"}, {\"inputs\": {\"a\": 1, \"b\": 2, \"c\": 2}, \"expected\": \"Isosceles\"}, {\"inputs\": {\"a\": 1, \"b\": 2, \"c\": 3}, \"expected\": \"Scalene\"}, {\"inputs\": {\"a\": 3, \"b\": 4, \"c\": 5}, \"expected\": \"Scalene\"}, {\"inputs\": {\"a\": 200, \"b\": 1, \"c\": 1}, \"expected\": \"Not a triangle\"}, {\"inputs\": {\"a\": 200, \"b\": 200, \"c\": 200}, \"expected\": \"Equilateral\"}, {\"inputs\": {\"a\": 200, \"b\": 200, \"c\": 201}, \"expected\": \"Not a triangle\"}, {\"inputs\": {\"a\": 200, \"b\": 201, \"c\": 200}, \"expected\": \"Not a triangle\"}, {\"inputs\": {\"a\": 200, \"b\": 201, \"c\": 201}, \"expected\": \"Not a triangle\"}, {\"inputs\": {\"a\": 200, \"b\": 200, \"c\": 200}, \"expected\": \"Equilateral\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 322,
+  "prompt_tokens": 308,
+  "total_tokens": 630,
+  "prompt_tokens_details": {
+   "cached_tokens": 0
+  }
+ },
+ "timings": {
+  "cache_n": 0,
+  "prompt_n": 308,
+  "prompt_ms": 2570.231,
+  "prompt_per_token_ms": 8.344905844155845,
+  "prompt_per_second": 119.83358694218535,
+  "predicted_n": 322,
+  "predicted_ms": 17909.381,
+  "predicted_per_token_ms": 55.792464174454835,
+  "predicted_per_second": 17.923567542619143
+ },
+ "seconds": 20.57,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "a": 1,
+     "b": 2,
+     "c": 3
+    },
+    "expected": "Not a triangle"
+   },
+   {
+    "inputs": {
+     "a": 1,
+     "b": 1,
+     "c": 1
+    },
+    "expected": "Equilateral"
+   },
+   {
+    "inputs": {
+     "a": 1,
+     "b": 2,
+     "c": 2
+    },
+    "expected": "Isosceles"
+   },
+   {
+    "inputs": {
+     "a": 1,
+     "b": 2,
+     "c": 3
+    },
+    "expected": "Scalene"
+   },
+   {
+    "inputs": {
+     "a": 3,
+     "b": 4,
+     "c": 5
+    },
+    "expected": "Scalene"
+   },
+   {
+    "inputs": {
+     "a": 200,
+     "b": 1,
+     "c": 1
+    },
+    "expected": "Not a triangle"
+   },
+   {
+    "inputs": {
+     "a": 200,
+     "b": 200,
+     "c": 200
+    },
+    "expected": "Equilateral"
+   },
+   {
+    "inputs": {
+     "a": 200,
+     "b": 200,
+     "c": 201
+    },
+    "expected": "Not a triangle"
+   },
+   {
+    "inputs": {
+     "a": 200,
+     "b": 201,
+     "c": 200
+    },
+    "expected": "Not a triangle"
+   },
+   {
+    "inputs": {
+     "a": 200,
+     "b": 201,
+     "c": 201
+    },
+    "expected": "Not a triangle"
+   },
+   {
+    "inputs": {
+     "a": 200,
+     "b": 200,
+     "c": 200
+    },
+    "expected": "Equilateral"
+   }
+  ]
+ },
+ "parse_error": null
+}

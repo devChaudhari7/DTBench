@@ -1,0 +1,256 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "amount > 100000"
+   },
+   {
+    "id": "C2",
+    "expr": "new_payee == true"
+   },
+   {
+    "id": "C3",
+    "expr": "amount > 5000"
+   },
+   {
+    "id": "C4",
+    "expr": "registered_device == false"
+   },
+   {
+    "id": "C5",
+    "expr": "amount > 2000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Blocked"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Allowed"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": false
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "Allowed"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Allowed"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": true
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R13",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "Allowed"
+   },
+   {
+    "id": "R14",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R15",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R16",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": true,
+     "C5": false
+    },
+    "output": "On hold"
+   },
+   {
+    "id": "R17",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "Allowed"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input amount=1, new_payee=false, registered_device=false (C1=false, C2=false, C3=false, C4=true, C5=false).",
+    "Missing combination: no rule matches the input amount=1, new_payee=true, registered_device=false (C1=false, C2=true, C3=false, C4=true, C5=false).",
+    "Missing combination: no rule matches the input amount=1, new_payee=true, registered_device=true (C1=false, C2=true, C3=false, C4=false, C5=false).",
+    "In total, 14 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 14,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input amount=1, new_payee=false, registered_device=false (C1=false, C2=false, C3=false, C4=true, C5=false).",
+    "Missing combination: no rule matches the input amount=1, new_payee=true, registered_device=true (C1=false, C2=true, C3=false, C4=false, C5=false).",
+    "Missing combination: no rule matches the input amount=2001, new_payee=true, registered_device=false (C1=false, C2=true, C3=false, C4=true, C5=true).",
+    "Conflict: the input amount=2001, new_payee=false, registered_device=true matches several rules with different outputs (R5 gives \"OTP required\", R9 gives \"Allowed\").",
+    "In total, 12 reachable combinations of your conditions match no rule and 1 match rules with different outputs."
+   ],
+   "gap_combinations": 12,
+   "conflict_combinations": 1,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input amount=1, new_payee=false, registered_device=false (C1=false, C2=false, C3=false, C4=true, C5=false).",
+    "Missing combination: no rule matches the input amount=1, new_payee=true, registered_device=true (C1=false, C2=true, C3=false, C4=false, C5=false).",
+    "Missing combination: no rule matches the input amount=5001, new_payee=false, registered_device=false (C1=false, C2=false, C3=true, C4=true, C5=true).",
+    "In total, 10 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 10,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

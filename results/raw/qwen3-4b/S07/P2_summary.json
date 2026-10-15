@@ -1,0 +1,171 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 18 or age >= 60"
+   },
+   {
+    "id": "C2",
+    "expr": "years_of_service >= 30"
+   },
+   {
+    "id": "C3",
+    "expr": "years_of_service >= 15 and years_of_service < 30"
+   },
+   {
+    "id": "C4",
+    "expr": "age >= 45"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false
+    },
+    "output": 30
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": false
+    },
+    "output": 27
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false
+    },
+    "output": 25
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": 24
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false
+    },
+    "output": 24
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": 22
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true
+    },
+    "output": 24
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true
+    },
+    "output": 27
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true
+    },
+    "output": 28
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": 27
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": true
+    },
+    "output": 30
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input age=45, years_of_service=0 (C1=false, C2=false, C3=false, C4=true).",
+    "Missing combination: no rule matches the input age=46, years_of_service=30 (C1=false, C2=true, C3=false, C4=true).",
+    "Missing combination: no rule matches the input age=60, years_of_service=0 (C1=true, C2=false, C3=false, C4=true).",
+    "In total, 5 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 5,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input age=60, years_of_service=15 (C1=true, C2=false, C3=true, C4=true).",
+    "Missing combination: no rule matches the input age=60, years_of_service=30 (C1=true, C2=true, C3=false, C4=true).",
+    "In total, 2 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 2,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input age=16, years_of_service=0 (C1=true, C2=false, C3=false, C4=false).",
+    "In total, 1 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

@@ -1,0 +1,340 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nEvery employee receives at least 22 days. Additional days are provided according to the following criteria: Only employees younger than 18 or at least 60 years, or employees with at least 30 years of service will receive 5 extra days. Employees with at least 30 years of service and also employees of age 60 or more, receive 3 extra days, on top of possible additional days already given. If an employee has at least 15 but less than 30 years of service, 2 extra days are given. These 2 days are also provided for employees of age 45 or more. These 2 extra days can not be combined with the extra 5 days.\n\nINPUTS\n- age: integer from 16 to 70\n- years_of_service: integer from 0 to 54\nConstraint on valid inputs: years_of_service <= age - 16 (nobody starts working before 16)\n\nOUTPUT\n- vacation_days: an integer\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{ \"tests\": [ {\"inputs\": {\"age\": 16, \"years_of_service\": 0}, \"expected\": 22}, {\"inputs\": {\"age\": 17, \"years_of_service\": 0}, \"expected\": 22}, {\"inputs\": {\"age\": 18, \"years_of_service\": 0}, \"expected\": 22}, {\"inputs\": {\"age\": 19, \"years_of_service\": 0}, \"expected\": 27}, {\"inputs\": {\"age\": 20, \"years_of_service\": 0}, \"expected\": 27}, {\"inputs\": {\"age\": 21, \"years_of_service\": 0}, \"expected\": 27}, {\"inputs\": {\"age\": 22, \"years_of_service\": 0}, \"expected\": 27}, {\"inputs\": {\"age\": 70, \"years_of_service\": 54}, \"expected\": 77}, {\"inputs\": {\"age\": 18, \"years_of_service\": 54}, \"expected\": 77}, {\"inputs\": {\"age\": 19, \"years_of_service\": 54}, \"expected\": 77}, {\"inputs\": {\"age\": 60, \"years_of_service\": 0}, \"expected\": 62}, {\"inputs\": {\"age\": 61, \"years_of_service\": 0}, \"expected\": 62}, {\"inputs\": {\"age\": 70, \"years_of_service\": 0}, \"expected\": 72}, {\"inputs\": {\"age\": 16, \"years_of_service\": 15}, \"expected\": 27}, {\"inputs\": {\"age\": 17, \"years_of_service\": 15}, \"expected\": 27}, {\"inputs\": {\"age\": 18, \"years_of_service\": 15}, \"expected\": 27}, {\"inputs\": {\"age\": 19, \"years_of_service\": 15}, \"expected\": 32}, {\"inputs\": {\"age\": 20, \"years_of_service\": 15}, \"expected\": 32}, {\"inputs\": {\"age\": 21, \"years_of_service\": 15}, \"expected\": 32}, {\"inputs\": {\"age\": 60, \"years_of_service\": 15}, \"expected\": 37}, {\"inputs\": {\"age\": 61, \"years_of_service\": 15}, \"expected\": 37}, {\"inputs\": {\"age\": 70, \"years_of_service\": 15}, \"expected\": 37}, {\"inputs\": {\"age\": 45, \"years_of_service\": 0}, \"expected\": 47}, {\"inputs\": {\"age\": 46, \"years_of_service\": 0}, \"expected\": 47}, {\"inputs\": {\"age\": 60, \"years_of_service\": 0}, \"expected\": 62}, {\"inputs\": {\"age\": 61, \"years_of_service\": 0}, \"expected\": 62}, {\"inputs\": {\"age\": 70, \"years_of_service\": 0}, \"expected\": 72}, {\"inputs\": {\"age\": 16, \"years_of_service\": 30}, \"expected\": 54}, {\"inputs\": {\"age\": 17, \"years_of_service\": 30}, \"expected\": 54}, {\"inputs\": {\"age\": 18, \"years_of_service\": 30}, \"expected\": 54}, {\"inputs\": {\"age\": 19, \"years_of_service\": 30}, \"expected\": 54}, {\"inputs\": {\"age\": 60, \"years_of_service\": 30}, \"expected\": 67}, {\"inputs\": {\"age\": 61, \"years_of_service\": 30}, \"expected\": 67}, {\"inputs\": {\"age\": 70, \"years_of_service\": 30}, \"expected\": 77}, {\"inputs\": {\"age\": 45, \"years_of_service\": 30}, \"expected\": 57}, {\"inputs\": {\"age\": 46, \"years_of_service\": 30}, \"expected\": 57}, {\"inputs\": {\"age\": 60, \"years_of_service\": 30}, \"expected\": 67}, {\"inputs\": {\"age\": 61, \"years_of_service\": 30}, \"expected\": 67}, {\"inputs\": {\"age\": 70, \"years_of_service\": 30}, \"expected\": 77}, {\"inputs\": {\"age\": 18, \"years_of_service\": 54}, \"expected\": 77}, {\"inputs\": {\"age\": 60, \"years_of_service\": 54}, \"expected\": 77}, {\"inputs\": {\"age\": 61, \"years_of_service\": 54}, \"expected\": 77}, {\"inputs\": {\"age\": 70, \"years_of_service\": 54}, \"expected\": 77} ]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 1198,
+  "prompt_tokens": 330,
+  "total_tokens": 1528,
+  "prompt_tokens_details": {
+   "cached_tokens": 19
+  }
+ },
+ "timings": {
+  "cache_n": 19,
+  "prompt_n": 311,
+  "prompt_ms": 3038.214,
+  "prompt_per_token_ms": 9.769176848874597,
+  "prompt_per_second": 102.36276970614973,
+  "predicted_n": 1198,
+  "predicted_ms": 93629.837,
+  "predicted_per_token_ms": 78.22041520467836,
+  "predicted_per_second": 12.784386242176199
+ },
+ "seconds": 96.67,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "age": 16,
+     "years_of_service": 0
+    },
+    "expected": 22
+   },
+   {
+    "inputs": {
+     "age": 17,
+     "years_of_service": 0
+    },
+    "expected": 22
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "years_of_service": 0
+    },
+    "expected": 22
+   },
+   {
+    "inputs": {
+     "age": 19,
+     "years_of_service": 0
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 20,
+     "years_of_service": 0
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "years_of_service": 0
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 22,
+     "years_of_service": 0
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 54
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "years_of_service": 54
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 19,
+     "years_of_service": 54
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 60,
+     "years_of_service": 0
+    },
+    "expected": 62
+   },
+   {
+    "inputs": {
+     "age": 61,
+     "years_of_service": 0
+    },
+    "expected": 62
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 0
+    },
+    "expected": 72
+   },
+   {
+    "inputs": {
+     "age": 16,
+     "years_of_service": 15
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 17,
+     "years_of_service": 15
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "years_of_service": 15
+    },
+    "expected": 27
+   },
+   {
+    "inputs": {
+     "age": 19,
+     "years_of_service": 15
+    },
+    "expected": 32
+   },
+   {
+    "inputs": {
+     "age": 20,
+     "years_of_service": 15
+    },
+    "expected": 32
+   },
+   {
+    "inputs": {
+     "age": 21,
+     "years_of_service": 15
+    },
+    "expected": 32
+   },
+   {
+    "inputs": {
+     "age": 60,
+     "years_of_service": 15
+    },
+    "expected": 37
+   },
+   {
+    "inputs": {
+     "age": 61,
+     "years_of_service": 15
+    },
+    "expected": 37
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 15
+    },
+    "expected": 37
+   },
+   {
+    "inputs": {
+     "age": 45,
+     "years_of_service": 0
+    },
+    "expected": 47
+   },
+   {
+    "inputs": {
+     "age": 46,
+     "years_of_service": 0
+    },
+    "expected": 47
+   },
+   {
+    "inputs": {
+     "age": 60,
+     "years_of_service": 0
+    },
+    "expected": 62
+   },
+   {
+    "inputs": {
+     "age": 61,
+     "years_of_service": 0
+    },
+    "expected": 62
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 0
+    },
+    "expected": 72
+   },
+   {
+    "inputs": {
+     "age": 16,
+     "years_of_service": 30
+    },
+    "expected": 54
+   },
+   {
+    "inputs": {
+     "age": 17,
+     "years_of_service": 30
+    },
+    "expected": 54
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "years_of_service": 30
+    },
+    "expected": 54
+   },
+   {
+    "inputs": {
+     "age": 19,
+     "years_of_service": 30
+    },
+    "expected": 54
+   },
+   {
+    "inputs": {
+     "age": 60,
+     "years_of_service": 30
+    },
+    "expected": 67
+   },
+   {
+    "inputs": {
+     "age": 61,
+     "years_of_service": 30
+    },
+    "expected": 67
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 30
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 45,
+     "years_of_service": 30
+    },
+    "expected": 57
+   },
+   {
+    "inputs": {
+     "age": 46,
+     "years_of_service": 30
+    },
+    "expected": 57
+   },
+   {
+    "inputs": {
+     "age": 60,
+     "years_of_service": 30
+    },
+    "expected": 67
+   },
+   {
+    "inputs": {
+     "age": 61,
+     "years_of_service": 30
+    },
+    "expected": 67
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 30
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 18,
+     "years_of_service": 54
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 60,
+     "years_of_service": 54
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 61,
+     "years_of_service": 54
+    },
+    "expected": 77
+   },
+   {
+    "inputs": {
+     "age": 70,
+     "years_of_service": 54
+    },
+    "expected": 77
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,177 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "account_locked == True"
+   },
+   {
+    "id": "C2",
+    "expr": "password_correct == False"
+   },
+   {
+    "id": "C3",
+    "expr": "failed_attempts >= 4"
+   },
+   {
+    "id": "C4",
+    "expr": "trusted_device == True"
+   },
+   {
+    "id": "C5",
+    "expr": "otp_verified == True"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C3": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": "Access granted"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "OTP required"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Account locked"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false
+    },
+    "output": "Access granted"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "output": "Invalid credentials"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": true
+    },
+    "output": "Access granted"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=false (C1=false, C2=true, C3=true, C4=false, C5=false).",
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=true (C1=false, C2=true, C3=true, C4=false, C5=true).",
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=true, otp_verified=false (C1=false, C2=true, C3=true, C4=true, C5=false).",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "In total, 8 reachable combinations of your conditions match no rule and 4 match rules with different outputs."
+   ],
+   "gap_combinations": 8,
+   "conflict_combinations": 4,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=false (C1=false, C2=true, C3=true, C4=false, C5=false).",
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=true (C1=false, C2=true, C3=true, C4=false, C5=true).",
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=true, otp_verified=false (C1=false, C2=true, C3=true, C4=true, C5=false).",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "In total, 6 reachable combinations of your conditions match no rule and 4 match rules with different outputs."
+   ],
+   "gap_combinations": 6,
+   "conflict_combinations": 4,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=false (C1=false, C2=true, C3=true, C4=false, C5=false).",
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=false, otp_verified=true (C1=false, C2=true, C3=true, C4=false, C5=true).",
+    "Missing combination: no rule matches the input account_locked=false, password_correct=false, failed_attempts=4, trusted_device=true, otp_verified=false (C1=false, C2=true, C3=true, C4=true, C5=false).",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=false, otp_verified=true matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "Conflict: the input account_locked=true, password_correct=false, failed_attempts=0, trusted_device=true, otp_verified=false matches several rules with different outputs (R1 gives \"Account locked\", R2 gives \"Invalid credentials\").",
+    "In total, 5 reachable combinations of your conditions match no rule and 4 match rules with different outputs."
+   ],
+   "gap_combinations": 5,
+   "conflict_combinations": 4,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

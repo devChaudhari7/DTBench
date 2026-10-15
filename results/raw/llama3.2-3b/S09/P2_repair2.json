@@ -1,0 +1,497 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.\n\nINPUTS\n- grades: one of \"excellent\", \"good\", \"average\", \"poor\"\n- annual_income: integer from 0 to 200000\n- received_other_scholarship: true or false\n\nOUTPUT\n- scholarship: one of \"Eligible\", \"Not eligible\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"grades == 'excellent' or grades == 'good'\"},{\"id\":\"C2\",\"expr\":\"annual_income < 50000\"},{\"id\":\"C3\",\"expr\":\"received_other_scholarship == False\"},{\"id\":\"C4\",\"expr\":\"annual_income <= 0\"},{\"id\":\"C5\",\"expr\":\"grades == 'average' or grades == 'poor'\"},{\"id\":\"C6\",\"expr\":\"annual_income > 50000\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Eligible\"},{\"id\":\"R2\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R5\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input grades=\"excellent\", annual_income=50000, received_other_scholarship=false (C1=true, C2=false, C3=true, C4=false, C5=false, C6=false).\n- Missing combination: no rule matches the input grades=\"excellent\", annual_income=50001, received_other_scholarship=false (C1=true, C2=false, C3=true, C4=false, C5=false, C6=true).\n- Missing combination: no rule matches the input grades=\"average\", annual_income=0, received_other_scholarship=true (C1=false, C2=true, C3=false, C4=true, C5=true, C6=false).\n- In total, 4 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"grades == 'excellent' or grades == 'good'\"},{\"id\":\"C2\",\"expr\":\"annual_income < 50000\"},{\"id\":\"C3\",\"expr\":\"received_other_scholarship == False\"},{\"id\":\"C4\",\"expr\":\"annual_income <= 0\"},{\"id\":\"C5\",\"expr\":\"grades == 'average' or grades == 'poor'\"},{\"id\":\"C6\",\"expr\":\"annual_income > 50000\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Eligible\"},{\"id\":\"R2\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R5\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R7\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R8\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R9\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R10\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R11\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R12\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R13\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R14\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R15\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R16\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R17\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R18\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R19\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R20\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R21\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R22\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R23\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R24\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R25\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R26\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true},\"output\":\"Not eligible\"},{\"id\":\"R27\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R28\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R29\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R30\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R31\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R32\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R33\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R34\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R35\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R36\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R37\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R38\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R39\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R40\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R41\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R42\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R43\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R44\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R45\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R46\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R47\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false},\"output\":\"Not eligible\"},{\"id\":\"R48\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false},\"output\":\"Not eligible\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 1402,
+  "prompt_tokens": 847,
+  "total_tokens": 2249,
+  "prompt_tokens_details": {
+   "cached_tokens": 444
+  }
+ },
+ "timings": {
+  "cache_n": 444,
+  "prompt_n": 403,
+  "prompt_ms": 3285.148,
+  "prompt_per_token_ms": 8.151732009925558,
+  "prompt_per_second": 122.6733163924426,
+  "predicted_n": 1402,
+  "predicted_ms": 91811.342,
+  "predicted_per_token_ms": 65.53272091363313,
+  "predicted_per_second": 15.259552572491533
+ },
+ "seconds": 95.1,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "grades == 'excellent' or grades == 'good'"
+   },
+   {
+    "id": "C2",
+    "expr": "annual_income < 50000"
+   },
+   {
+    "id": "C3",
+    "expr": "received_other_scholarship == False"
+   },
+   {
+    "id": "C4",
+    "expr": "annual_income <= 0"
+   },
+   {
+    "id": "C5",
+    "expr": "grades == 'average' or grades == 'poor'"
+   },
+   {
+    "id": "C6",
+    "expr": "annual_income > 50000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Eligible"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R13",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R14",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R15",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R16",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R17",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R18",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R19",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R20",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R21",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R22",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R23",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R24",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R25",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R26",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R27",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R28",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R29",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R30",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R31",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R32",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R33",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R34",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R35",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R36",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R37",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R38",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R39",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R40",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R41",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R42",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R43",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R44",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R45",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R46",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R47",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Not eligible"
+   },
+   {
+    "id": "R48",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false
+    },
+    "output": "Not eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

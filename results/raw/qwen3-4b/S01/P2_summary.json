@@ -1,0 +1,73 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "a >= b + c or b >= a + c or c >= a + b"
+   },
+   {
+    "id": "C2",
+    "expr": "a == b == c"
+   },
+   {
+    "id": "C3",
+    "expr": "a == b or b == c or a == c"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true
+    },
+    "output": "Equilateral"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C3": true,
+     "C2": false
+    },
+    "output": "Isosceles"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false
+    },
+    "output": "Scalene"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Conflict: the input a=1, b=1, c=1 matches several rules with different outputs (R2 gives \"Equilateral\", R3 gives \"Isosceles\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 1 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 1,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [],
+   "gap_combinations": 0,
+   "conflict_combinations": 0,
+   "problems": 0
+  }
+ ]
+}

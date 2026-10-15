@@ -1,0 +1,117 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nEvery employee receives at least 22 days. Additional days are provided according to the following criteria: Only employees younger than 18 or at least 60 years, or employees with at least 30 years of service will receive 5 extra days. Employees with at least 30 years of service and also employees of age 60 or more, receive 3 extra days, on top of possible additional days already given. If an employee has at least 15 but less than 30 years of service, 2 extra days are given. These 2 days are also provided for employees of age 45 or more. These 2 extra days can not be combined with the extra 5 days.\n\nINPUTS\n- age: integer from 16 to 70\n- years_of_service: integer from 0 to 54\nConstraint on valid inputs: years_of_service <= age - 16 (nobody starts working before 16)\n\nOUTPUT\n- vacation_days: an integer\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"age < 18 or age >= 60\"},{\"id\":\"C2\",\"expr\":\"years_of_service >= 30\"},{\"id\":\"C3\",\"expr\":\"years_of_service >= 15 and years_of_service < 30\"},{\"id\":\"C4\",\"expr\":\"age >= 45\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":true,\"C3\":false,\"C4\":false},\"output\":30},{\"id\":\"R2\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":false},\"output\":27},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":false},\"output\":25},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true},\"output\":24},{\"id\":\"R5\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":false},\"output\":24},{\"id\":\"R6\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false},\"output\":22}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 273,
+  "prompt_tokens": 457,
+  "total_tokens": 730,
+  "prompt_tokens_details": {
+   "cached_tokens": 248
+  }
+ },
+ "timings": {
+  "cache_n": 248,
+  "prompt_n": 209,
+  "prompt_ms": 8659.517,
+  "prompt_per_token_ms": 41.433095693779904,
+  "prompt_per_second": 24.135295305731255,
+  "predicted_n": 273,
+  "predicted_ms": 59806.094,
+  "predicted_per_token_ms": 219.8753455882353,
+  "predicted_per_second": 4.548031509966192
+ },
+ "seconds": 68.47,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 18 or age >= 60"
+   },
+   {
+    "id": "C2",
+    "expr": "years_of_service >= 30"
+   },
+   {
+    "id": "C3",
+    "expr": "years_of_service >= 15 and years_of_service < 30"
+   },
+   {
+    "id": "C4",
+    "expr": "age >= 45"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": false,
+     "C4": false
+    },
+    "output": 30
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": 27
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false
+    },
+    "output": 25
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true
+    },
+    "output": 24
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false
+    },
+    "output": 24
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false
+    },
+    "output": 22
+   }
+  ]
+ },
+ "parse_error": null
+}

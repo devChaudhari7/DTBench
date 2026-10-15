@@ -1,0 +1,207 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn online store computes the discount on an order. The base discount depends on the cart value: 5% for a cart value of Rs. 1000 or more, 10% for Rs. 2000 or more, and 20% for Rs. 5000 or more; only the highest applicable tier is used, and a cart value below Rs. 1000 gets no base discount. A valid coupon adds 10 percentage points and a loyalty member gets 5 more percentage points. The total discount can never exceed 30%. If the customer enters an invalid coupon, the order is rejected and the output is \"REJECTED\" whatever the other inputs are.\n\nINPUTS\n- cart_value: integer from 0 to 20000 (rupees)\n- coupon: one of \"none\", \"valid\", \"invalid\"\n- member: true or false (loyalty-programme member)\n\nOUTPUT\n- discount: one of \"0%\", \"5%\", \"10%\", \"15%\", \"20%\", \"25%\", \"30%\", \"REJECTED\"\n\nTASK\nBelow is the decision table you built for these business rules. An automated checker evaluated it on many input values and found the problems listed after it. Fix the table so that every valid input matches exactly one rule and the outputs follow the business rules. Return the complete corrected table as JSON in the same format: {\"conditions\": [{\"id\", \"expr\"}], \"rules\": [{\"id\", \"when\", \"output\"}]}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n\nDECISION TABLE\n{\"conditions\":[{\"id\":\"C1\",\"expr\":\"cart_value >= 1000\"},{\"id\":\"C2\",\"expr\":\"cart_value >= 2000\"},{\"id\":\"C3\",\"expr\":\"cart_value >= 5000\"},{\"id\":\"C4\",\"expr\":\"coupon == 'valid'\"},{\"id\":\"C5\",\"expr\":\"coupon == 'invalid'\"},{\"id\":\"C6\",\"expr\":\"member\"},{\"id\":\"C7\",\"expr\":\"cart_value < 1000\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":false,\"C7\":true},\"output\":\"0%\"},{\"id\":\"R2\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":true,\"C5\":false,\"C6\":false,\"C7\":false},\"output\":\"10%\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true,\"C5\":false,\"C6\":false,\"C7\":false},\"output\":\"20%\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":true,\"C6\":false,\"C7\":false},\"output\":\"REJECTED\"},{\"id\":\"R5\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":true,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"15%\"},{\"id\":\"R6\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"20%\"},{\"id\":\"R7\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"20%\"},{\"id\":\"R8\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"25%\"},{\"id\":\"R9\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"30%\"}]}\n\nPROBLEMS FOUND\n- Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=false (C1=false, C2=false, C3=false, C4=false, C5=false, C6=false, C7=true).\n- Missing combination: no rule matches the input cart_value=0, coupon=\"none\", member=true (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=true).\n- Missing combination: no rule matches the input cart_value=0, coupon=\"valid\", member=false (C1=false, C2=false, C3=false, C4=true, C5=false, C6=false, C7=true).\n- In total, 22 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+  }
+ ],
+ "response": "{\"conditions\":[{\"id\":\"C1\",\"expr\":\"cart_value >= 1000\"},{\"id\":\"C2\",\"expr\":\"cart_value >= 2000\"},{\"id\":\"C3\",\"expr\":\"cart_value >= 5000\"},{\"id\":\"C4\",\"expr\":\"coupon == 'valid'\"},{\"id\":\"C5\",\"expr\":\"coupon == 'invalid'\"},{\"id\":\"C6\",\"expr\":\"member\"},{\"id\":\"C7\",\"expr\":\"cart_value < 1000\"},{\"id\":\"C8\",\"expr\":\"cart_value < 2000\"},{\"id\":\"C9\",\"expr\":\"cart_value < 5000\"}],\"rules\":[{\"id\":\"R1\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":false,\"C7\":true},\"output\":\"0%\"},{\"id\":\"R2\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":true,\"C5\":false,\"C6\":false,\"C7\":false},\"output\":\"10%\"},{\"id\":\"R3\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":true,\"C5\":false,\"C6\":false,\"C7\":false},\"output\":\"20%\"},{\"id\":\"R4\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":true,\"C6\":false,\"C7\":false},\"output\":\"REJECTED\"},{\"id\":\"R5\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":true,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"15%\"},{\"id\":\"R6\",\"when\":{\"C1\":true,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"20%\"},{\"id\":\"R7\",\"when\":{\"C1\":false,\"C2\":true,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"20%\"},{\"id\":\"R8\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":true,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"25%\"},{\"id\":\"R9\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":true,\"C7\":false},\"output\":\"30%\"},{\"id\":\"R10\",\"when\":{\"C1\":false,\"C2\":false,\"C3\":false,\"C4\":false,\"C5\":false,\"C6\":false,\"C7\":true},\"output\":\"0%\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 623,
+  "prompt_tokens": 1202,
+  "total_tokens": 1825,
+  "prompt_tokens_details": {
+   "cached_tokens": 1
+  }
+ },
+ "timings": {
+  "cache_n": 1,
+  "prompt_n": 1201,
+  "prompt_ms": 11122.66,
+  "prompt_per_token_ms": 9.261165695253954,
+  "prompt_per_second": 107.9777679080364,
+  "predicted_n": 623,
+  "predicted_ms": 47431.253,
+  "predicted_per_token_ms": 76.25603376205787,
+  "predicted_per_second": 13.11371639286021
+ },
+ "seconds": 58.57,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "cart_value >= 1000"
+   },
+   {
+    "id": "C2",
+    "expr": "cart_value >= 2000"
+   },
+   {
+    "id": "C3",
+    "expr": "cart_value >= 5000"
+   },
+   {
+    "id": "C4",
+    "expr": "coupon == 'valid'"
+   },
+   {
+    "id": "C5",
+    "expr": "coupon == 'invalid'"
+   },
+   {
+    "id": "C6",
+    "expr": "member"
+   },
+   {
+    "id": "C7",
+    "expr": "cart_value < 1000"
+   },
+   {
+    "id": "C8",
+    "expr": "cart_value < 2000"
+   },
+   {
+    "id": "C9",
+    "expr": "cart_value < 5000"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false
+    },
+    "output": "10%"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": false
+    },
+    "output": "REJECTED"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "15%"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "20%"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "25%"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false
+    },
+    "output": "30%"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true
+    },
+    "output": "0%"
+   }
+  ]
+ },
+ "parse_error": null
+}

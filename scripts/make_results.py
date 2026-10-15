@@ -41,6 +41,13 @@ def pct(x, nd=1):
     return "--" if x is None else f"{100 * x:.{nd}f}"
 
 
+def two_line(model):
+    """'Llama-3.2-3B' -> 'Llama-3.2\\n3B' so neighbouring labels never collide."""
+    name = MODEL_NAMES.get(model, model)
+    head, _, size = name.rpartition("-")
+    return f"{head}\n{size}" if head else name
+
+
 def aggregate(rows):
     groups = collections.defaultdict(list)
     for r in rows:
@@ -178,17 +185,20 @@ def fig_heatmap(rows, models):
     ax.set_yticks(range(len(SPECS)))
     ax.set_yticklabels([f"{s.id} {s.name}" for s in SPECS], fontsize=6.2, color=INK)
     for k, m in enumerate(models):
-        ax.text(3 * k + 1, -1.15, MODEL_NAMES.get(m, m), ha="center", va="bottom", fontsize=6.4, color=INK)
+        ax.text(3 * k + 1, -0.72, two_line(m), ha="center", va="bottom",
+                fontsize=6.0, color=INK, linespacing=1.05)
         if k:
             ax.axvline(3 * k - 0.5, color="white", lw=2.0)
     ax.tick_params(length=0)
     for sp in ax.spines.values():
         sp.set_visible(False)
-    cb = fig.colorbar(im, ax=ax, fraction=0.04, pad=0.02)
+    fig.subplots_adjust(left=0.42, right=0.86, top=0.88, bottom=0.07)
+    pos = ax.get_position()
+    cax = fig.add_axes([pos.x1 + 0.016, pos.y0, 0.018, pos.height])
+    cb = fig.colorbar(im, cax=cax)
     cb.outline.set_visible(False)
     cb.ax.tick_params(labelsize=6, length=0)
-    cb.set_label("rule coverage (%)", fontsize=6.4, color=INK2)
-    fig.subplots_adjust(left=0.42, right=0.94, top=0.90, bottom=0.08)
+    cb.set_label("rule coverage (%)", fontsize=6.0, color=INK2, labelpad=2)
     for fmt in ("pdf", "png"):
         fig.savefig(FIG / f"fig_heatmap_rule_coverage.{fmt}", dpi=300)
     plt.close(fig)
@@ -199,16 +209,19 @@ def fig_validation(agg, models):
     panels = [("tables_clean", "Tables with no\nstructural issue (of 12)", 1, 12),
               ("table_accuracy", "Table accuracy on\nevaluation probes (%)", 100, 100),
               ("gt_rules_with_gap", "Ground-truth rules with a\nmissing combination", 1, None)]
-    fig, axes = plt.subplots(1, 3, figsize=(7.16, 1.95), gridspec_kw={"wspace": 0.38})
+    fig, axes = plt.subplots(1, 3, figsize=(7.16, 2.1), gridspec_kw={"wspace": 0.38})
     for ax, (key, label, scale, ymax) in zip(axes, panels):
         x = np.arange(len(models))
         w = 0.3
         for i, s in enumerate(("P1", "P2")):
             vals = [scale * (look.get((m, s), {}).get(key) or 0) for m in models]
-            ax.bar(x + (i - 0.5) * (w + 0.04), vals, width=w, color=COL[s], zorder=3,
-                   label=f"{s} {STRATEGY_NAMES[s]}")
+            xs = x + (i - 0.5) * (w + 0.04)
+            ax.bar(xs, vals, width=w, color=COL[s], zorder=3, label=f"{s} {STRATEGY_NAMES[s]}")
+            for xv, v in zip(xs, vals):           # a zero bar is invisible: say so explicitly
+                if abs(v) < 1e-9:
+                    ax.text(xv, 0, "0", ha="center", va="bottom", fontsize=5.6, color=INK2, zorder=4)
         ax.set_xticks(x)
-        ax.set_xticklabels([MODEL_NAMES.get(m, m) for m in models], fontsize=6.6, color=INK)
+        ax.set_xticklabels([two_line(m) for m in models], fontsize=6.4, color=INK, linespacing=1.05)
         ax.set_title(label, fontsize=7, color=INK, pad=4)
         if ymax:
             ax.set_ylim(0, ymax * 1.05)
@@ -221,7 +234,7 @@ def fig_validation(agg, models):
         ax.tick_params(axis="y", length=0)
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="upper center", ncol=2, fontsize=7, bbox_to_anchor=(0.5, 1.03), handlelength=1.0)
-    fig.subplots_adjust(top=0.72, bottom=0.12, left=0.05, right=0.99)
+    fig.subplots_adjust(top=0.73, bottom=0.17, left=0.05, right=0.99)
     for fmt in ("pdf", "png"):
         fig.savefig(FIG / f"fig_validation_repair.{fmt}", dpi=300)
     plt.close(fig)
@@ -280,9 +293,10 @@ def tab_main(agg, models):
 def tab_tables(agg, models):
     look = {(a["model"], a["strategy"]): a for a in agg}
     lines = [r"\begin{table}[t]", r"\centering",
-             r"\caption{Decision-table quality before (P1) and after (P2) repair.}", r"\label{tab:tables}", r"\footnotesize", r"\setlength{\tabcolsep}{2.6pt}",
+             r"\caption{Decision-table quality before (P1) and after (P2) repair (Acc., Gap, Confl.\ and Correct in \%).}",
+             r"\label{tab:tables}", r"\footnotesize", r"\setlength{\tabcolsep}{3.4pt}",
              r"\begin{tabular}{@{}llrrrrrr@{}}", r"\toprule",
-             r"Model & & Usable & Clean & Acc. (\%) & Gap (\%) & Confl. (\%) & Correct (\%) \\", r"\midrule"]
+             r"Model & & Usable & Clean & Acc. & Gap & Confl. & Correct \\", r"\midrule"]
     for m in models:
         for i, s in enumerate(("P1", "P2")):
             a = look.get((m, s))

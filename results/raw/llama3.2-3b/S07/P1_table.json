@@ -1,0 +1,171 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nEvery employee receives at least 22 days. Additional days are provided according to the following criteria: Only employees younger than 18 or at least 60 years, or employees with at least 30 years of service will receive 5 extra days. Employees with at least 30 years of service and also employees of age 60 or more, receive 3 extra days, on top of possible additional days already given. If an employee has at least 15 but less than 30 years of service, 2 extra days are given. These 2 days are also provided for employees of age 45 or more. These 2 extra days can not be combined with the extra 5 days.\n\nINPUTS\n- age: integer from 16 to 70\n- years_of_service: integer from 0 to 54\nConstraint on valid inputs: years_of_service <= age - 16 (nobody starts working before 16)\n\nOUTPUT\n- vacation_days: an integer\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"age >= 18 and years_of_service <= age - 16\"}, {\"id\": \"C2\", \"expr\": \"years_of_service > 0 and years_of_service <= 30\"}, {\"id\": \"C3\", \"expr\": \"years_of_service > 30\"}, {\"id\": \"C4\", \"expr\": \"years_of_service > 0 and years_of_service <= 54\"}, {\"id\": \"C5\", \"expr\": \"years_of_service > 54\"}, {\"id\": \"C6\", \"expr\": \"age >= 60\"}, {\"id\": \"C7\", \"expr\": \"age < 45\"}, {\"id\": \"C8\", \"expr\": \"age >= 45\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": 22}, {\"id\": \"R2\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": true, \"C8\": false}, \"output\": 27}, {\"id\": \"R3\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": true, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": 32}, {\"id\": \"R4\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": true, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": 27}, {\"id\": \"R5\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": true, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": 32}, {\"id\": \"R6\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": true, \"C7\": false, \"C8\": false}, \"output\": 27}, {\"id\": \"R7\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": true, \"C8\": true}, \"output\": 32}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 616,
+  "prompt_tokens": 463,
+  "total_tokens": 1079,
+  "prompt_tokens_details": {
+   "cached_tokens": 256
+  }
+ },
+ "timings": {
+  "cache_n": 256,
+  "prompt_n": 207,
+  "prompt_ms": 1679.005,
+  "prompt_per_token_ms": 8.111135265700483,
+  "prompt_per_second": 123.28730408783774,
+  "predicted_n": 616,
+  "predicted_ms": 35035.003,
+  "predicted_per_token_ms": 56.96748455284553,
+  "predicted_per_second": 17.553873193617253
+ },
+ "seconds": 36.72,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age >= 18 and years_of_service <= age - 16"
+   },
+   {
+    "id": "C2",
+    "expr": "years_of_service > 0 and years_of_service <= 30"
+   },
+   {
+    "id": "C3",
+    "expr": "years_of_service > 30"
+   },
+   {
+    "id": "C4",
+    "expr": "years_of_service > 0 and years_of_service <= 54"
+   },
+   {
+    "id": "C5",
+    "expr": "years_of_service > 54"
+   },
+   {
+    "id": "C6",
+    "expr": "age >= 60"
+   },
+   {
+    "id": "C7",
+    "expr": "age < 45"
+   },
+   {
+    "id": "C8",
+    "expr": "age >= 45"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": 22
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true,
+     "C8": false
+    },
+    "output": 27
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": 32
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": 27
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": 32
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false,
+     "C8": false
+    },
+    "output": 27
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": true,
+     "C8": true
+    },
+    "output": 32
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,143 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nThe BMI of a person can be calculated based on weight in kgs and length of a person in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are a Male then the BMI-level is normal but if you are a female then BMI-level is overweight.\n\nINPUTS\n- gender: one of \"male\", \"female\"\n- weight: decimal number from 30.0 to 200.0 (kg)\n- length: decimal number from 1.4 to 2.2 (m)\n\nOUTPUT\n- bmi_level: one of \"Severely underweight\", \"Underweight\", \"Normal\", \"Overweight\", \"Obese\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"weight/(length*length) < 18.5 and gender == 'male'\"}, {\"id\": \"C2\", \"expr\": \"weight/(length*length) < 18.5 and gender == 'female'\"}, {\"id\": \"C3\", \"expr\": \"weight/(length*length) >= 18.5 and weight/(length*length) < 25 and gender == 'male'\"}, {\"id\": \"C4\", \"expr\": \"weight/(length*length) >= 18.5 and weight/(length*length) < 25 and gender == 'female'\"}, {\"id\": \"C5\", \"expr\": \"weight/(length*length) >= 25 and weight/(length*length) < 30 and gender == 'male'\"}, {\"id\": \"C6\", \"expr\": \"weight/(length*length) >= 25 and weight/(length*length) < 30 and gender == 'female'\"}, {\"id\": \"C7\", \"expr\": \"weight/(length*length) >= 30 and gender == 'male'\"}, {\"id\": \"C8\", \"expr\": \"weight/(length*length) >= 30 and gender == 'female'\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": \"Severely underweight\"}, {\"id\": \"R2\", \"when\": {\"C1\": false, \"C2\": true, \"C3\": false, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": \"Underweight\"}, {\"id\": \"R3\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": true, \"C4\": false, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": \"Normal\"}, {\"id\": \"R4\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": true, \"C5\": false, \"C6\": false, \"C7\": false, \"C8\": false}, \"output\": \"Overweight\"}, {\"id\": \"R5\", \"when\": {\"C1\": false, \"C2\": false, \"C3\": false, \"C4\": false, \"C5\": true, \"C6\": false, \"C7\": true, \"C8\": false}, \"output\": \"Obese\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 600,
+  "prompt_tokens": 508,
+  "total_tokens": 1108,
+  "prompt_tokens_details": {
+   "cached_tokens": 301
+  }
+ },
+ "timings": {
+  "cache_n": 301,
+  "prompt_n": 207,
+  "prompt_ms": 1690.773,
+  "prompt_per_token_ms": 8.167985507246376,
+  "prompt_per_second": 122.42920841532248,
+  "predicted_n": 600,
+  "predicted_ms": 34426.876,
+  "predicted_per_token_ms": 57.4739165275459,
+  "predicted_per_second": 17.399197069173518
+ },
+ "seconds": 36.14,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "weight/(length*length) < 18.5 and gender == 'male'"
+   },
+   {
+    "id": "C2",
+    "expr": "weight/(length*length) < 18.5 and gender == 'female'"
+   },
+   {
+    "id": "C3",
+    "expr": "weight/(length*length) >= 18.5 and weight/(length*length) < 25 and gender == 'male'"
+   },
+   {
+    "id": "C4",
+    "expr": "weight/(length*length) >= 18.5 and weight/(length*length) < 25 and gender == 'female'"
+   },
+   {
+    "id": "C5",
+    "expr": "weight/(length*length) >= 25 and weight/(length*length) < 30 and gender == 'male'"
+   },
+   {
+    "id": "C6",
+    "expr": "weight/(length*length) >= 25 and weight/(length*length) < 30 and gender == 'female'"
+   },
+   {
+    "id": "C7",
+    "expr": "weight/(length*length) >= 30 and gender == 'male'"
+   },
+   {
+    "id": "C8",
+    "expr": "weight/(length*length) >= 30 and gender == 'female'"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Severely underweight"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Underweight"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Normal"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Overweight"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": true,
+     "C8": false
+    },
+    "output": "Obese"
+   }
+  ]
+ },
+ "parse_error": null
+}

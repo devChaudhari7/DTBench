@@ -1,0 +1,143 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA payment app screens every UPI money transfer before sending it. A transfer of more than Rs. 100000 is blocked because it exceeds the per-transaction limit, and the output is \"Blocked\". Otherwise, a transfer to a new payee (a payee added less than 24 hours ago) is put \"On hold\" if the amount is more than Rs. 5000. In all other cases, if the user is not on their registered device and the amount is more than Rs. 2000, the app asks for an OTP and the output is \"OTP required\". Every remaining transfer is \"Allowed\".\n\nINPUTS\n- amount: integer from 1 to 200000 (rupees)\n- new_payee: true or false\n- registered_device: true or false\n\nOUTPUT\n- decision: one of \"Blocked\", \"On hold\", \"OTP required\", \"Allowed\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{ \"tests\": [ { \"inputs\": { \"amount\": 100001, \"new_payee\": true, \"registered_device\": true }, \"expected\": \"Blocked\" }, { \"inputs\": { \"amount\": 5001, \"new_payee\": true, \"registered_device\": true }, \"expected\": \"On hold\" }, { \"inputs\": { \"amount\": 6000, \"new_payee\": true, \"registered_device\": false }, \"expected\": \"OTP required\" }, { \"inputs\": { \"amount\": 1000, \"new_payee\": false, \"registered_device\": true }, \"expected\": \"Allowed\" }, { \"inputs\": { \"amount\": 100000, \"new_payee\": false, \"registered_device\": true }, \"expected\": \"Allowed\" }, { \"inputs\": { \"amount\": 100001, \"new_payee\": false, \"registered_device\": false }, \"expected\": \"OTP required\" }, { \"inputs\": { \"amount\": 5000, \"new_payee\": false, \"registered_device\": true }, \"expected\": \"Allowed\" }, { \"inputs\": { \"amount\": 5001, \"new_payee\": false, \"registered_device\": false }, \"expected\": \"OTP required\" }, { \"inputs\": { \"amount\": 2000, \"new_payee\": true, \"registered_device\": true }, \"expected\": \"Allowed\" }, { \"inputs\": { \"amount\": 2000, \"new_payee\": false, \"registered_device\": true }, \"expected\": \"Allowed\" }, { \"inputs\": { \"amount\": 2000, \"new_payee\": false, \"registered_device\": false }, \"expected\": \"Allowed\" }, { \"inputs\": { \"amount\": 100000, \"new_payee\": true, \"registered_device\": false }, \"expected\": \"OTP required\" }, { \"inputs\": { \"amount\": 100000, \"new_payee\": false, \"registered_device\": false }, \"expected\": \"OTP required\" } ] }",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 492,
+  "prompt_tokens": 311,
+  "total_tokens": 803,
+  "prompt_tokens_details": {
+   "cached_tokens": 12
+  }
+ },
+ "timings": {
+  "cache_n": 12,
+  "prompt_n": 299,
+  "prompt_ms": 3043.909,
+  "prompt_per_token_ms": 10.180297658862877,
+  "prompt_per_second": 98.22895493919168,
+  "predicted_n": 492,
+  "predicted_ms": 36671.58,
+  "predicted_per_token_ms": 74.68753564154787,
+  "predicted_per_second": 13.389114949505856
+ },
+ "seconds": 39.72,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "amount": 100001,
+     "new_payee": true,
+     "registered_device": true
+    },
+    "expected": "Blocked"
+   },
+   {
+    "inputs": {
+     "amount": 5001,
+     "new_payee": true,
+     "registered_device": true
+    },
+    "expected": "On hold"
+   },
+   {
+    "inputs": {
+     "amount": 6000,
+     "new_payee": true,
+     "registered_device": false
+    },
+    "expected": "OTP required"
+   },
+   {
+    "inputs": {
+     "amount": 1000,
+     "new_payee": false,
+     "registered_device": true
+    },
+    "expected": "Allowed"
+   },
+   {
+    "inputs": {
+     "amount": 100000,
+     "new_payee": false,
+     "registered_device": true
+    },
+    "expected": "Allowed"
+   },
+   {
+    "inputs": {
+     "amount": 100001,
+     "new_payee": false,
+     "registered_device": false
+    },
+    "expected": "OTP required"
+   },
+   {
+    "inputs": {
+     "amount": 5000,
+     "new_payee": false,
+     "registered_device": true
+    },
+    "expected": "Allowed"
+   },
+   {
+    "inputs": {
+     "amount": 5001,
+     "new_payee": false,
+     "registered_device": false
+    },
+    "expected": "OTP required"
+   },
+   {
+    "inputs": {
+     "amount": 2000,
+     "new_payee": true,
+     "registered_device": true
+    },
+    "expected": "Allowed"
+   },
+   {
+    "inputs": {
+     "amount": 2000,
+     "new_payee": false,
+     "registered_device": true
+    },
+    "expected": "Allowed"
+   },
+   {
+    "inputs": {
+     "amount": 2000,
+     "new_payee": false,
+     "registered_device": false
+    },
+    "expected": "Allowed"
+   },
+   {
+    "inputs": {
+     "amount": 100000,
+     "new_payee": true,
+     "registered_device": false
+    },
+    "expected": "OTP required"
+   },
+   {
+    "inputs": {
+     "amount": 100000,
+     "new_payee": false,
+     "registered_device": false
+    },
+    "expected": "OTP required"
+   }
+  ]
+ },
+ "parse_error": null
+}

@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Test-suite results per model and strategy.}
+\label{tab:main}
+\small
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Model & Strategy & Tests & Valid (\%) & Oracle acc. (\%) & Rule cov. (\%) & Missed rules & Mutation score (\%) \\
+\midrule
+Qwen3-4B & P0 Direct & 215 & 96.4 & 69.6 & 58.6 & 46 & 72.8 \\
+ & P1 Table-first & 68 & 100.0 & 87.6 & 46.8 & 59 & 56.5 \\
+ & P2 Table-first + validation & 108 & 100.0 & 80.3 & 52.3 & 53 & 62.3 \\
+\addlinespace
+Llama-3.2-3B & P0 Direct & 367 & 97.5 & 62.1 & 44.1 & 62 & 63.9 \\
+ & P1 Table-first & 26 & 100.0 & 41.7 & 9.9 & 100 & 13.0 \\
+ & P2 Table-first + validation & 95 & 100.0 & 43.2 & 13.5 & 96 & 17.0 \\
+\addlinespace
+Gemma-3-4B & P0 Direct & 301 & 96.5 & 61.2 & 57.7 & 47 & 69.1 \\
+ & P1 Table-first & 65 & 100.0 & 60.7 & 29.7 & 78 & 30.6 \\
+ & P2 Table-first + validation & 79 & 100.0 & 63.8 & 29.7 & 78 & 35.5 \\
+\addlinespace
+GT reference & one test per GT rule & 111 & 100.0 & 100.0 & 100.0 & 0 & 75.6 \\
+\bottomrule
+\end{tabular}
+\end{table*}

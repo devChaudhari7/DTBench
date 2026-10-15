@@ -1,0 +1,53 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nA person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.\n\nINPUTS\n- age: integer from 14 to 90\n- national_resident: true or false\n- theory: one of \"Excellent\", \"Good\", \"Fail\"\n- driving: one of \"Excellent\", \"Good\", \"Fail\"\n- maneuvering: one of \"Excellent\", \"Good\", \"Fail\"\n- anticipation: one of \"Excellent\", \"Good\", \"Fail\"\n\nOUTPUT\n- licence: one of \"Eligible\", \"Not eligible\"\n\nTASK\nBuild a decision table for these business rules.\nReturn JSON with:\n- \"conditions\": a list of {\"id\": \"C1\", \"expr\": \"<condition>\"}. Each condition is a yes/no test written as a Python boolean expression that uses only the input names above, numbers, quoted text values, and the operators < <= > >= == != and or not + - * / % in. Examples: \"age >= 18\", \"weather == 'rainy'\", \"a + b > c\", \"month in (4, 6, 9, 11)\".\n- \"rules\": a list of {\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": <output value>}. In \"when\", list only the conditions that matter for the rule; conditions left out are \"don't care\".\nEvery valid input must match exactly one rule: the table must be complete, and rules must not overlap with different outputs."
+  }
+ ],
+ "response": "{\"conditions\": [{\"id\": \"C1\", \"expr\": \"age >= 18 and national_resident and (theory == 'Excellent' or theory == 'Good' or theory == 'Fail') and (driving == 'Excellent' or driving == 'Good' or driving == 'Fail') and (maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail') and (anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail')\"}], \"rules\": [{\"id\": \"R1\", \"when\": {\"C1\": true, \"C2\": false}, \"output\": \"Eligible\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 142,
+  "prompt_tokens": 482,
+  "total_tokens": 624,
+  "prompt_tokens_details": {
+   "cached_tokens": 275
+  }
+ },
+ "timings": {
+  "cache_n": 275,
+  "prompt_n": 207,
+  "prompt_ms": 1691.356,
+  "prompt_per_token_ms": 8.17080193236715,
+  "prompt_per_second": 122.38700782094368,
+  "predicted_n": 142,
+  "predicted_ms": 7763.672,
+  "predicted_per_token_ms": 55.06150354609929,
+  "predicted_per_second": 18.161509141550546
+ },
+ "seconds": 9.48,
+ "parsed": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age >= 18 and national_resident and (theory == 'Excellent' or theory == 'Good' or theory == 'Fail') and (driving == 'Excellent' or driving == 'Good' or driving == 'Fail') and (maneuvering == 'Excellent' or maneuvering == 'Good' or maneuvering == 'Fail') and (anticipation == 'Excellent' or anticipation == 'Good' or anticipation == 'Fail')"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false
+    },
+    "output": "Eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

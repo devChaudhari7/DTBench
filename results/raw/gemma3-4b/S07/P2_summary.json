@@ -1,0 +1,156 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "age < 18"
+   },
+   {
+    "id": "C2",
+    "expr": "age >= 60"
+   },
+   {
+    "id": "C3",
+    "expr": "years_of_service >= 30"
+   },
+   {
+    "id": "C4",
+    "expr": "age >= 45"
+   },
+   {
+    "id": "C5",
+    "expr": "years_of_service < 30"
+   },
+   {
+    "id": "C6",
+    "expr": "age == 45"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true
+    },
+    "output": 22
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true
+    },
+    "output": 27
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true,
+     "C4": false
+    },
+    "output": 27
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C3": true,
+     "C4": true
+    },
+    "output": 30
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C3": true,
+     "C6": true
+    },
+    "output": 30
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "output": 24
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C5": true,
+     "C6": true
+    },
+    "output": 24
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C4": true,
+     "C5": true
+    },
+    "output": 2
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C3": true,
+     "C4": false,
+     "C5": false
+    },
+    "output": 22
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C3": false,
+     "C4": true,
+     "C5": false
+    },
+    "output": 2
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input age=45, years_of_service=0 (C1=false, C2=false, C3=false, C4=true, C5=true).",
+    "Conflict: the input age=60, years_of_service=30 matches several rules with different outputs (R2 gives \"27\", R4 gives \"30\").",
+    "In total, 1 reachable combinations of your conditions match no rule and 1 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 1,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input age=46, years_of_service=0 (C1=false, C2=false, C3=false, C4=true, C5=true, C6=false).",
+    "Conflict: the input age=60, years_of_service=30 matches several rules with different outputs (R2 gives \"27\", R4 gives \"30\").",
+    "In total, 1 reachable combinations of your conditions match no rule and 1 match rules with different outputs."
+   ],
+   "gap_combinations": 1,
+   "conflict_combinations": 1,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Conflict: the input age=45, years_of_service=0 matches several rules with different outputs (R7 gives \"24\", R8 gives \"2\").",
+    "Conflict: the input age=60, years_of_service=0 matches several rules with different outputs (R2 gives \"27\", R8 gives \"2\").",
+    "Conflict: the input age=60, years_of_service=30 matches several rules with different outputs (R2 gives \"27\", R4 gives \"30\").",
+    "In total, 0 reachable combinations of your conditions match no rule and 3 match rules with different outputs."
+   ],
+   "gap_combinations": 0,
+   "conflict_combinations": 3,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

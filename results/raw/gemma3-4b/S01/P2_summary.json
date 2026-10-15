@@ -1,0 +1,245 @@
+{
+ "final_table": {
+  "conditions": [
+   {
+    "id": "C1",
+    "expr": "a + b > c"
+   },
+   {
+    "id": "C2",
+    "expr": "a + c > b"
+   },
+   {
+    "id": "C3",
+    "expr": "b + c > a"
+   },
+   {
+    "id": "C4",
+    "expr": "a == b"
+   },
+   {
+    "id": "C5",
+    "expr": "b == c"
+   },
+   {
+    "id": "C6",
+    "expr": "a == c"
+   },
+   {
+    "id": "C7",
+    "expr": "a != b"
+   },
+   {
+    "id": "C8",
+    "expr": "a != c"
+   },
+   {
+    "id": "C9",
+    "expr": "b != c"
+   }
+  ],
+  "rules": [
+   {
+    "id": "R1",
+    "when": {
+     "C1": true,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R2",
+    "when": {
+     "C2": true,
+     "C1": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R3",
+    "when": {
+     "C3": true,
+     "C1": false,
+     "C2": false,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R4",
+    "when": {
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Equilateral"
+   },
+   {
+    "id": "R5",
+    "when": {
+     "C4": true,
+     "C5": true,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Isosceles"
+   },
+   {
+    "id": "R6",
+    "when": {
+     "C7": true,
+     "C8": true,
+     "C9": false,
+     "C4": false,
+     "C5": false,
+     "C6": false
+    },
+    "output": "Scalene"
+   },
+   {
+    "id": "R7",
+    "when": {
+     "C1": true,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R8",
+    "when": {
+     "C1": false,
+     "C2": true,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R9",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": true,
+     "C4": false,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Not a triangle"
+   },
+   {
+    "id": "R10",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": true,
+     "C5": false,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Equilateral"
+   },
+   {
+    "id": "R11",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true,
+     "C6": false,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Isosceles"
+   },
+   {
+    "id": "R12",
+    "when": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false,
+     "C6": true,
+     "C7": false,
+     "C8": false
+    },
+    "output": "Scalene"
+   }
+  ]
+ },
+ "changed": true,
+ "history": [
+  {
+   "round": 1,
+   "issues": [
+    "Missing combination: no rule matches the input a=1, b=1, c=1 (C1=false, C2=false, C3=false, C4=true, C5=true, C6=true, C7=false, C8=false, C9=false).",
+    "Missing combination: no rule matches the input a=1, b=2, c=2 (C1=false, C2=false, C3=false, C4=false, C5=true, C6=false, C7=true, C8=true, C9=false).",
+    "Missing combination: no rule matches the input a=2, b=1, c=2 (C1=false, C2=false, C3=false, C4=false, C5=false, C6=true, C7=true, C8=false, C9=true).",
+    "Conflict: the input a=1, b=1, c=2 matches several rules with different outputs (R3 gives \"Not a triangle\", R4 gives \"Equilateral\").",
+    "In total, 4 reachable combinations of your conditions match no rule and 1 match rules with different outputs."
+   ],
+   "gap_combinations": 4,
+   "conflict_combinations": 1,
+   "problems": 0
+  },
+  {
+   "round": 2,
+   "issues": [
+    "Missing combination: no rule matches the input a=1, b=1, c=1 (C1=true, C2=true, C3=true, C4=true, C5=true, C6=true, C7=false, C8=false, C9=false).",
+    "Missing combination: no rule matches the input a=1, b=1, c=2 (C1=false, C2=true, C3=true, C4=true, C5=false, C6=false, C7=false, C8=true, C9=true).",
+    "Missing combination: no rule matches the input a=1, b=2, c=1 (C1=true, C2=false, C3=true, C4=false, C5=false, C6=true, C7=true, C8=false, C9=true).",
+    "In total, 11 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 11,
+   "conflict_combinations": 0,
+   "problems": 0
+  },
+  {
+   "round": 3,
+   "issues": [
+    "Missing combination: no rule matches the input a=1, b=1, c=1 (C1=true, C2=true, C3=true, C4=true, C5=true, C6=true, C7=false, C8=false, C9=false).",
+    "Missing combination: no rule matches the input a=1, b=1, c=2 (C1=false, C2=true, C3=true, C4=true, C5=false, C6=false, C7=false, C8=true, C9=true).",
+    "Missing combination: no rule matches the input a=1, b=2, c=1 (C1=true, C2=false, C3=true, C4=false, C5=false, C6=true, C7=true, C8=false, C9=true).",
+    "In total, 11 reachable combinations of your conditions match no rule and 0 match rules with different outputs."
+   ],
+   "gap_combinations": 11,
+   "conflict_combinations": 0,
+   "problems": 0,
+   "final_check_only": true
+  }
+ ]
+}

@@ -1,0 +1,159 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nAn institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.\n\nINPUTS\n- grades: one of \"excellent\", \"good\", \"average\", \"poor\"\n- annual_income: integer from 0 to 200000\n- received_other_scholarship: true or false\n\nOUTPUT\n- scholarship: one of \"Eligible\", \"Not eligible\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{\"tests\": [{\"inputs\": {\"grades\": \"excellent\", \"annual_income\": 40000, \"received_other_scholarship\": false}, \"expected\": \"Eligible\"}, {\"inputs\": {\"grades\": \"good\", \"annual_income\": 40000, \"received_other_scholarship\": false}, \"expected\": \"Eligible\"}, {\"inputs\": {\"grades\": \"average\", \"annual_income\": 40000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"poor\", \"annual_income\": 40000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"excellent\", \"annual_income\": 50000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"good\", \"annual_income\": 50000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"excellent\", \"annual_income\": 40000, \"received_other_scholarship\": true}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"good\", \"annual_income\": 40000, \"received_other_scholarship\": true}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"average\", \"annual_income\": 40000, \"received_other_scholarship\": true}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"poor\", \"annual_income\": 40000, \"received_other_scholarship\": true}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"excellent\", \"annual_income\": 20000, \"received_other_scholarship\": false}, \"expected\": \"Eligible\"}, {\"inputs\": {\"grades\": \"good\", \"annual_income\": 20000, \"received_other_scholarship\": false}, \"expected\": \"Eligible\"}, {\"inputs\": {\"grades\": \"excellent\", \"annual_income\": 200000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"good\", \"annual_income\": 200000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}, {\"inputs\": {\"grades\": \"excellent\", \"annual_income\": 45000, \"received_other_scholarship\": false}, \"expected\": \"Not eligible\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 578,
+  "prompt_tokens": 284,
+  "total_tokens": 862,
+  "prompt_tokens_details": {
+   "cached_tokens": 35
+  }
+ },
+ "timings": {
+  "cache_n": 35,
+  "prompt_n": 249,
+  "prompt_ms": 9876.996,
+  "prompt_per_token_ms": 39.66665060240963,
+  "prompt_per_second": 25.21009424322942,
+  "predicted_n": 578,
+  "predicted_ms": 130196.892,
+  "predicted_per_token_ms": 225.64452686308493,
+  "predicted_per_second": 4.431749415339346
+ },
+ "seconds": 140.08,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "grades": "excellent",
+     "annual_income": 40000,
+     "received_other_scholarship": false
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "grades": "good",
+     "annual_income": 40000,
+     "received_other_scholarship": false
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "grades": "average",
+     "annual_income": 40000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "poor",
+     "annual_income": 40000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "excellent",
+     "annual_income": 50000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "good",
+     "annual_income": 50000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "excellent",
+     "annual_income": 40000,
+     "received_other_scholarship": true
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "good",
+     "annual_income": 40000,
+     "received_other_scholarship": true
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "average",
+     "annual_income": 40000,
+     "received_other_scholarship": true
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "poor",
+     "annual_income": 40000,
+     "received_other_scholarship": true
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "excellent",
+     "annual_income": 20000,
+     "received_other_scholarship": false
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "grades": "good",
+     "annual_income": 20000,
+     "received_other_scholarship": false
+    },
+    "expected": "Eligible"
+   },
+   {
+    "inputs": {
+     "grades": "excellent",
+     "annual_income": 200000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "good",
+     "annual_income": 200000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   },
+   {
+    "inputs": {
+     "grades": "excellent",
+     "annual_income": 45000,
+     "received_other_scholarship": false
+    },
+    "expected": "Not eligible"
+   }
+  ]
+ },
+ "parse_error": null
+}

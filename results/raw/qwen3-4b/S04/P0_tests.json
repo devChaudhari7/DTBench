@@ -1,0 +1,167 @@
+{
+ "messages": [
+  {
+   "role": "system",
+   "content": "You are an expert software test engineer who designs test cases with the decision table technique. Reply with JSON only."
+  },
+  {
+   "role": "user",
+   "content": "BUSINESS RULES\nThe BMI of a person can be calculated based on weight in kgs and length of a person in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are a Male then the BMI-level is normal but if you are a female then BMI-level is overweight.\n\nINPUTS\n- gender: one of \"male\", \"female\"\n- weight: decimal number from 30.0 to 200.0 (kg)\n- length: decimal number from 1.4 to 2.2 (m)\n\nOUTPUT\n- bmi_level: one of \"Severely underweight\", \"Underweight\", \"Normal\", \"Overweight\", \"Obese\"\n\nTASK\nDesign test cases for these business rules using the decision table testing technique: identify the conditions and cover every combination of conditions that leads to a distinct rule, with one test case per rule. Give concrete values for ALL inputs and the expected output.\nReturn JSON: {\"tests\": [{\"inputs\": {<every input name>: <value>}, \"expected\": <output value>}]}"
+  }
+ ],
+ "response": "{\"tests\": [{\"inputs\": {\"gender\": \"male\", \"weight\": 50.0, \"length\": 1.7}, \"expected\": \"Normal\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 50.0, \"length\": 1.7}, \"expected\": \"Overweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 40.0, \"length\": 1.7}, \"expected\": \"Severely underweight\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 40.0, \"length\": 1.7}, \"expected\": \"Underweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 60.0, \"length\": 1.7}, \"expected\": \"Normal\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 60.0, \"length\": 1.7}, \"expected\": \"Overweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 35.0, \"length\": 1.7}, \"expected\": \"Severely underweight\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 35.0, \"length\": 1.7}, \"expected\": \"Underweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 70.0, \"length\": 1.7}, \"expected\": \"Normal\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 70.0, \"length\": 1.7}, \"expected\": \"Overweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 100.0, \"length\": 1.8}, \"expected\": \"Normal\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 100.0, \"length\": 1.8}, \"expected\": \"Overweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 150.0, \"length\": 1.8}, \"expected\": \"Normal\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 150.0, \"length\": 1.8}, \"expected\": \"Overweight\"}, {\"inputs\": {\"gender\": \"male\", \"weight\": 300.0, \"length\": 2.0}, \"expected\": \"Obese\"}, {\"inputs\": {\"gender\": \"female\", \"weight\": 300.0, \"length\": 2.0}, \"expected\": \"Obese\"}]}",
+ "finish_reason": "stop",
+ "usage": {
+  "completion_tokens": 544,
+  "prompt_tokens": 369,
+  "total_tokens": 913,
+  "prompt_tokens_details": {
+   "cached_tokens": 35
+  }
+ },
+ "timings": {
+  "cache_n": 35,
+  "prompt_n": 334,
+  "prompt_ms": 13268.702,
+  "prompt_per_token_ms": 39.72665269461078,
+  "prompt_per_second": 25.172017579413573,
+  "predicted_n": 544,
+  "predicted_ms": 124902.099,
+  "predicted_per_token_ms": 230.0222817679558,
+  "predicted_per_second": 4.3474049223143965
+ },
+ "seconds": 138.34,
+ "parsed": {
+  "tests": [
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 50.0,
+     "length": 1.7
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 50.0,
+     "length": 1.7
+    },
+    "expected": "Overweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 40.0,
+     "length": 1.7
+    },
+    "expected": "Severely underweight"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 40.0,
+     "length": 1.7
+    },
+    "expected": "Underweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 60.0,
+     "length": 1.7
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 60.0,
+     "length": 1.7
+    },
+    "expected": "Overweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 35.0,
+     "length": 1.7
+    },
+    "expected": "Severely underweight"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 35.0,
+     "length": 1.7
+    },
+    "expected": "Underweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 70.0,
+     "length": 1.7
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 70.0,
+     "length": 1.7
+    },
+    "expected": "Overweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 100.0,
+     "length": 1.8
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 100.0,
+     "length": 1.8
+    },
+    "expected": "Overweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 150.0,
+     "length": 1.8
+    },
+    "expected": "Normal"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 150.0,
+     "length": 1.8
+    },
+    "expected": "Overweight"
+   },
+   {
+    "inputs": {
+     "gender": "male",
+     "weight": 300.0,
+     "length": 2.0
+    },
+    "expected": "Obese"
+   },
+   {
+    "inputs": {
+     "gender": "female",
+     "weight": 300.0,
+     "length": 2.0
+    },
+    "expected": "Obese"
+   }
+  ]
+ },
+ "parse_error": null
+}
