@@ -246,9 +246,9 @@
   "killed": 115,
   "live_mutants": 324,
   "mutation_score_pooled": 0.3549382716049383,
-  "llm_calls": 33,
-  "llm_seconds": 1489.6,
-  "completion_tokens": 16330,
+  "llm_calls": 36,
+  "llm_seconds": 1818.9,
+  "completion_tokens": 19973,
   "json_ok": 12,
   "tables_usable": 12,
   "tables_clean": 0,
@@ -261,7 +261,7 @@
   "gt_rules_wrong": 15,
   "first_hit_accuracy": 0.4637682318096137,
   "tables_changed": 12,
-  "repair_calls": 21
+  "repair_calls": 24
  },
  {
   "model": "ground-truth",
