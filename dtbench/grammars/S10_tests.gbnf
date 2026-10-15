@@ -1,0 +1,17 @@
+boolean ::= ("true" | "false")
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+root ::= "{" space tests-kv space "}"
+space ::= " "?
+tests ::= "[" space tests-item ("," space tests-item){0,47} space "]"
+tests-item ::= "{" space tests-item-inputs-kv "," space tests-item-expected-kv space "}"
+tests-item-expected ::= ("\"Access granted\"" | "\"Invalid credentials\"" | "\"Account locked\"" | "\"OTP required\"")
+tests-item-expected-kv ::= "\"expected\"" space ":" space tests-item-expected
+tests-item-inputs ::= "{" space tests-item-inputs-account-locked-kv "," space tests-item-inputs-password-correct-kv "," space tests-item-inputs-failed-attempts-kv "," space tests-item-inputs-trusted-device-kv "," space tests-item-inputs-otp-verified-kv space "}"
+tests-item-inputs-account-locked-kv ::= "\"account_locked\"" space ":" space boolean
+tests-item-inputs-failed-attempts-kv ::= "\"failed_attempts\"" space ":" space integer
+tests-item-inputs-kv ::= "\"inputs\"" space ":" space tests-item-inputs
+tests-item-inputs-otp-verified-kv ::= "\"otp_verified\"" space ":" space boolean
+tests-item-inputs-password-correct-kv ::= "\"password_correct\"" space ":" space boolean
+tests-item-inputs-trusted-device-kv ::= "\"trusted_device\"" space ":" space boolean
+tests-kv ::= "\"tests\"" space ":" space tests

@@ -1,0 +1,15 @@
+boolean ::= ("true" | "false")
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+root ::= "{" space tests-kv space "}"
+space ::= " "?
+tests ::= "[" space tests-item ("," space tests-item){0,47} space "]"
+tests-item ::= "{" space tests-item-inputs-kv "," space tests-item-expected-kv space "}"
+tests-item-expected ::= ("\"Blocked\"" | "\"On hold\"" | "\"OTP required\"" | "\"Allowed\"")
+tests-item-expected-kv ::= "\"expected\"" space ":" space tests-item-expected
+tests-item-inputs ::= "{" space tests-item-inputs-amount-kv "," space tests-item-inputs-new-payee-kv "," space tests-item-inputs-registered-device-kv space "}"
+tests-item-inputs-amount-kv ::= "\"amount\"" space ":" space integer
+tests-item-inputs-kv ::= "\"inputs\"" space ":" space tests-item-inputs
+tests-item-inputs-new-payee-kv ::= "\"new_payee\"" space ":" space boolean
+tests-item-inputs-registered-device-kv ::= "\"registered_device\"" space ":" space boolean
+tests-kv ::= "\"tests\"" space ":" space tests

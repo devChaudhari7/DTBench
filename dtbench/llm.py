@@ -16,10 +16,12 @@ class LLMClient:
         self.api_key = api_key or os.environ.get("LLM_API_KEY", "")
         self.timeout = timeout
 
-    def chat(self, messages, schema=None, max_tokens=2500, temperature=0.0, seed=42):
+    def chat(self, messages, schema=None, max_tokens=2500, temperature=0.0, seed=42, grammar=None):
         body = {"model": self.model, "messages": messages, "temperature": temperature,
                 "max_tokens": max_tokens, "seed": seed}
-        if schema is not None:
+        if grammar is not None:                 # explicit GBNF (llama.cpp servers only)
+            body["grammar"] = grammar
+        elif schema is not None:
             body["response_format"] = {"type": "json_schema",
                                        "json_schema": {"name": "answer", "schema": schema, "strict": True}}
         data = json.dumps(body).encode("utf-8")

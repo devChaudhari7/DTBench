@@ -27,14 +27,14 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 MAX_REPAIR_ROUNDS = 2
 
 
-def _call(client, path, messages, schema, log):
+def _call(client, path, messages, schema, log, grammar=None):
     if path.exists():
         rec = json.loads(path.read_text())
         log(f"  cached {path.parent.name}/{path.stem}")
         return rec
     t0 = time.time()
     try:
-        resp = client.chat(messages, schema=schema)
+        resp = client.chat(messages, schema=schema, grammar=grammar)
     except Exception as exc:
         # server unreachable or timed out: do not cache, stop the run so it can be resumed
         log(f"  {path.parent.name}/{path.stem}: FAILED after {time.time() - t0:.0f}s: {type(exc).__name__}: {exc}")
@@ -52,12 +52,21 @@ def _call(client, path, messages, schema, log):
     return rec
 
 
-def run_spec(client, spec, outdir, log):
+def _grammar(grammar_dir, spec, kind):
+    """Pre-generated GBNF equivalent to the JSON schema (compact JSON), for llama.cpp release builds."""
+    if not grammar_dir:
+        return None
+    return (pathlib.Path(grammar_dir) / f"{spec.id}_{kind}.gbnf").read_text()
+
+
+def run_spec(client, spec, outdir, log, grammar_dir=None):
     d = outdir / spec.id
     # P0: direct test generation
-    _call(client, d / "P0_tests.json", prompts.direct_messages(spec), prompts.tests_schema(spec, with_rule=False), log)
+    _call(client, d / "P0_tests.json", prompts.direct_messages(spec), prompts.tests_schema(spec, with_rule=False), log,
+          grammar=_grammar(grammar_dir, spec, "tests"))
     # P1: decision table first, then one test per rule
-    t1 = _call(client, d / "P1_table.json", prompts.table_messages(spec), prompts.table_schema(spec), log)
+    t1 = _call(client, d / "P1_table.json", prompts.table_messages(spec), prompts.table_schema(spec), log,
+               grammar=_grammar(grammar_dir, spec, "table"))
     table1 = t1["parsed"]
     # P2: ground-truth-free validation and repair, then tests from the final table
     table = table1
@@ -74,7 +83,7 @@ def run_spec(client, spec, outdir, log):
         if not lines:
             break
         rec = _call(client, d / f"P2_repair{rnd}.json", prompts.repair_messages(spec, table, lines),
-                    prompts.table_schema(spec), log)
+                    prompts.table_schema(spec), log, grammar=_grammar(grammar_dir, spec, "table"))
         if not isinstance(rec["parsed"], dict):
             history[-1]["repair_failed"] = rec["parse_error"]
             break
@@ -99,6 +108,8 @@ def main():
     ap.add_argument("--api-model", default="local", help="model name sent to the API")
     ap.add_argument("--specs", default="all")
     ap.add_argument("--out", default=str(ROOT / "results" / "raw"))
+    ap.add_argument("--grammar-dir", default=None,
+                    help="send pre-generated GBNF grammars (dtbench/grammars) instead of JSON schemas")
     args = ap.parse_args()
     specs = SPECS if args.specs == "all" else [SPEC_BY_ID[s] for s in args.specs.split(",")]
     client = LLMClient(args.base_url, model=args.api_model)
@@ -115,7 +126,7 @@ def main():
     for spec in specs:
         log(f"{args.model} {spec.id} {spec.name}")
         try:
-            run_spec(client, spec, outdir, log)
+            run_spec(client, spec, outdir, log, args.grammar_dir)
         except Exception as exc:
             log(f"stopped at {spec.id}: {type(exc).__name__}; re-run the same command to resume")
             raise SystemExit(1)

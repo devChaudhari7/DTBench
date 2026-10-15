@@ -1,0 +1,14 @@
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+root ::= "{" space tests-kv space "}"
+space ::= " "?
+tests ::= "[" space tests-item ("," space tests-item){0,47} space "]"
+tests-item ::= "{" space tests-item-inputs-kv "," space tests-item-expected-kv space "}"
+tests-item-expected ::= ("\"Not a triangle\"" | "\"Scalene\"" | "\"Isosceles\"" | "\"Equilateral\"")
+tests-item-expected-kv ::= "\"expected\"" space ":" space tests-item-expected
+tests-item-inputs ::= "{" space tests-item-inputs-a-kv "," space tests-item-inputs-b-kv "," space tests-item-inputs-c-kv space "}"
+tests-item-inputs-a-kv ::= "\"a\"" space ":" space integer
+tests-item-inputs-b-kv ::= "\"b\"" space ":" space integer
+tests-item-inputs-c-kv ::= "\"c\"" space ":" space integer
+tests-item-inputs-kv ::= "\"inputs\"" space ":" space tests-item-inputs
+tests-kv ::= "\"tests\"" space ":" space tests

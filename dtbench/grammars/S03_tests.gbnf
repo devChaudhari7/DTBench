@@ -1,0 +1,16 @@
+boolean ::= ("true" | "false")
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+root ::= "{" space tests-kv space "}"
+space ::= " "?
+tests ::= "[" space tests-item ("," space tests-item){0,47} space "]"
+tests-item ::= "{" space tests-item-inputs-kv "," space tests-item-expected-kv space "}"
+tests-item-expected ::= ("\"0%\"" | "\"5%\"" | "\"10%\"" | "\"15%\"" | "\"20%\"" | "\"25%\"" | "\"30%\"" | "\"REJECTED\"")
+tests-item-expected-kv ::= "\"expected\"" space ":" space tests-item-expected
+tests-item-inputs ::= "{" space tests-item-inputs-cart-value-kv "," space tests-item-inputs-coupon-kv "," space tests-item-inputs-member-kv space "}"
+tests-item-inputs-cart-value-kv ::= "\"cart_value\"" space ":" space integer
+tests-item-inputs-coupon ::= ("\"none\"" | "\"valid\"" | "\"invalid\"")
+tests-item-inputs-coupon-kv ::= "\"coupon\"" space ":" space tests-item-inputs-coupon
+tests-item-inputs-kv ::= "\"inputs\"" space ":" space tests-item-inputs
+tests-item-inputs-member-kv ::= "\"member\"" space ":" space boolean
+tests-kv ::= "\"tests\"" space ":" space tests

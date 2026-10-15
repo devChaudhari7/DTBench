@@ -1,0 +1,17 @@
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+root ::= "{" space tests-kv space "}"
+space ::= " "?
+string ::= "\"" char* "\""
+tests ::= "[" space tests-item ("," space tests-item){0,47} space "]"
+tests-item ::= "{" space tests-item-rule-kv "," space tests-item-inputs-kv "," space tests-item-expected-kv space "}"
+tests-item-expected ::= ("\"Invalid date\"" | "\"Next day same month\"" | "\"First day of next month\"" | "\"First day of next year\"")
+tests-item-expected-kv ::= "\"expected\"" space ":" space tests-item-expected
+tests-item-inputs ::= "{" space tests-item-inputs-day-kv "," space tests-item-inputs-month-kv "," space tests-item-inputs-year-kv space "}"
+tests-item-inputs-day-kv ::= "\"day\"" space ":" space integer
+tests-item-inputs-kv ::= "\"inputs\"" space ":" space tests-item-inputs
+tests-item-inputs-month-kv ::= "\"month\"" space ":" space integer
+tests-item-inputs-year-kv ::= "\"year\"" space ":" space integer
+tests-item-rule-kv ::= "\"rule\"" space ":" space string
+tests-kv ::= "\"tests\"" space ":" space tests
