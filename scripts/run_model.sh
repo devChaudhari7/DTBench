@@ -12,7 +12,7 @@ case $KEY in
   *) echo "unknown model $KEY"; exit 1 ;;
 esac
 mkdir -p "$ROOT/results/raw" "$ROOT/results/logs"
-"$LLAMA" -m "$GGUF" -c 8192 -t 2 -np 1 --jinja --host 127.0.0.1 --port 8080 > "$ROOT/results/logs/server_$KEY.log" 2>&1 &
+"$LLAMA" -m "$GGUF" -c 6144 --cache-ram 0 -t 2 -np 1 --jinja --host 127.0.0.1 --port 8080 > "$ROOT/results/logs/server_$KEY.log" 2>&1 &
 SERVER=$!
 for i in $(seq 1 120); do sleep 2; curl -s 127.0.0.1:8080/health | grep -q ok && break; done
 cd "$ROOT" && python3 -m dtbench.runner --model "$KEY" --specs "${SPECS:-all}"

@@ -35,11 +35,11 @@ def _call(client, path, messages, schema, log):
     t0 = time.time()
     try:
         resp = client.chat(messages, schema=schema)
-        err = None
     except Exception as exc:
-        resp, err = {"text": "", "usage": {}, "timings": {}, "seconds": round(time.time() - t0, 2),
-                     "finish_reason": "error"}, f"{type(exc).__name__}: {exc}"
-    parsed, perr = parse_json(resp["text"]) if not err else (None, err)
+        # server unreachable or timed out: do not cache, stop the run so it can be resumed
+        log(f"  {path.parent.name}/{path.stem}: FAILED after {time.time() - t0:.0f}s: {type(exc).__name__}: {exc}")
+        raise
+    parsed, perr = parse_json(resp["text"])
     rec = {"messages": messages, "response": resp["text"], "finish_reason": resp.get("finish_reason"),
            "usage": resp.get("usage"), "timings": resp.get("timings"), "seconds": resp.get("seconds"),
            "parsed": parsed, "parse_error": perr}
@@ -114,7 +114,11 @@ def main():
     outdir.mkdir(parents=True, exist_ok=True)
     for spec in specs:
         log(f"{args.model} {spec.id} {spec.name}")
-        run_spec(client, spec, outdir, log)
+        try:
+            run_spec(client, spec, outdir, log)
+        except Exception as exc:
+            log(f"stopped at {spec.id}: {type(exc).__name__}; re-run the same command to resume")
+            raise SystemExit(1)
     log("done")
 
 
