@@ -1,0 +1,558 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "age < 21"
+  },
+  {
+   "id": "C2",
+   "expr": "age >= 21 and credit_score < 600"
+  },
+  {
+   "id": "C3",
+   "expr": "age >= 21 and 600 <= credit_score < 750 and (monthly_income < 50000)"
+  },
+  {
+   "id": "C4",
+   "expr": "age >= 21 and 600 <= credit_score < 750 and (monthly_income >= 50000) or has_cosigner"
+  },
+  {
+   "id": "C5",
+   "expr": "credit_score >= 750"
+  },
+  {
+   "id": "C6",
+   "expr": "monthly_income <= 0"
+  },
+  {
+   "id": "C7",
+   "expr": "has_cosigner == True"
+  },
+  {
+   "id": "C8",
+   "expr": "age >= 18 and age <= 75"
+  },
+  {
+   "id": "C9",
+   "expr": "monthly_income > 50000"
+  },
+  {
+   "id": "C10",
+   "expr": "credit_score > 749"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": true
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": true
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "Rejected"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Referred"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Referred"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R25",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R26",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R27",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R28",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R29",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R30",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": true
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R31",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": true
+   },
+   "output": "Approved"
+  },
+  {
+   "id": "R32",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": true
+   },
+   "output": "Approved"
+  }
+ ]
+}

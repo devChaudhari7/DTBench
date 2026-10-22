@@ -1,0 +1,142 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "grades == 'excellent'"
+  },
+  {
+   "id": "C2",
+   "expr": "grades == 'good'"
+  },
+  {
+   "id": "C3",
+   "expr": "annual_income <= 50000"
+  },
+  {
+   "id": "C4",
+   "expr": "received_other_scholarship == True"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false
+   },
+   "output": "Eligible"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false
+   },
+   "output": "Eligible"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true
+   },
+   "output": "Not eligible"
+  }
+ ]
+}

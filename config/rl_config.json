@@ -1,0 +1,13 @@
+{
+  "episodes": 150,
+  "alpha": 0.1,
+  "gamma": 0.0,
+  "epsilon_start": 1.0,
+  "epsilon_min": 0.05,
+  "epsilon_decay": 0.97,
+  "reward_correct": 1.0,
+  "reward_wrong": -1.0,
+  "seed": 42,
+  "condition_source": "P2",
+  "pool": {"seed": 7, "max_product": 3000, "n_relation": 50, "n_random": 2000}
+}

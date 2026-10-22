@@ -1,0 +1,158 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "weight / (length * length) > 30"
+  },
+  {
+   "id": "C2",
+   "expr": "weight / (length * length) <= 18.5"
+  },
+  {
+   "id": "C3",
+   "expr": "gender == 'male'"
+  },
+  {
+   "id": "C4",
+   "expr": "weight / (length * length) >= 18.5 and weight / (length * length) < 25"
+  },
+  {
+   "id": "C5",
+   "expr": "weight / (length * length) >= 25 and weight / (length * length) < 30"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false
+   },
+   "output": "Severely underweight"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true
+   },
+   "output": "Normal"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false
+   },
+   "output": "Underweight"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false
+   },
+   "output": "Underweight"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true
+   },
+   "output": "Overweight"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false
+   },
+   "output": "Normal"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false
+   },
+   "output": "Normal"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false
+   },
+   "output": "Overweight"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false
+   },
+   "output": "Normal"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false
+   },
+   "output": "Underweight"
+  }
+ ]
+}

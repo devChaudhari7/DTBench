@@ -1,0 +1,41 @@
+state,"C1: month in (4, 6, 9, 11)","C2: month in (1, 3, 5, 7, 8, 10)",C3: month == 12,C4: day <= 27,C5: day == 28,C6: day == 29,C7: day == 30,C8: year % 4 == 0 and year % 100 != 0 or year % 400 == 0,Q[Invalid date],Q[Next day same month],Q[First day of next month],Q[First day of next year],visits,inputs,decision
+0,F,T,F,T,F,F,F,F,-0.5217,1.0000,-0.6513,-0.4095,150,918,Next day same month
+1,F,T,F,T,F,F,F,T,-0.6126,1.0000,-0.7176,-0.7176,150,280,Next day same month
+2,F,F,F,T,F,F,F,F,-0.5695,1.0000,-0.6862,-0.5217,150,131,Next day same month
+3,F,F,F,T,F,F,F,T,-0.6126,1.0000,-0.7176,-0.4686,150,50,Next day same month
+4,T,F,F,T,F,F,F,F,-0.7458,1.0000,-0.5695,-0.6513,150,619,Next day same month
+5,T,F,F,T,F,F,F,T,-0.6126,1.0000,-0.5217,-0.5217,150,181,Next day same month
+6,F,F,T,T,F,F,F,F,-0.4686,1.0000,-0.4686,-0.6513,150,154,Next day same month
+7,F,F,T,T,F,F,F,T,-0.7176,1.0000,-0.6126,-0.5217,150,38,Next day same month
+8,F,T,F,F,T,F,F,F,-0.6126,1.0000,-0.6126,-0.7712,150,61,Next day same month
+9,F,T,F,F,T,F,F,T,-0.5695,1.0000,-0.5695,-0.6862,150,22,Next day same month
+10,F,F,F,F,T,F,F,F,-0.6126,-0.4686,1.0000,-0.7712,150,10,First day of next month
+11,F,F,F,F,T,F,F,T,-0.7712,1.0000,-0.6513,-0.2710,150,2,Next day same month
+12,T,F,F,F,T,F,F,F,-0.5695,1.0000,-0.6513,-0.4686,150,39,Next day same month
+13,T,F,F,F,T,F,F,T,-0.5695,1.0000,-0.4686,-0.6862,150,14,Next day same month
+14,F,F,T,F,T,F,F,F,-0.6513,1.0000,-0.5695,-0.5217,150,8,Next day same month
+15,F,F,T,F,T,F,F,T,-0.6862,1.0000,-0.6513,-0.6126,150,3,Next day same month
+16,F,T,F,F,F,T,F,F,-0.7176,1.0000,-0.6126,-0.4686,150,56,Next day same month
+17,F,T,F,F,F,T,F,T,-0.4095,1.0000,-0.5217,-0.7458,150,25,Next day same month
+18,F,F,F,F,F,T,F,F,1.0000,-0.6513,-0.6126,-0.7176,150,11,Invalid date
+19,F,F,F,F,F,T,F,T,-0.6513,-0.6513,1.0000,-0.6862,150,2,First day of next month
+20,T,F,F,F,F,T,F,F,-0.7712,1.0000,-0.5695,-0.4095,150,38,Next day same month
+21,T,F,F,F,F,T,F,T,-0.7458,1.0000,-0.5217,-0.7712,150,14,Next day same month
+22,F,F,T,F,F,T,F,F,-0.4686,1.0000,-0.5695,-0.6862,150,10,Next day same month
+23,F,F,T,F,F,T,F,T,-0.6862,1.0000,-0.5217,-0.4095,150,4,Next day same month
+24,F,T,F,F,F,F,T,F,-0.4095,1.0000,-0.6862,-0.6126,150,62,Next day same month
+25,F,T,F,F,F,F,T,T,-0.6513,1.0000,-0.5695,-0.5217,150,20,Next day same month
+26,F,F,F,F,F,F,T,F,1.0000,-0.4686,-0.7458,-0.2710,150,14,Invalid date
+27,F,F,F,F,F,F,T,T,1.0000,-0.6126,-0.6862,-0.6126,150,2,Invalid date
+28,T,F,F,F,F,F,T,F,-0.6862,-0.4686,1.0000,-0.6862,150,44,First day of next month
+29,T,F,F,F,F,F,T,T,-0.4095,-0.6126,1.0000,-0.5695,150,14,First day of next month
+30,F,F,T,F,F,F,T,F,-0.7712,1.0000,-0.1900,-0.3439,150,9,Next day same month
+31,F,F,T,F,F,F,T,T,-0.7458,1.0000,-0.5217,-0.6126,150,3,Next day same month
+32,F,T,F,F,F,F,F,F,-0.6126,-0.3439,1.0000,-0.6513,150,67,First day of next month
+33,F,T,F,F,F,F,F,T,-0.6126,-0.7458,1.0000,-0.7712,150,15,First day of next month
+34,F,F,F,F,F,F,F,F,1.0000,-0.6862,-0.5695,-0.4686,150,11,Invalid date
+35,F,F,F,F,F,F,F,T,1.0000,-0.6126,-0.6126,-0.5695,150,4,Invalid date
+36,T,F,F,F,F,F,F,F,1.0000,-0.6862,-0.7712,-0.4686,150,42,Invalid date
+37,T,F,F,F,F,F,F,T,1.0000,-0.4686,-0.6862,-0.6126,150,14,Invalid date
+38,F,F,T,F,F,F,F,F,-0.5695,-0.4095,-0.4095,1.0000,150,10,First day of next year
+39,F,F,T,F,F,F,F,T,-0.6862,-0.2710,-0.6862,1.0000,150,3,First day of next year

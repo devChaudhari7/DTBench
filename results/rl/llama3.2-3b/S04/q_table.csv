@@ -1,0 +1,13 @@
+state,C1: weight / (length * length) < 18.5 and gender == 'male',C2: weight / (length * length) < 18.5 and gender == 'female',C3: weight / (length * length) >= 18.5 and weight / (length * length) < 25 and (gender == 'male'),C4: weight / (length * length) >= 18.5 and weight / (length * length) < 25 and (gender == 'female'),C5: weight / (length * length) >= 25 and weight / (length * length) < 30 and (gender == 'male'),C6: weight / (length * length) >= 25 and weight / (length * length) < 30 and (gender == 'female'),C7: weight / (length * length) >= 30 and gender == 'male',C8: weight / (length * length) >= 30 and gender == 'female',C9: weight / (length * length) >= 55.64 and gender == 'male',C10: weight / (length * length) >= 55.64 and gender == 'female',C11: weight / (length * length) >= 85.05 and gender == 'male',C12: weight / (length * length) >= 85.05 and gender == 'female',Q[Severely underweight],Q[Underweight],Q[Normal],Q[Overweight],Q[Obese],visits,inputs,decision
+0,T,F,F,F,F,F,F,F,F,F,F,F,1.0000,-0.4686,-0.6513,-0.4686,-0.3439,150,260,Severely underweight
+1,F,F,F,F,T,F,F,F,F,F,F,F,-0.7458,-0.2710,1.0000,-0.5217,-0.5217,150,279,Normal
+2,F,F,F,F,F,F,T,F,F,F,F,F,-0.4686,-0.6126,-0.2295,-0.4686,0.9942,150,558,Obese
+3,F,F,T,F,F,F,F,F,F,F,F,F,-0.4686,1.0000,-0.4095,-0.5695,-0.6513,150,309,Underweight
+4,F,F,F,F,F,F,T,F,T,F,F,F,-0.2710,-0.4686,-0.5695,-0.1900,1.0000,150,211,Obese
+5,F,F,F,F,F,F,T,F,T,F,T,F,-0.4095,-0.5217,-0.6126,-0.5217,1.0000,150,29,Obese
+6,F,T,F,F,F,F,F,F,F,F,F,F,-0.4095,1.0000,-0.5695,-0.4686,-0.3439,150,229,Underweight
+7,F,F,F,F,F,T,F,F,F,F,F,F,-0.4095,-0.6126,-0.3439,1.0000,-0.4686,150,272,Overweight
+8,F,F,F,F,F,F,F,T,F,F,F,F,-0.4686,-0.6513,-0.5217,-0.4686,0.9992,150,567,Obese
+9,F,F,F,T,F,F,F,F,F,F,F,F,-0.5217,-0.4686,1.0000,-0.6126,-0.5217,150,283,Normal
+10,F,F,F,F,F,F,F,T,F,T,F,F,-0.4686,-0.4095,-0.5695,-0.5217,1.0000,150,217,Obese
+11,F,F,F,F,F,F,F,T,F,T,F,T,-0.1900,-0.3439,-0.4095,-0.6513,1.0000,150,40,Obese

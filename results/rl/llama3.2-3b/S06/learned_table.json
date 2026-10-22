@@ -1,0 +1,54 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "age >= 18 and national_resident"
+  },
+  {
+   "id": "C2",
+   "expr": "theory == 'excellent' or theory == 'good' or theory == 'fail'"
+  },
+  {
+   "id": "C3",
+   "expr": "driving == 'excellent' or driving == 'good' or driving == 'fail'"
+  },
+  {
+   "id": "C4",
+   "expr": "maneuvering == 'excellent' or maneuvering == 'good' or maneuvering == 'fail'"
+  },
+  {
+   "id": "C5",
+   "expr": "anticipation == 'excellent' or anticipation == 'good' or anticipation == 'fail'"
+  },
+  {
+   "id": "C6",
+   "expr": "(theory == 'excellent' or theory == 'good' or theory == 'fail') and (driving == 'excellent' or driving == 'good' or driving == 'fail') and (maneuvering == 'excellent' or maneuvering == 'good' or maneuvering == 'fail') and (anticipation == 'excellent' or anticipation == 'good' or anticipation == 'fail')"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  }
+ ]
+}

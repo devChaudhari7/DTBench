@@ -1,0 +1,25 @@
+state,C1: distance >= 10,C2: not hurry,C3: distance >= 5 and distance < 10,C4: weather == 'rainy',C5: hurry,C6: weather == 'sunny' or weather == 'cloudy',C7: weather == 'freezing',C8: distance >= 2 and distance < 5,C9: weather == 'rainy' or ((weather == 'sunny' or weather == 'cloudy' or weather == 'freezing') and hurry),C10: distance < 2,Q[walk],Q[bike],Q[car],visits,inputs,decision
+0,F,T,F,F,F,T,F,F,F,T,1.0000,-0.6513,-0.7458,150,21,walk
+1,F,F,F,F,T,T,F,F,T,T,-0.5217,1.0000,-0.6126,150,29,bike
+2,F,T,F,T,F,F,F,F,T,T,1.0000,-0.8147,-0.6126,150,12,walk
+3,F,F,F,T,T,F,F,F,T,T,-0.7941,1.0000,-0.6513,150,10,bike
+4,F,T,F,F,F,F,T,F,F,T,1.0000,-0.6126,-0.7458,150,16,walk
+5,F,F,F,F,T,F,T,F,T,T,-0.6513,1.0000,-0.6862,150,20,bike
+6,F,T,F,F,F,T,F,T,F,F,-0.6513,1.0000,-0.6126,150,37,bike
+7,F,F,F,F,T,T,F,T,T,F,-0.5217,-0.4686,1.0000,150,27,car
+8,F,T,F,T,F,F,F,T,T,F,-0.5217,-0.6513,1.0000,150,25,car
+9,F,F,F,T,T,F,F,T,T,F,-0.6862,-0.7176,1.0000,150,20,car
+10,F,T,F,F,F,F,T,T,F,F,-0.8499,1.0000,-0.6862,150,19,bike
+11,F,F,F,F,T,F,T,T,T,F,-0.7458,-0.6126,1.0000,150,23,car
+12,F,T,T,F,F,T,F,F,F,F,-0.8784,1.0000,-0.7458,150,58,bike
+13,F,F,T,F,T,T,F,F,T,F,-0.7176,-0.6513,1.0000,150,56,car
+14,F,T,T,T,F,F,F,F,T,F,-0.7712,-0.6862,1.0000,150,36,car
+15,F,F,T,T,T,F,F,F,T,F,-0.8147,-0.6862,1.0000,150,31,car
+16,F,T,T,F,F,F,T,F,F,F,-0.6862,-0.7712,1.0000,150,33,car
+17,F,F,T,F,T,F,T,F,T,F,-0.6862,-0.4095,1.0000,150,30,car
+18,T,T,F,F,F,T,F,F,F,F,-0.7941,1.0000,-0.7458,150,396,bike
+19,T,F,F,F,T,T,F,F,T,F,-0.6513,-0.7458,1.0000,150,443,car
+20,T,T,F,T,F,F,F,F,T,F,-0.7176,-0.4095,1.0000,150,217,car
+21,T,F,F,T,T,F,F,F,T,F,-0.7458,-0.7176,1.0000,150,189,car
+22,T,T,F,F,F,F,T,F,F,F,-0.7712,-0.7458,1.0000,150,174,car
+23,T,F,F,F,T,F,T,F,T,F,-0.6862,-0.7941,1.0000,150,172,car

@@ -1,0 +1,13 @@
+{
+ "model": "ground-truth",
+ "spec": "S09",
+ "conditions": 3,
+ "states": 8,
+ "actions": 2,
+ "training_inputs": 2078,
+ "episodes": 150,
+ "steps": 1200,
+ "final_policy_accuracy": 1.0,
+ "final_epsilon": 0.05,
+ "seconds": 0.03
+}

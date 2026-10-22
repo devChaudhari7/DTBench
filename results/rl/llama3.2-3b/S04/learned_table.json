@@ -1,0 +1,270 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "weight / (length * length) < 18.5 and gender == 'male'"
+  },
+  {
+   "id": "C2",
+   "expr": "weight / (length * length) < 18.5 and gender == 'female'"
+  },
+  {
+   "id": "C3",
+   "expr": "weight / (length * length) >= 18.5 and weight / (length * length) < 25 and (gender == 'male')"
+  },
+  {
+   "id": "C4",
+   "expr": "weight / (length * length) >= 18.5 and weight / (length * length) < 25 and (gender == 'female')"
+  },
+  {
+   "id": "C5",
+   "expr": "weight / (length * length) >= 25 and weight / (length * length) < 30 and (gender == 'male')"
+  },
+  {
+   "id": "C6",
+   "expr": "weight / (length * length) >= 25 and weight / (length * length) < 30 and (gender == 'female')"
+  },
+  {
+   "id": "C7",
+   "expr": "weight / (length * length) >= 30 and gender == 'male'"
+  },
+  {
+   "id": "C8",
+   "expr": "weight / (length * length) >= 30 and gender == 'female'"
+  },
+  {
+   "id": "C9",
+   "expr": "weight / (length * length) >= 55.64 and gender == 'male'"
+  },
+  {
+   "id": "C10",
+   "expr": "weight / (length * length) >= 55.64 and gender == 'female'"
+  },
+  {
+   "id": "C11",
+   "expr": "weight / (length * length) >= 85.05 and gender == 'male'"
+  },
+  {
+   "id": "C12",
+   "expr": "weight / (length * length) >= 85.05 and gender == 'female'"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Severely underweight"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Normal"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Underweight"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": true,
+    "C12": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Underweight"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Overweight"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Normal"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": true
+   },
+   "output": "Obese"
+  }
+ ]
+}

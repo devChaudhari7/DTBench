@@ -1,0 +1,430 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "distance >= 10"
+  },
+  {
+   "id": "C2",
+   "expr": "not hurry"
+  },
+  {
+   "id": "C3",
+   "expr": "distance >= 5 and distance < 10"
+  },
+  {
+   "id": "C4",
+   "expr": "weather == 'rainy'"
+  },
+  {
+   "id": "C5",
+   "expr": "hurry"
+  },
+  {
+   "id": "C6",
+   "expr": "weather == 'sunny' or weather == 'cloudy'"
+  },
+  {
+   "id": "C7",
+   "expr": "weather == 'freezing'"
+  },
+  {
+   "id": "C8",
+   "expr": "distance >= 2 and distance < 5"
+  },
+  {
+   "id": "C9",
+   "expr": "weather == 'rainy' or ((weather == 'sunny' or weather == 'cloudy' or weather == 'freezing') and hurry)"
+  },
+  {
+   "id": "C10",
+   "expr": "distance < 2"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": true
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": true
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": true
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": true
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": true
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false,
+    "C10": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false
+   },
+   "output": "car"
+  }
+ ]
+}

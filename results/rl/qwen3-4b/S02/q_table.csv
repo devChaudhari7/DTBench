@@ -1,0 +1,16 @@
+state,C1: day > 31,C2: month < 1 or month > 12,"C3: day == 31 and month in (4, 6, 9, 11)",C4: day == 29 and month == 2 and (not (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0))),C5: day == 29 and month == 2 and (year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)),"C6: day < 31 and month in (1, 3, 5, 7, 8, 10, 12) and (not (day == 31 and month in (4, 6, 9, 11)))","C7: day == 31 and month in (1, 3, 5, 7, 8, 10, 12)","C8: day == 30 and month in (4, 6, 9, 11)",C9: day == 31 and month == 12,C10: day == 1 and month == 1 and (year == 1900),C11: day == 31 and month == 1,C12: day == 31 and month == 2,C13: day == 31 and month == 3,C14: day == 31 and month == 4,C15: day == 31 and month == 5,C16: day == 31 and month == 6,Q[Invalid date],Q[Next day same month],Q[First day of next month],Q[First day of next year],visits,inputs,decision
+0,F,F,F,F,F,T,F,F,F,T,F,F,F,F,F,F,-0.2710,1.0000,-0.6513,-0.6126,150,1,Next day same month
+1,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,-0.6126,1.0000,-0.5217,-0.5695,150,1547,Next day same month
+2,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,-0.5217,0.6112,-0.5695,-0.7941,150,1033,Next day same month
+3,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,1.0000,-0.5695,-0.6513,-0.4686,150,11,Invalid date
+4,F,F,F,F,T,F,F,F,F,F,F,F,F,F,F,F,-0.7176,-0.5695,1.0000,-0.6513,150,3,First day of next month
+5,F,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,-0.5217,-0.5695,1.0000,-0.7458,150,56,First day of next month
+6,F,F,F,F,F,F,T,F,F,F,T,F,F,F,F,F,-0.4095,-0.4095,1.0000,-0.6126,150,13,First day of next month
+7,F,F,F,F,F,F,F,F,F,F,F,T,F,F,F,F,1.0000,-0.6126,-0.4686,-0.2710,150,15,Invalid date
+8,F,F,F,F,F,F,T,F,F,F,F,F,T,F,F,F,-0.6513,-0.6513,1.0000,-0.7176,150,15,First day of next month
+9,F,F,T,F,F,F,F,F,F,F,F,F,F,T,F,F,1.0000,-0.6126,-0.5217,-0.5695,150,13,Invalid date
+10,F,F,F,F,F,F,T,F,F,F,F,F,F,F,T,F,-0.6513,-0.4686,1.0000,-0.5695,150,12,First day of next month
+11,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,T,1.0000,-0.5217,-0.7176,-0.8649,150,12,Invalid date
+12,F,F,F,F,F,F,T,F,F,F,F,F,F,F,F,F,-0.5695,-0.6862,1.0000,-0.6126,150,41,First day of next month
+13,F,F,T,F,F,F,F,F,F,F,F,F,F,F,F,F,1.0000,-0.5695,-0.7176,-0.6126,150,30,Invalid date
+14,F,F,F,F,F,F,T,F,T,F,F,F,F,F,F,F,-0.6513,-0.5695,-0.6513,1.0000,150,12,First day of next year

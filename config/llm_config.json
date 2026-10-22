@@ -1,0 +1,7 @@
+{
+  "temperature": 0.0,
+  "seed": 42,
+  "max_tokens": 2500,
+  "max_repair_rounds": 2,
+  "max_issues_per_repair": 6
+}

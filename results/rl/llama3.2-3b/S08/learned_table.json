@@ -1,0 +1,708 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "distance >= 10 and (not hurry)"
+  },
+  {
+   "id": "C2",
+   "expr": "distance >= 10 and hurry"
+  },
+  {
+   "id": "C3",
+   "expr": "distance >= 5 and distance < 10 and hurry"
+  },
+  {
+   "id": "C4",
+   "expr": "distance >= 5 and distance < 10 and (not hurry)"
+  },
+  {
+   "id": "C5",
+   "expr": "distance >= 2 and distance < 5 and hurry"
+  },
+  {
+   "id": "C6",
+   "expr": "distance >= 2 and distance < 5 and (not hurry)"
+  },
+  {
+   "id": "C7",
+   "expr": "distance < 2 and hurry"
+  },
+  {
+   "id": "C8",
+   "expr": "distance < 2 and (not hurry) and (weather == 'rainy' or weather == 'freezing' or weather == 'sunny' or (weather == 'cloudy'))"
+  },
+  {
+   "id": "C9",
+   "expr": "weather == 'rainy' or weather == 'freezing' or weather == 'sunny' or (weather == 'cloudy' and distance < 2 and (not hurry))"
+  },
+  {
+   "id": "C10",
+   "expr": "weather == 'sunny' and distance == 0 and (not hurry)"
+  },
+  {
+   "id": "C11",
+   "expr": "weather == 'sunny' and distance == 0 and hurry"
+  },
+  {
+   "id": "C12",
+   "expr": "weather == 'rainy' or (weather == 'freezing' and distance == 0 and (not hurry))"
+  },
+  {
+   "id": "C13",
+   "expr": "weather == 'rainy' or (weather == 'freezing' and distance == 0 and hurry)"
+  },
+  {
+   "id": "C14",
+   "expr": "weather == 'sunny' and distance == 0 and hurry"
+  },
+  {
+   "id": "C15",
+   "expr": "weather == 'cloudy' and distance == 0 and (not hurry)"
+  },
+  {
+   "id": "C16",
+   "expr": "weather == 'cloudy' and distance == 0 and hurry"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false,
+    "C14": true,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": true,
+    "C16": false
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": true
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "walk"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R25",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R26",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "bike"
+  },
+  {
+   "id": "R27",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R28",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  },
+  {
+   "id": "R29",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": true,
+    "C14": false,
+    "C15": false,
+    "C16": false
+   },
+   "output": "car"
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+state,C1: gender == 'male',C2: gender == 'female',C3: weight >= 30.0,C4: weight <= 200.0,C5: length >= 1.4,C6: length <= 2.2,Q[Severely underweight],Q[Underweight],Q[Normal],Q[Overweight],Q[Obese],visits,inputs,decision
+0,T,F,T,T,T,T,-0.5201,-0.4729,-0.5695,-0.4686,0.2904,150,1106,Obese
+1,F,T,T,T,T,T,-0.6126,-0.2447,-0.3417,-0.5217,0.1825,150,1056,Obese

@@ -24,7 +24,12 @@ from .table import DecisionTable
 from .validator import issues_text, structural_check
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-MAX_REPAIR_ROUNDS = 2
+# Settings come from config/llm_config.json (the values below are the defaults used in the paper).
+CONFIG = {"temperature": 0.0, "seed": 42, "max_tokens": 2500, "max_repair_rounds": 2, "max_issues_per_repair": 6}
+_cfg = ROOT / "config" / "llm_config.json"
+if _cfg.exists():
+    CONFIG.update(json.loads(_cfg.read_text()))
+MAX_REPAIR_ROUNDS = int(CONFIG["max_repair_rounds"])
 
 
 def _call(client, path, messages, schema, log, grammar=None):
@@ -34,7 +39,8 @@ def _call(client, path, messages, schema, log, grammar=None):
         return rec
     t0 = time.time()
     try:
-        resp = client.chat(messages, schema=schema, grammar=grammar)
+        resp = client.chat(messages, schema=schema, grammar=grammar, max_tokens=int(CONFIG["max_tokens"]),
+                           temperature=float(CONFIG["temperature"]), seed=int(CONFIG["seed"]))
     except Exception as exc:
         # server unreachable or timed out: do not cache, stop the run so it can be resumed
         log(f"  {path.parent.name}/{path.stem}: FAILED after {time.time() - t0:.0f}s: {type(exc).__name__}: {exc}")
@@ -76,7 +82,7 @@ def run_spec(client, spec, outdir, log, grammar_dir=None):
             break
         dt = DecisionTable(table, spec)
         check = structural_check(dt, spec)
-        lines = issues_text(dt, spec, check)
+        lines = issues_text(dt, spec, check, max_items=int(CONFIG["max_issues_per_repair"]))
         history.append({"round": rnd, "issues": lines, "gap_combinations": check["gap_combinations"],
                         "conflict_combinations": check["conflict_combinations"],
                         "problems": len(check["problems"])})
@@ -92,7 +98,8 @@ def run_spec(client, spec, outdir, log, grammar_dir=None):
         if isinstance(table, dict):
             dt = DecisionTable(table, spec)
             check = structural_check(dt, spec)
-            history.append({"round": MAX_REPAIR_ROUNDS + 1, "issues": issues_text(dt, spec, check),
+            history.append({"round": MAX_REPAIR_ROUNDS + 1,
+                            "issues": issues_text(dt, spec, check, max_items=int(CONFIG["max_issues_per_repair"])),
                             "gap_combinations": check["gap_combinations"],
                             "conflict_combinations": check["conflict_combinations"],
                             "problems": len(check["problems"]), "final_check_only": True})

@@ -1,0 +1,10 @@
+{
+ "conditions": [],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {},
+   "output": "Fish"
+  }
+ ]
+}

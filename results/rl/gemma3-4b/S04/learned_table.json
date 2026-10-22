@@ -1,0 +1,54 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "gender == 'male'"
+  },
+  {
+   "id": "C2",
+   "expr": "gender == 'female'"
+  },
+  {
+   "id": "C3",
+   "expr": "weight >= 30.0"
+  },
+  {
+   "id": "C4",
+   "expr": "weight <= 200.0"
+  },
+  {
+   "id": "C5",
+   "expr": "length >= 1.4"
+  },
+  {
+   "id": "C6",
+   "expr": "length <= 2.2"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Obese"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Obese"
+  }
+ ]
+}

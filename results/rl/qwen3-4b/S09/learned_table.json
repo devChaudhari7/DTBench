@@ -1,0 +1,90 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "grades == 'excellent' or grades == 'good'"
+  },
+  {
+   "id": "C2",
+   "expr": "annual_income < 50000"
+  },
+  {
+   "id": "C3",
+   "expr": "not received_other_scholarship"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true
+   },
+   "output": "Eligible"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false
+   },
+   "output": "Not eligible"
+  }
+ ]
+}

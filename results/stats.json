@@ -39,6 +39,32 @@
   "rank_biserial": -0.7275132275132276
  },
  {
+  "metric": "rule_coverage",
+  "comparison": "P3 vs P2",
+  "n": 36,
+  "better": 31,
+  "worse": 0,
+  "ties": 5,
+  "mean_diff": 0.42024941289647166,
+  "median_diff": 0.3541666666666667,
+  "W": 0.0,
+  "p": 1.162482797286623e-06,
+  "rank_biserial": 1.0
+ },
+ {
+  "metric": "rule_coverage",
+  "comparison": "P3 vs P0",
+  "n": 36,
+  "better": 25,
+  "worse": 3,
+  "ties": 8,
+  "mean_diff": 0.2242346433522904,
+  "median_diff": 0.16666666666666663,
+  "W": 24.5,
+  "p": 4.766139415771847e-05,
+  "rank_biserial": 0.8793103448275862
+ },
+ {
   "metric": "mutation_score",
   "comparison": "P1 vs P0",
   "n": 36,
@@ -76,6 +102,32 @@
   "W": 39.0,
   "p": 9.873120972056393e-06,
   "rank_biserial": -0.8689075630252101
+ },
+ {
+  "metric": "mutation_score",
+  "comparison": "P3 vs P2",
+  "n": 36,
+  "better": 29,
+  "worse": 0,
+  "ties": 7,
+  "mean_diff": 0.27225274405198535,
+  "median_diff": 0.21443965517241378,
+  "W": 0.0,
+  "p": 2.557909636120417e-06,
+  "rank_biserial": 1.0
+ },
+ {
+  "metric": "mutation_score",
+  "comparison": "P3 vs P0",
+  "n": 36,
+  "better": 16,
+  "worse": 19,
+  "ties": 1,
+  "mean_diff": -0.009658411143177338,
+  "median_diff": -0.03807471264367818,
+  "W": 284.0,
+  "p": 0.6115426456722779,
+  "rank_biserial": -0.09841269841269841
  },
  {
   "metric": "oracle_accuracy",
@@ -117,6 +169,32 @@
   "rank_biserial": -0.09659090909090909
  },
  {
+  "metric": "oracle_accuracy",
+  "comparison": "P3 vs P2",
+  "n": 36,
+  "better": 27,
+  "worse": 1,
+  "ties": 8,
+  "mean_diff": 0.345865900452594,
+  "median_diff": 0.3541666666666667,
+  "W": 1.0,
+  "p": 4.192226333002039e-06,
+  "rank_biserial": 0.9950738916256158
+ },
+ {
+  "metric": "oracle_accuracy",
+  "comparison": "P3 vs P0",
+  "n": 36,
+  "better": 30,
+  "worse": 3,
+  "ties": 3,
+  "mean_diff": 0.30258091347655813,
+  "median_diff": 0.2319508448540707,
+  "W": 19.0,
+  "p": 2.9710616420622063e-06,
+  "rank_biserial": 0.9322638146167558
+ },
+ {
   "metric": "probe_accuracy",
   "comparison": "P2 vs P1",
   "n": 34,
@@ -141,5 +219,57 @@
   "W": 20.5,
   "p": 0.04376750073242329,
   "rank_biserial": 0.6095238095238096
+ },
+ {
+  "metric": "probe_accuracy",
+  "comparison": "P3 vs P2",
+  "n": 34,
+  "better": 31,
+  "worse": 0,
+  "ties": 3,
+  "mean_diff": 0.5024870731873528,
+  "median_diff": 0.48766540120689006,
+  "W": 0.0,
+  "p": 1.1735028812661596e-06,
+  "rank_biserial": 1.0
+ },
+ {
+  "metric": "rule_correctness",
+  "comparison": "P3 vs P2",
+  "n": 34,
+  "better": 30,
+  "worse": 1,
+  "ties": 3,
+  "mean_diff": 0.5527110576851062,
+  "median_diff": 0.5798319327731092,
+  "W": 2.0,
+  "p": 1.409579803847551e-06,
+  "rank_biserial": 0.9919354838709677
+ },
+ {
+  "metric": "probe_accuracy",
+  "comparison": "P3 vs P1",
+  "n": 34,
+  "better": 34,
+  "worse": 0,
+  "ties": 0,
+  "mean_diff": 0.5514350070696734,
+  "median_diff": 0.5339342709831293,
+  "W": 0.0,
+  "p": 3.651044914906338e-07,
+  "rank_biserial": 1.0
+ },
+ {
+  "metric": "rule_correctness",
+  "comparison": "P3 vs P1",
+  "n": 34,
+  "better": 33,
+  "worse": 1,
+  "ties": 0,
+  "mean_diff": 0.5991748303599516,
+  "median_diff": 0.641711229946524,
+  "W": 2.0,
+  "p": 4.2815608918615925e-07,
+  "rank_biserial": 0.9932773109243698
  }
 ]

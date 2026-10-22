@@ -1,0 +1,207 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "a + b > c"
+  },
+  {
+   "id": "C2",
+   "expr": "a + c > b"
+  },
+  {
+   "id": "C3",
+   "expr": "b + c > a"
+  },
+  {
+   "id": "C4",
+   "expr": "a == b"
+  },
+  {
+   "id": "C5",
+   "expr": "b == c"
+  },
+  {
+   "id": "C6",
+   "expr": "a == c"
+  },
+  {
+   "id": "C7",
+   "expr": "a != b"
+  },
+  {
+   "id": "C8",
+   "expr": "a != c"
+  },
+  {
+   "id": "C9",
+   "expr": "b != c"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "Equilateral"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": false,
+    "C9": true
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false
+   },
+   "output": "Isosceles"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": false
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": false,
+    "C9": true
+   },
+   "output": "Isosceles"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "Isosceles"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "Scalene"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "Not a triangle"
+  }
+ ]
+}

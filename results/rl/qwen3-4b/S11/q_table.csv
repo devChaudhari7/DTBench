@@ -1,0 +1,9 @@
+state,C1: amount > 100000,C2: new_payee == True and amount > 5000,C3: registered_device == False and amount > 2000,Q[Blocked],Q[On hold],Q[OTP required],Q[Allowed],visits,inputs,decision
+0,F,F,F,-0.6126,-0.5695,-0.5217,1.0000,150,310,Allowed
+1,F,F,T,-0.4686,-0.6126,1.0000,-0.7941,150,245,OTP required
+2,F,T,T,-0.6513,1.0000,-0.6513,-0.4686,150,275,On hold
+3,F,T,F,-0.5217,1.0000,-0.6126,-0.6862,150,253,On hold
+4,T,F,T,1.0000,-0.7712,-0.5695,-0.4686,150,253,Blocked
+5,T,F,F,1.0000,-0.7176,-0.6513,-0.5217,150,239,Blocked
+6,T,T,T,1.0000,-0.3439,-0.6513,-0.3439,150,232,Blocked
+7,T,T,F,1.0000,-0.6126,-0.6513,-0.6862,150,249,Blocked

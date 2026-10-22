@@ -21,8 +21,13 @@ from dtbench.specs import SPECS                                    # noqa: E402
 
 RES, FIG, TAB = ROOT / "results", ROOT / "figures", ROOT / "tables"
 
-# palette (validated categorical slots 1-3) and chart ink
-COL = {"P0": "#2a78d6", "P1": "#eb6834", "P2": "#1baf7a"}
+# palette (validated categorical slots 1-4 for strategies, 5-7 for models in the RL figure) and chart ink
+COL = {"P0": "#2a78d6", "P1": "#eb6834", "P2": "#1baf7a", "P3": "#eda100"}
+MODEL_COL = {"qwen3-4b": "#e87ba4", "llama3.2-3b": "#008300", "gemma3-4b": "#6250d6"}
+STRATS = ("P0", "P1", "P2", "P3")
+SHORT = {"S01": "Triangle", "S02": "NextDate", "S03": "Order discount", "S04": "BMI level", "S05": "Pet adoption",
+         "S06": "Driver's licence", "S07": "Vacation days", "S08": "Transport mode", "S09": "Scholarship",
+         "S10": "Login + OTP", "S11": "UPI transfer", "S12": "Personal loan"}
 INK, INK2, MUTED, GRID, AXIS = "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
 BLUES = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6",
          "#256abf", "#1c5cab", "#184f95", "#104281", "#0d366b"]
@@ -73,7 +78,7 @@ def aggregate(rows):
              "llm_seconds": sum(r.get("llm_seconds", 0) for r in rs),
              "completion_tokens": sum(r.get("completion_tokens", 0) for r in rs),
              "json_ok": sum(1 for r in rs if r.get("json_ok", True))}
-        if strat in ("P1", "P2"):
+        if strat in ("P1", "P2", "P3"):
             us = [r for r in rs if r.get("table_usable")]
             a.update({"tables_usable": len(us),
                       "tables_clean": sum(1 for r in us if r.get("sc_clean")),
@@ -90,6 +95,11 @@ def aggregate(rows):
         if strat == "P2":
             a.update({"tables_changed": sum(1 for r in rs if r.get("table_changed")),
                       "repair_calls": sum(r.get("repair_rounds", 0) for r in rs)})
+        if strat == "P3":
+            a.update({"rl_states": sum(r.get("rl_states") or 0 for r in rs),
+                      "rl_steps": sum(r.get("rl_steps") or 0 for r in rs),
+                      "rl_seconds": round(sum(r.get("rl_seconds") or 0 for r in rs), 2),
+                      "rl_train_accuracy": mean([r.get("rl_train_accuracy") for r in rs])})
         out.append(a)
     order = {m: i for i, m in enumerate(list(MODEL_NAMES) + ["ground-truth"])}
     out.sort(key=lambda a: (order.get(a["model"], 99), a["strategy"]))
@@ -135,10 +145,10 @@ def fig_coverage(agg, models):
     look = {(a["model"], a["strategy"]): a for a in agg}
     for ax, (key, label, refv, reftxt) in zip(axes, panels):
         x = np.arange(len(models))
-        w = 0.22
-        for i, s in enumerate(("P0", "P1", "P2")):
+        w = 0.18
+        for i, s in enumerate(STRATS):
             vals = [100 * (look.get((m, s), {}).get(key) or 0) for m in models]
-            ax.bar(x + (i - 1) * (w + 0.03), vals, width=w, color=COL[s], label=f"{s} {STRATEGY_NAMES[s]}",
+            ax.bar(x + (i - 1.5) * (w + 0.025), vals, width=w, color=COL[s], label=f"{s} {STRATEGY_NAMES[s]}",
                    zorder=3)
         ax.axhline(100 * refv, color=MUTED, lw=0.9, ls=(0, (4, 2)), zorder=2,
                    label="Ground-truth table (reference suite)")
@@ -152,8 +162,8 @@ def fig_coverage(agg, models):
         ax.tick_params(axis="y", length=0)
         ax.set_xlim(-0.6, len(models) - 0.4)
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="upper center", ncol=4, fontsize=6.8, bbox_to_anchor=(0.5, 1.02),
-               handlelength=1.4, columnspacing=1.4)
+    fig.legend(handles, labels, loc="upper center", ncol=5, fontsize=6.3, bbox_to_anchor=(0.5, 1.02),
+               handlelength=1.3, columnspacing=1.1)
     fig.subplots_adjust(top=0.84, bottom=0.12, left=0.07, right=0.99)
     for fmt in ("pdf", "png"):
         fig.savefig(FIG / f"fig_coverage_mutation.{fmt}", dpi=300)
@@ -161,7 +171,7 @@ def fig_coverage(agg, models):
 
 
 def fig_heatmap(rows, models):
-    cols = [(m, s) for m in models for s in ("P0", "P1", "P2")]
+    cols = [(m, s) for m in models for s in STRATS]
     look = {(r["model"], r["strategy"], r["spec"]): r for r in rows}
     data = np.full((len(SPECS), len(cols)), np.nan)
     for i, sp in enumerate(SPECS):
@@ -178,21 +188,22 @@ def fig_heatmap(rows, models):
             v = data[i, j]
             if np.isnan(v):
                 continue
-            ax.text(j, i, f"{v:.0f}", ha="center", va="center", fontsize=5.6,
+            ax.text(j, i, f"{v:.0f}", ha="center", va="center", fontsize=4.9,
                     color="white" if v >= 62 else INK)
     ax.set_xticks(range(len(cols)))
-    ax.set_xticklabels([s for _, s in cols], fontsize=6.2)
+    ax.set_xticklabels([s for _, s in cols], fontsize=5.4)
     ax.set_yticks(range(len(SPECS)))
-    ax.set_yticklabels([f"{s.id} {s.name}" for s in SPECS], fontsize=6.2, color=INK)
+    ax.set_yticklabels([f"{s.id} {SHORT.get(s.id, s.name)}" for s in SPECS], fontsize=6.0, color=INK)
+    k_per = len(STRATS)
     for k, m in enumerate(models):
-        ax.text(3 * k + 1, -0.72, two_line(m), ha="center", va="bottom",
+        ax.text(k_per * k + (k_per - 1) / 2, -0.72, two_line(m), ha="center", va="bottom",
                 fontsize=6.0, color=INK, linespacing=1.05)
         if k:
-            ax.axvline(3 * k - 0.5, color="white", lw=2.0)
+            ax.axvline(k_per * k - 0.5, color="white", lw=2.0)
     ax.tick_params(length=0)
     for sp in ax.spines.values():
         sp.set_visible(False)
-    fig.subplots_adjust(left=0.42, right=0.86, top=0.88, bottom=0.07)
+    fig.subplots_adjust(left=0.27, right=0.87, top=0.88, bottom=0.07)
     pos = ax.get_position()
     cax = fig.add_axes([pos.x1 + 0.016, pos.y0, 0.018, pos.height])
     cb = fig.colorbar(im, cax=cax)
@@ -240,6 +251,42 @@ def fig_validation(agg, models):
     plt.close(fig)
 
 
+def fig_rl_learning(models):
+    """Mean greedy-policy accuracy on the training inputs per episode (average over the 12 specifications)."""
+    import csv as _csv
+    series = [(m, MODEL_NAMES.get(m, m), MODEL_COL.get(m, INK2), "-") for m in models]
+    series.append(("ground-truth", "Ground-truth conditions", INK, (0, (4, 2))))
+    fig, ax = plt.subplots(figsize=(3.5, 2.25))
+    last = 1
+    for key, label, color, ls in series:
+        curves = []
+        for sp in SPECS:
+            f = RES / "rl" / key / sp.id / "curve.csv"
+            if f.exists():
+                curves.append([float(r["policy_accuracy"]) for r in _csv.DictReader(open(f))])
+        if not curves:
+            continue
+        n = min(len(c) for c in curves)
+        y = 100 * np.mean([c[:n] for c in curves], axis=0)
+        x = np.arange(1, n + 1)
+        last = max(last, n)
+        is_gt = key == "ground-truth"
+        ax.plot(x, y, color=color, lw=1.0 if is_gt else 1.6, ls=ls, label=label, zorder=4 if is_gt else 3)
+    ax.legend(loc="lower right", fontsize=6.2, handlelength=2.2, borderaxespad=0.6)
+    ax.set_xlim(1, last)
+    ax.set_ylim(40, 102)
+    ax.set_xticks([1, 25, 50, 75, 100, 125, 150])
+    ax.set_xlabel("Training episode (epoch)")
+    ax.set_ylabel("Policy accuracy (%)")
+    ax.grid(axis="y", color=GRID, lw=0.6, zorder=0)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+    fig.subplots_adjust(left=0.14, right=0.97, top=0.96, bottom=0.18)
+    for fmt in ("pdf", "png"):
+        fig.savefig(FIG / f"fig_rl_learning.{fmt}", dpi=300)
+    plt.close(fig)
+
+
 # ------------------------------------------------------------------------------------------------
 def tex_escape(s):
     return str(s).replace("&", "\\&").replace("%", "\\%").replace("_", "\\_").replace("#", "\\#")
@@ -272,7 +319,7 @@ def tab_main(agg, models):
              r"Model & Strategy & Tests & Valid (\%) & Oracle acc. (\%) & Rule cov. (\%) & Missed rules & "
              r"Mutation score (\%) \\", r"\midrule"]
     for m in models:
-        for i, s in enumerate(("P0", "P1", "P2")):
+        for i, s in enumerate(STRATS):
             a = look.get((m, s))
             if not a:
                 continue
@@ -281,11 +328,13 @@ def tab_main(agg, models):
                          f"{pct(a['oracle_accuracy'])} & {pct(a['rule_coverage_pooled'])} & "
                          f"{a['missed_total']} & {pct(a['mutation_score_pooled'])} \\\\")
         lines.append(r"\addlinespace")
-    ref = look.get(("ground-truth", "REF"))
-    if ref:
-        lines.append(f"GT reference & one test per GT rule & {ref['tests_total']} & {pct(ref['validity'])} & "
-                     f"{pct(ref['oracle_accuracy'])} & {pct(ref['rule_coverage_pooled'])} & {ref['missed_total']} & "
-                     f"{pct(ref['mutation_score_pooled'])} \\\\")
+    for key, name, desc in ((("ground-truth", "P3"), "GT conditions", "P3 Q-learning (RL)"),
+                            (("ground-truth", "REF"), "GT reference", "one test per GT rule")):
+        ref = look.get(key)
+        if ref:
+            lines.append(f"{name} & {desc} & {ref['tests_total']} & {pct(ref['validity'])} & "
+                         f"{pct(ref['oracle_accuracy'])} & {pct(ref['rule_coverage_pooled'])} & {ref['missed_total']} & "
+                         f"{pct(ref['mutation_score_pooled'])} \\\\")
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table*}"]
     (TAB / "tab_main_results.tex").write_text("\n".join(lines) + "\n")
 
@@ -293,12 +342,13 @@ def tab_main(agg, models):
 def tab_tables(agg, models):
     look = {(a["model"], a["strategy"]): a for a in agg}
     lines = [r"\begin{table}[t]", r"\centering",
-             r"\caption{Decision-table quality before (P1) and after (P2) repair (Acc., Gap, Confl.\ and Correct in \%).}",
+             r"\caption{Decision-table quality: the LLM's table (P1), after repair (P2) and learned by Q-learning on "
+             r"the LLM's conditions (P3); Acc., Gap, Confl.\ and Correct in \%.}",
              r"\label{tab:tables}", r"\footnotesize", r"\setlength{\tabcolsep}{3.4pt}",
              r"\begin{tabular}{@{}llrrrrrr@{}}", r"\toprule",
              r"Model & & Usable & Clean & Acc. & Gap & Confl. & Correct \\", r"\midrule"]
     for m in models:
-        for i, s in enumerate(("P1", "P2")):
+        for i, s in enumerate(("P1", "P2", "P3")):
             a = look.get((m, s))
             if not a:
                 continue
@@ -306,6 +356,12 @@ def tab_tables(agg, models):
             lines.append(f"{name} & {s} & {a['tables_usable']}/12 & {a['tables_clean']}/12 & "
                          f"{pct(a['table_accuracy'])} & {pct(a['gap_rate'])} & {pct(a['conflict_rate'])} & "
                          f"{pct(a['rule_correctness'])} \\\\")
+    a = look.get(("ground-truth", "P3"))
+    if a:
+        lines.append(r"\addlinespace")
+        lines.append(f"GT cond. & P3 & {a['tables_usable']}/12 & {a['tables_clean']}/12 & "
+                     f"{pct(a['table_accuracy'])} & {pct(a['gap_rate'])} & {pct(a['conflict_rate'])} & "
+                     f"{pct(a['rule_correctness'])} \\\\")
     lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
     (TAB / "tab_table_quality.tex").write_text("\n".join(lines) + "\n")
 
@@ -321,10 +377,11 @@ def main():
     write_csv(RES / "summary.csv", agg)
     stats = []
     for metric in ("rule_coverage", "mutation_score", "oracle_accuracy"):
-        for s1, s2 in (("P0", "P1"), ("P1", "P2"), ("P0", "P2")):
+        for s1, s2 in (("P0", "P1"), ("P1", "P2"), ("P0", "P2"), ("P2", "P3"), ("P0", "P3")):
             stats.append(paired(rows, metric, s1, s2))
-    stats.append(paired(rows, "probe_accuracy", "P1", "P2"))
-    stats.append(paired(rows, "rule_correctness", "P1", "P2"))
+    for s1, s2 in (("P1", "P2"), ("P2", "P3"), ("P1", "P3")):
+        stats.append(paired(rows, "probe_accuracy", s1, s2))
+        stats.append(paired(rows, "rule_correctness", s1, s2))
     (RES / "stats.json").write_text(json.dumps(stats, indent=1))
     tab_benchmark(bench)
     if models:
@@ -333,6 +390,7 @@ def main():
         fig_coverage(agg, models)
         fig_heatmap(rows, models)
         fig_validation(agg, models)
+        fig_rl_learning(models)
     print("models:", models)
     for a in agg:
         print(f"{a['model']:12s} {a['strategy']:3s} specs={a['specs']:2d} tests={a['tests_total']:4d} "

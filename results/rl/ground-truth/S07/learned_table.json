@@ -1,0 +1,125 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "age < 18"
+  },
+  {
+   "id": "C2",
+   "expr": "age >= 60"
+  },
+  {
+   "id": "C3",
+   "expr": "years_of_service >= 30"
+  },
+  {
+   "id": "C4",
+   "expr": "age >= 45"
+  },
+  {
+   "id": "C5",
+   "expr": "years_of_service >= 15"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false
+   },
+   "output": "27"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false
+   },
+   "output": "22"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true
+   },
+   "output": "24"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false
+   },
+   "output": "24"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true
+   },
+   "output": "24"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true
+   },
+   "output": "30"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false
+   },
+   "output": "30"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true
+   },
+   "output": "30"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true
+   },
+   "output": "30"
+  }
+ ]
+}

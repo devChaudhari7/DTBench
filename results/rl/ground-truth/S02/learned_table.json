@@ -1,0 +1,598 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "month in (4, 6, 9, 11)"
+  },
+  {
+   "id": "C2",
+   "expr": "month in (1, 3, 5, 7, 8, 10)"
+  },
+  {
+   "id": "C3",
+   "expr": "month == 12"
+  },
+  {
+   "id": "C4",
+   "expr": "day <= 27"
+  },
+  {
+   "id": "C5",
+   "expr": "day == 28"
+  },
+  {
+   "id": "C6",
+   "expr": "day == 29"
+  },
+  {
+   "id": "C7",
+   "expr": "day == 30"
+  },
+  {
+   "id": "C8",
+   "expr": "year % 4 == 0 and year % 100 != 0 or year % 400 == 0"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "First day of next month"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true
+   },
+   "output": "First day of next month"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R25",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R26",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R27",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R28",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R29",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false
+   },
+   "output": "First day of next month"
+  },
+  {
+   "id": "R30",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true
+   },
+   "output": "First day of next month"
+  },
+  {
+   "id": "R31",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R32",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true
+   },
+   "output": "Next day same month"
+  },
+  {
+   "id": "R33",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "First day of next month"
+  },
+  {
+   "id": "R34",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "First day of next month"
+  },
+  {
+   "id": "R35",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R36",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R37",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R38",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "Invalid date"
+  },
+  {
+   "id": "R39",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false
+   },
+   "output": "First day of next year"
+  },
+  {
+   "id": "R40",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true
+   },
+   "output": "First day of next year"
+  }
+ ]
+}

@@ -1,0 +1,514 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "failed_attempts >= 4 and account_locked == False and (password_correct == False)"
+  },
+  {
+   "id": "C2",
+   "expr": "failed_attempts >= 4 and account_locked == False and (password_correct == True)"
+  },
+  {
+   "id": "C3",
+   "expr": "failed_attempts < 4 and account_locked == False and (password_correct == False)"
+  },
+  {
+   "id": "C4",
+   "expr": "failed_attempts < 4 and account_locked == False and (password_correct == True)"
+  },
+  {
+   "id": "C5",
+   "expr": "account_locked == True"
+  },
+  {
+   "id": "C6",
+   "expr": "trusted_device == True and password_correct == True"
+  },
+  {
+   "id": "C7",
+   "expr": "trusted_device == False and otp_verified == True and (password_correct == True)"
+  },
+  {
+   "id": "C8",
+   "expr": "trusted_device == False and otp_verified == False and (password_correct == False)"
+  },
+  {
+   "id": "C9",
+   "expr": "trusted_device == False and otp_verified == False and (password_correct == True)"
+  },
+  {
+   "id": "C10",
+   "expr": "otp_verified == False"
+  },
+  {
+   "id": "C11",
+   "expr": "trusted_device == False and otp_verified == True"
+  },
+  {
+   "id": "C12",
+   "expr": "account_locked == False and trusted_device == True and (password_correct == False)"
+  },
+  {
+   "id": "C13",
+   "expr": "account_locked == False and trusted_device == True and (password_correct == True)"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Invalid credentials"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Invalid credentials"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": true,
+    "C13": false
+   },
+   "output": "Invalid credentials"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": false
+   },
+   "output": "Invalid credentials"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": true,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": true,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "OTP required"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Access granted"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": true
+   },
+   "output": "Access granted"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": true
+   },
+   "output": "Access granted"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "OTP required"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Access granted"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": true
+   },
+   "output": "Access granted"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": true
+   },
+   "output": "Access granted"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": true,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": true,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false,
+    "C10": false,
+    "C11": false,
+    "C12": false,
+    "C13": false
+   },
+   "output": "Account locked"
+  }
+ ]
+}

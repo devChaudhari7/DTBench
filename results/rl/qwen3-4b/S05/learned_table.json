@@ -1,0 +1,318 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "allergies == True"
+  },
+  {
+   "id": "C2",
+   "expr": "time == 'none'"
+  },
+  {
+   "id": "C3",
+   "expr": "time == 'average'"
+  },
+  {
+   "id": "C4",
+   "expr": "time == 'a lot'"
+  },
+  {
+   "id": "C5",
+   "expr": "kids == True"
+  },
+  {
+   "id": "C6",
+   "expr": "garden == True"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "No pet"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "No pet"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Cat"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Dog"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Cat"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Dog"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Cat"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Dog"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "No pet"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "No pet"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "No pet"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "No pet"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Fish"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Fish"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "model": "qwen3-4b",
+ "spec": "S07",
+ "conditions": 4,
+ "states": 9,
+ "actions": 4,
+ "training_inputs": 825,
+ "episodes": 150,
+ "steps": 1350,
+ "final_policy_accuracy": 1.0,
+ "final_epsilon": 0.05,
+ "seconds": 0.04
+}

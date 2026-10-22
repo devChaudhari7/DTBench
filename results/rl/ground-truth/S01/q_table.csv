@@ -1,0 +1,12 @@
+state,C1: a < b + c,C2: b < a + c,C3: c < a + b,C4: a == b,C5: a == c,C6: b == c,Q[Not a triangle],Q[Scalene],Q[Isosceles],Q[Equilateral],visits,inputs,decision
+0,T,T,T,T,T,T,-0.5217,-0.7458,-0.5695,1.0000,150,7,Equilateral
+1,T,T,F,T,F,F,1.0000,-0.5217,-0.4095,-0.7176,150,41,Not a triangle
+2,T,F,T,F,T,F,1.0000,-0.5217,-0.7176,-0.3439,150,49,Not a triangle
+3,T,T,T,F,F,T,-0.6862,-0.4686,1.0000,-0.6513,150,97,Isosceles
+4,T,T,F,F,F,F,1.0000,-0.5695,-0.5695,-0.6513,150,547,Not a triangle
+5,T,F,T,F,F,F,1.0000,-0.3439,-0.4686,-0.6513,150,677,Not a triangle
+6,F,T,T,F,F,T,1.0000,-0.5217,-0.4095,-0.6513,150,44,Not a triangle
+7,T,T,T,F,T,F,-0.6513,-0.3439,1.0000,-0.6126,150,94,Isosceles
+8,T,T,T,T,F,F,-0.5217,-0.7176,1.0000,-0.4686,150,99,Isosceles
+9,T,T,T,F,F,F,-0.6513,1.0000,-0.4686,-0.4095,150,1649,Scalene
+10,F,T,T,F,F,F,1.0000,-0.4095,-0.6126,-0.6126,150,641,Not a triangle

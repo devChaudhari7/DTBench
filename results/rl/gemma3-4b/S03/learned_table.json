@@ -1,0 +1,402 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "cart_value >= 1000"
+  },
+  {
+   "id": "C2",
+   "expr": "cart_value >= 2000"
+  },
+  {
+   "id": "C3",
+   "expr": "cart_value >= 5000"
+  },
+  {
+   "id": "C4",
+   "expr": "coupon == 'valid'"
+  },
+  {
+   "id": "C5",
+   "expr": "coupon == 'invalid'"
+  },
+  {
+   "id": "C6",
+   "expr": "member"
+  },
+  {
+   "id": "C7",
+   "expr": "cart_value < 1000"
+  },
+  {
+   "id": "C8",
+   "expr": "cart_value < 2000"
+  },
+  {
+   "id": "C9",
+   "expr": "cart_value < 5000"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "0%"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "5%"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "10%"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "15%"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": true
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "5%"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "10%"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "15%"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "20%"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": true,
+    "C9": true
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true
+   },
+   "output": "10%"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true
+   },
+   "output": "15%"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true
+   },
+   "output": "20%"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true
+   },
+   "output": "25%"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": true
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": true
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "20%"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "25%"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "30%"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "30%"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "REJECTED"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true,
+    "C7": false,
+    "C8": false,
+    "C9": false
+   },
+   "output": "REJECTED"
+  }
+ ]
+}

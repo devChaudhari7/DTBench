@@ -1,0 +1,17 @@
+state,C1: grades == 'excellent' or grades == 'good',C2: annual_income < 50000,C3: received_other_scholarship == False,C4: annual_income <= 0,C5: grades == 'average' or grades == 'poor',C6: annual_income > 50000,Q[Eligible],Q[Not eligible],visits,inputs,decision
+0,T,T,T,T,F,F,1.0000,-0.8332,150,2,Eligible
+1,T,T,F,T,F,F,-0.8147,1.0000,150,2,Not eligible
+2,T,T,T,F,F,F,1.0000,-0.8906,150,139,Eligible
+3,T,T,F,F,F,F,-0.8784,1.0000,150,144,Not eligible
+4,T,F,T,F,F,F,-0.7712,1.0000,150,2,Not eligible
+5,T,F,F,F,F,F,-0.8499,1.0000,150,2,Not eligible
+6,T,F,T,F,F,T,-0.8147,1.0000,150,374,Not eligible
+7,T,F,F,F,F,T,-0.6513,1.0000,150,405,Not eligible
+8,F,T,T,T,T,F,-0.9114,1.0000,150,2,Not eligible
+9,F,T,F,T,T,F,-0.7712,1.0000,150,2,Not eligible
+10,F,T,T,F,T,F,-0.8784,1.0000,150,122,Not eligible
+11,F,T,F,F,T,F,-0.8499,1.0000,150,142,Not eligible
+12,F,F,T,F,T,F,-0.8499,1.0000,150,2,Not eligible
+13,F,F,F,F,T,F,-0.8649,1.0000,150,2,Not eligible
+14,F,F,T,F,T,T,-0.7941,1.0000,150,377,Not eligible
+15,F,F,F,F,T,T,-0.8906,1.0000,150,360,Not eligible

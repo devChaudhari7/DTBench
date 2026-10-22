@@ -10,7 +10,13 @@
   are never stored; S05 to S12 were re-run with `--cache-ram 0` after the line `--- 04:21:41 ... resumed`.
   The repeated S05 table and repair calls produced exactly the same token counts as in the first session
   (greedy decoding). Only responses that completed are stored.
-* `metrics_rows.csv|json`: all metrics for every (model, strategy, specification).
+* `rl/<model>/<spec>/` holds the Q-learning strategy P3: `q_table.csv` (the learned Q-table: one row per
+  condition combination, one Q-value column per output, visits, the decision), `learned_table.json` (the
+  Q-table written as a decision table), `curve.csv` (learning curve, one row per episode) and `summary.json`.
+  `rl/ground-truth/` is the run on the ground-truth conditions (upper bound); `rl/config_used.json` records
+  the settings. `python -m dtbench.rl.run` recreates the folder in a few seconds.
+* `metrics_rows.csv|json`: all metrics for every (model, strategy, specification); strategy P3 rows also hold
+  the number of states, episodes, agent steps and the training accuracy.
 * `summary.csv|json`: totals and averages per (model, strategy).
 * `stats.json`: paired Wilcoxon signed-rank tests over the 36 (model, specification) pairs.
 * `benchmark_summary.csv|json`: size of every specification (inputs, conditions, rules, probes, mutants).

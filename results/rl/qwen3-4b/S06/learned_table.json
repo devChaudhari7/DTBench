@@ -1,0 +1,798 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "age >= 18"
+  },
+  {
+   "id": "C2",
+   "expr": "national_resident == True"
+  },
+  {
+   "id": "C3",
+   "expr": "theory != 'fail'"
+  },
+  {
+   "id": "C4",
+   "expr": "driving != 'fail'"
+  },
+  {
+   "id": "C5",
+   "expr": "maneuvering != 'fail'"
+  },
+  {
+   "id": "C6",
+   "expr": "anticipation != 'fail'"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R17",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R18",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R19",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R20",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R21",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R22",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R23",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R24",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R25",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R26",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R27",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R28",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R29",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R30",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R31",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R32",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R33",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R34",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R35",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R36",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R37",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R38",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R39",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R40",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R41",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R42",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R43",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R44",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R45",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R46",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R47",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R48",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R49",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Eligible"
+  },
+  {
+   "id": "R50",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R51",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R52",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R53",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R54",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R55",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R56",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R57",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R58",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R59",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R60",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R61",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R62",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R63",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R64",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  }
+ ]
+}

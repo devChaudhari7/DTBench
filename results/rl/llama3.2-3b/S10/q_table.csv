@@ -1,0 +1,25 @@
+state,C1: failed_attempts >= 4 and account_locked == False and (password_correct == False),C2: failed_attempts >= 4 and account_locked == False and (password_correct == True),C3: failed_attempts < 4 and account_locked == False and (password_correct == False),C4: failed_attempts < 4 and account_locked == False and (password_correct == True),C5: account_locked == True,C6: trusted_device == True and password_correct == True,C7: trusted_device == False and otp_verified == True and (password_correct == True),C8: trusted_device == False and otp_verified == False and (password_correct == False),C9: trusted_device == False and otp_verified == False and (password_correct == True),C10: otp_verified == False,C11: trusted_device == False and otp_verified == True,C12: account_locked == False and trusted_device == True and (password_correct == False),C13: account_locked == False and trusted_device == True and (password_correct == True),Q[Access granted],Q[Invalid credentials],Q[Account locked],Q[OTP required],visits,inputs,decision
+0,F,F,T,F,F,F,F,T,F,T,F,F,F,-0.6513,1.0000,-0.5217,-0.7176,150,4,Invalid credentials
+1,F,F,T,F,F,F,F,F,F,F,T,F,F,-0.4095,1.0000,-0.6862,-0.5695,150,4,Invalid credentials
+2,F,F,T,F,F,F,F,F,F,T,F,T,F,-0.5695,1.0000,-0.6513,-0.5217,150,4,Invalid credentials
+3,F,F,T,F,F,F,F,F,F,F,F,T,F,-0.7176,1.0000,-0.7176,-0.4095,150,4,Invalid credentials
+4,T,F,F,F,F,F,F,T,F,T,F,F,F,-0.4095,-0.5217,1.0000,-0.5217,150,6,Account locked
+5,T,F,F,F,F,F,F,F,F,F,T,F,F,-0.6126,-0.4686,1.0000,-0.5695,150,6,Account locked
+6,T,F,F,F,F,F,F,F,F,T,F,T,F,-0.4095,-0.7941,1.0000,-0.4686,150,6,Account locked
+7,T,F,F,F,F,F,F,F,F,F,F,T,F,-0.4686,-0.3439,1.0000,-0.7712,150,6,Account locked
+8,F,F,F,T,F,F,F,F,T,T,F,F,F,-0.5217,-0.3439,-0.6862,1.0000,150,4,OTP required
+9,F,F,F,T,F,F,T,F,F,F,T,F,F,1.0000,-0.5695,-0.7176,-0.5217,150,4,Access granted
+10,F,F,F,T,F,T,F,F,F,T,F,F,T,1.0000,-0.5695,-0.4686,-0.6513,150,4,Access granted
+11,F,F,F,T,F,T,F,F,F,F,F,F,T,1.0000,-0.5695,-0.5695,-0.6126,150,4,Access granted
+12,F,T,F,F,F,F,F,F,T,T,F,F,F,-0.8147,-0.5217,-0.6862,1.0000,150,6,OTP required
+13,F,T,F,F,F,F,T,F,F,F,T,F,F,1.0000,-0.5695,-0.3439,-0.7176,150,6,Access granted
+14,F,T,F,F,F,T,F,F,F,T,F,F,T,1.0000,-0.6862,-0.4686,-0.4686,150,6,Access granted
+15,F,T,F,F,F,T,F,F,F,F,F,F,T,1.0000,-0.6513,-0.5695,-0.6126,150,6,Access granted
+16,F,F,F,F,T,F,F,T,F,T,F,F,F,-0.6862,-0.5217,1.0000,-0.6126,150,10,Account locked
+17,F,F,F,F,T,F,F,F,F,F,T,F,F,-0.5217,-0.3439,1.0000,-0.7176,150,10,Account locked
+18,F,F,F,F,T,F,F,F,F,T,F,F,F,-0.5217,-0.5695,1.0000,-0.7176,150,10,Account locked
+19,F,F,F,F,T,F,F,F,F,F,F,F,F,-0.5217,-0.6513,1.0000,-0.7458,150,10,Account locked
+20,F,F,F,F,T,F,F,F,T,T,F,F,F,-0.4686,-0.5217,1.0000,-0.5217,150,10,Account locked
+21,F,F,F,F,T,F,T,F,F,F,T,F,F,-0.6513,-0.6862,1.0000,-0.7458,150,10,Account locked
+22,F,F,F,F,T,T,F,F,F,T,F,F,F,-0.7176,-0.4686,1.0000,-0.4095,150,10,Account locked
+23,F,F,F,F,T,T,F,F,F,F,F,F,F,-0.6126,-0.6513,1.0000,-0.2710,150,10,Account locked

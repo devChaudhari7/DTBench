@@ -1,0 +1,25 @@
+state,C1: allergies == True,C2: time == 'none',C3: time == 'none',C4: kids == False,C5: time == 'none',C6: kids == False,C7: time == 'average' or time == 'a lot',C8: allergies == True,C9: kids == True,C10: allergies == False,C11: time == 'none',C12: kids == False,C13: garden == True,C14: kids == True,C15: time == 'a lot',C16: allergies == False,Q[No pet],Q[Fish],Q[Cat],Q[Dog],visits,inputs,decision
+0,F,T,T,T,T,T,F,F,F,T,T,T,F,F,F,T,1.0000,-0.5217,-0.5217,-0.7176,150,1,No pet
+1,F,T,T,T,T,T,F,F,F,T,T,T,T,F,F,T,1.0000,-0.6513,-0.4686,-0.6126,150,1,No pet
+2,F,T,T,F,T,F,F,F,T,T,T,F,F,T,F,T,-0.7176,1.0000,-0.6126,-0.3439,150,1,Fish
+3,F,T,T,F,T,F,F,F,T,T,T,F,T,T,F,T,-0.7458,1.0000,-0.5217,-0.4686,150,1,Fish
+4,F,F,F,T,F,T,T,F,F,T,F,T,F,F,F,T,-0.7176,-0.5695,1.0000,-0.5695,150,1,Cat
+5,F,F,F,T,F,T,T,F,F,T,F,T,T,F,F,T,-0.7176,-0.4095,-0.4686,1.0000,150,1,Dog
+6,F,F,F,F,F,F,T,F,T,T,F,F,F,T,F,T,-0.3439,1.0000,-0.6126,-0.6862,150,1,Fish
+7,F,F,F,F,F,F,T,F,T,T,F,F,T,T,F,T,-0.7176,1.0000,-0.6126,-0.6126,150,1,Fish
+8,F,F,F,T,F,T,T,F,F,T,F,T,F,F,T,T,-0.6862,-0.6513,1.0000,-0.7941,150,1,Cat
+9,F,F,F,T,F,T,T,F,F,T,F,T,T,F,T,T,-0.6513,-0.6513,-0.6126,1.0000,150,1,Dog
+10,F,F,F,F,F,F,T,F,T,T,F,F,F,T,T,T,-0.5217,-0.5695,1.0000,-0.7176,150,1,Cat
+11,F,F,F,F,F,F,T,F,T,T,F,F,T,T,T,T,-0.5695,-0.5217,-0.6513,1.0000,150,1,Dog
+12,T,T,T,T,T,T,F,T,F,F,T,T,F,F,F,F,1.0000,-0.6513,-0.7941,-0.4095,150,1,No pet
+13,T,T,T,T,T,T,F,T,F,F,T,T,T,F,F,F,1.0000,-0.5695,-0.5217,-0.6862,150,1,No pet
+14,T,T,T,F,T,F,F,T,T,F,T,F,F,T,F,F,1.0000,-0.4095,-0.6126,-0.6862,150,1,No pet
+15,T,T,T,F,T,F,F,T,T,F,T,F,T,T,F,F,1.0000,-0.5695,-0.5695,-0.3439,150,1,No pet
+16,T,F,F,T,F,T,T,T,F,F,F,T,F,F,F,F,-0.1900,1.0000,-0.7941,-0.6862,150,1,Fish
+17,T,F,F,T,F,T,T,T,F,F,F,T,T,F,F,F,-0.6126,1.0000,-0.7458,-0.5695,150,1,Fish
+18,T,F,F,F,F,F,T,T,T,F,F,F,F,T,F,F,-0.5217,1.0000,-0.4095,-0.6513,150,1,Fish
+19,T,F,F,F,F,F,T,T,T,F,F,F,T,T,F,F,-0.6862,1.0000,-0.5217,-0.7458,150,1,Fish
+20,T,F,F,T,F,T,T,T,F,F,F,T,F,F,T,F,-0.6126,1.0000,-0.5217,-0.5695,150,1,Fish
+21,T,F,F,T,F,T,T,T,F,F,F,T,T,F,T,F,-0.6513,1.0000,-0.2710,-0.4095,150,1,Fish
+22,T,F,F,F,F,F,T,T,T,F,F,F,F,T,T,F,-0.5217,1.0000,-0.6513,-0.5695,150,1,Fish
+23,T,F,F,F,F,F,T,T,T,F,F,F,T,T,T,F,-0.4095,1.0000,-0.6126,-0.5695,150,1,Fish

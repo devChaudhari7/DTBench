@@ -1,0 +1,8 @@
+state,C1: a + b > c,C2: a == b,C3: a == c,C4: b == c,C5: a == c and b == c,C6: a == b and b == c,C7: a == b and a == c,C8: a == b or a == c or b == c,C9: a == b and a == c and (b == c),Q[Not a triangle],Q[Scalene],Q[Isosceles],Q[Equilateral],visits,inputs,decision
+0,T,T,T,T,T,T,T,T,T,-0.6513,-0.6513,-0.7176,1.0000,150,17,Equilateral
+1,F,T,F,F,F,F,F,T,F,1.0000,-0.4095,-0.4686,-0.4095,150,135,Not a triangle
+2,T,F,T,F,F,F,F,T,F,0.0246,-0.7176,0.1991,-0.6513,150,551,Isosceles
+3,T,F,F,T,F,F,F,T,F,-0.3373,-0.6513,0.3103,-0.6126,150,534,Isosceles
+4,F,F,F,F,F,F,F,F,F,1.0000,-0.7458,-0.6126,-0.7176,150,741,Not a triangle
+5,T,F,F,F,F,F,F,F,F,-0.4342,0.6344,-0.4686,-0.7176,150,4574,Scalene
+6,T,T,F,F,F,F,F,T,F,-0.6513,-0.6513,1.0000,-0.3439,150,399,Isosceles

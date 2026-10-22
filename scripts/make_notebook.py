@@ -138,7 +138,8 @@ code("""
 pd.DataFrame(json.loads((ROOT / "results" / "stats.json").read_text())).round(4)
 """)
 code("""
-for f in ("architecture.png", "fig_coverage_mutation.png", "fig_heatmap_rule_coverage.png", "fig_validation_repair.png"):
+for f in ("architecture.png", "fig_coverage_mutation.png", "fig_heatmap_rule_coverage.png", "fig_validation_repair.png",
+          "fig_rl_learning.png"):
     display(Image(filename=str(ROOT / "figures" / f), width=900))
 """)
 md("## 5. Mutation analysis example (S11 UPI transfer screening)")
@@ -151,6 +152,57 @@ ref_tests = [(t["inputs"], s11.reference_output(t["inputs"])) for t in derive_te
 killed = mutation.kills(s11, m11, ref_tests)
 pd.DataFrame([{"mutant": m.id, "operator": m.op, "change": m.desc, "equivalent": m.equivalent,
                "killed by reference suite": m.id in killed} for m in m11])
+""")
+md("""## 6. Q-learning decision table (strategy P3)
+
+A Gymnasium environment shows one test input per step: the **state** is the combination of the LLM's conditions
+the input falls in, the **action** is an output value, and the **reward** is +1 if the system under test (the
+reference implementation) gives the same output, otherwise -1. One episode visits every combination once
+(one epoch). The settings come from `config/rl_config.json`.""")
+code("""
+import gymnasium as gym
+from gymnasium.utils.env_checker import check_env
+import dtbench.rl as rl
+from dtbench.rl.run import conditions_for, load_config
+from dtbench.rl.env import combination_text
+
+cfg = load_config()
+print("config/rl_config.json:", cfg)
+conds = conditions_for("qwen3-4b", SPEC_BY_ID["S11"], ROOT / "results" / "raw")
+print("conditions from Qwen3-4B's P2 table:", [c["expr"] for c in conds])
+env = gym.make("dtbench/DecisionTable-v0", spec_id="S11", conditions=conds)
+check_env(env.unwrapped)
+print("Gymnasium environment checker: passed")
+u = env.unwrapped
+print("states:", u.observation_space.n, "| actions:", u.actions, "| training inputs:", int(u.counts.sum()))
+""")
+code("""
+agent = rl.QLearningAgent(u.observation_space.n, u.action_space.n, cfg["alpha"], cfg["gamma"], cfg["seed"])
+curve = rl.train(u, agent, cfg["episodes"], cfg["epsilon_start"], cfg["epsilon_min"], cfg["epsilon_decay"], cfg["seed"])
+pd.DataFrame(curve).iloc[[0, 4, 9, 19, 49, 99, 149]]
+""")
+code("""
+# the learned Q-table: one row per condition combination, one column per output, and the decision
+qt = pd.DataFrame(agent.q.round(3), columns=[f"Q[{a}]" for a in u.actions])
+qt.insert(0, "combination (" + ", ".join(u.condition_ids) + ")", [combination_text(v) for v in u.states])
+qt["decision"] = [u.actions[a] for a in agent.greedy()]
+qt
+""")
+code("""
+# the Q-table as a decision table, its tests, and its metrics against the ground truth
+learned = rl.learned_table(u, agent)
+ctx = __import__("dtbench.analysis", fromlist=["SpecContext"]).SpecContext(SPEC_BY_ID["S11"])
+dt = DecisionTable(learned, SPEC_BY_ID["S11"])
+tests = derive_tests(dt, SPEC_BY_ID["S11"])
+m = assess_tests(tests, SPEC_BY_ID["S11"], ctx.gt, ctx.mutants)
+e = gt_table_eval(dt, SPEC_BY_ID["S11"], ctx.probes, ctx.gt)
+print(f"table accuracy {e['probe_accuracy']:.3f}, gaps {e['probe_gap_rate']:.3f}, conflicts {e['probe_conflict_rate']:.3f}")
+print(f"tests {m['n_tests']}, rule coverage {m['rule_coverage']:.3f}, mutation score {m['mutation_score']:.3f}")
+show_table(dt)
+""")
+code("""
+# saved Q-tables for every model and specification (results/rl/<model>/<spec>/q_table.csv)
+pd.read_csv(ROOT / "results" / "rl" / "gemma3-4b" / "S04" / "q_table.csv")
 """)
 
 nb = nbf.v4.new_notebook()

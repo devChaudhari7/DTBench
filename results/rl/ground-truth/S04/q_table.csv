@@ -1,0 +1,9 @@
+state,C1: weight / (length * length) > 30,C2: weight / (length * length) >= 25,C3: weight / (length * length) >= 18.5,C4: gender == 'male',Q[Severely underweight],Q[Underweight],Q[Normal],Q[Overweight],Q[Obese],visits,inputs,decision
+0,F,F,F,T,1.0000,-0.5217,-0.4686,-0.4095,-0.5695,150,224,Severely underweight
+1,F,T,T,T,-0.3439,-0.5217,1.0000,-0.5217,-0.6513,150,203,Normal
+2,T,T,T,T,-0.5217,-0.4686,-0.6862,-0.4095,1.0000,150,619,Obese
+3,F,F,T,T,-0.3439,1.0000,-0.6513,-0.5217,-0.6513,150,215,Underweight
+4,F,F,F,F,-0.5695,1.0000,-0.5217,-0.6513,-0.3439,150,189,Underweight
+5,F,T,T,F,-0.6126,-0.4686,-0.6126,1.0000,-0.2710,150,172,Overweight
+6,T,T,T,F,-0.6126,-0.2710,-0.4095,-0.5695,1.0000,150,638,Obese
+7,F,F,T,F,-0.5217,-0.4095,1.0000,-0.5217,-0.6126,150,182,Normal

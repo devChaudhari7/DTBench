@@ -1,0 +1,63 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "a >= b + c or b >= a + c or c >= a + b"
+  },
+  {
+   "id": "C2",
+   "expr": "a == b == c"
+  },
+  {
+   "id": "C3",
+   "expr": "a == b or b == c or a == c"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true
+   },
+   "output": "Equilateral"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true
+   },
+   "output": "Isosceles"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false
+   },
+   "output": "Not a triangle"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false
+   },
+   "output": "Scalene"
+  }
+ ]
+}

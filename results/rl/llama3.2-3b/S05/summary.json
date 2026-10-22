@@ -1,0 +1,13 @@
+{
+ "model": "llama3.2-3b",
+ "spec": "S05",
+ "conditions": 0,
+ "states": 1,
+ "actions": 4,
+ "training_inputs": 24,
+ "episodes": 150,
+ "steps": 150,
+ "final_policy_accuracy": 0.5,
+ "final_epsilon": 0.05,
+ "seconds": 0.02
+}

@@ -7,6 +7,8 @@ Test suites:
   P1  derived mechanically (dtbench.derive) from the LLM's first decision table
   P2  derived mechanically from the table after ground-truth-free validation and repair
   REF derived with the same procedure from the ground-truth table (upper reference)
+  P3  derived from the decision table learned by Q-learning (dtbench.rl) on the LLM's conditions;
+      model "ground-truth" + P3 = Q-learning on the ground-truth conditions (upper bound)
 """
 import argparse
 import csv
@@ -22,7 +24,8 @@ from .test_eval import assess_tests
 from .validator import gt_table_eval, structural_check
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-STRATEGY_NAMES = {"P0": "Direct", "P1": "Table-first", "P2": "Table-first + validation", "REF": "Ground-truth table"}
+STRATEGY_NAMES = {"P0": "Direct", "P1": "Table-first", "P2": "Table-first + validation",
+                  "P3": "Q-learning (RL)", "REF": "Ground-truth table"}
 MODEL_NAMES = {"qwen3-4b": "Qwen3-4B", "llama3.2-3b": "Llama-3.2-3B", "gemma3-4b": "Gemma-3-4B"}
 
 
@@ -108,6 +111,23 @@ def evaluate_model(model, raw_dir, ctxs):
     return rows
 
 
+def evaluate_rl(model, rl_dir, ctxs):
+    """P3: the decision table learned by the Q-learning agent (results/rl/<model>/<spec>/)."""
+    rows = []
+    for spec in SPECS:
+        d = rl_dir / spec.id
+        if not (d / "learned_table.json").exists():
+            continue
+        ctx = ctxs[spec.id]
+        tm, dt = table_metrics(_load(d / "learned_table.json"), ctx)
+        m = assess_tests(derive_tests(dt, spec) if dt else [], spec, ctx.gt, ctx.mutants)
+        s = _load(d / "summary.json") or {}
+        rows.append({"model": model, "spec": spec.id, "strategy": "P3", **tm, **m,
+                     "rl_states": s.get("states"), "rl_episodes": s.get("episodes"), "rl_steps": s.get("steps"),
+                     "rl_train_accuracy": s.get("final_policy_accuracy"), "rl_seconds": s.get("seconds")})
+    return rows
+
+
 def reference_rows(ctxs):
     rows = []
     for spec in SPECS:
@@ -154,6 +174,10 @@ def run(raw=ROOT / "results" / "raw", out=ROOT / "results"):
         p.name for p in raw.iterdir() if p.is_dir() and p.name not in MODEL_NAMES) if raw.exists() else []
     for m in models:
         rows += evaluate_model(m, raw / m, ctxs)
+    rl = out / "rl"
+    for m in models + ["ground-truth"]:
+        if (rl / m).is_dir():
+            rows += evaluate_rl(m, rl / m, ctxs)
     (out / "benchmark_summary.json").write_text(json.dumps(bench, indent=1))
     write_csv(out / "benchmark_summary.csv", bench)
     (out / "metrics_rows.json").write_text(json.dumps(rows, indent=1))

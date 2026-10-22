@@ -22,7 +22,7 @@ PANELS = {  # x0, x1, fill, edge, title
     "A": (0.04, 1.14, "#eef3f8", "#9fb3c8", "1  Benchmark", "DTBench, 12 specifications"),
     "B": (1.24, 2.52, "#f1f6ec", "#a9bf8f", "2  LLM generation", "local open-weight LLMs, T = 0"),
     "C": (2.62, 3.90, "#fbf3e8", "#d9b98c", "3  Validation", "no ground truth needed"),
-    "D": (4.00, 5.20, "#eef0f6", "#a3abc9", "4  Test derivation", "test suites per strategy"),
+    "D": (4.00, 5.20, "#eef0f6", "#a3abc9", "4  Tests and RL", "test suites; Q-learning (P3)"),
     "E": (5.30, 7.12, "#f4eef7", "#b9a2c6", "5  Evaluation", "against the ground truth"),
 }
 
@@ -83,8 +83,10 @@ def main():
     chk = box(ax, 2.69, 0.24, 1.14, 0.44, "Structural check", "missed combinations,\nconflicts, bad syntax")
 
     # 4 tests
-    der = box(ax, 4.06, 1.30, 1.08, 0.48, "Test derivation", "LLM: one test case\nper table rule")
-    suites = box(ax, 4.06, 2.04, 1.08, 0.48, "Test suites", "P0 | P1 | P2")
+    der = box(ax, 4.06, 1.30, 1.08, 0.48, "Test derivation", "one test per table rule\n(P3: per Q-table state)")
+    suites = box(ax, 4.06, 2.04, 1.08, 0.48, "Test suites", "P0 | P1 | P2 | P3")
+    rl = box(ax, 4.06, 0.50, 1.08, 0.60, "P3  Q-learning (Gym)", "state: combination\naction: output, reward ±1",
+             fc="#fffaf0")
 
     # 5 evaluation
     gt = box(ax, 5.37, 2.10, 1.50, 0.44, "Ground truth", "GT decision table + reference code",
@@ -105,15 +107,17 @@ def main():
     arrow(ax, (rep["r"][0] - 0.12, rep["t"][1]), (exe["l"][0], exe["l"][1] - 0.14), "", color=LOOP,
           ls="--", rad=-0.3)
     ax.text(2.02, 1.05, "corrected\ntable", fontsize=5.3, color=LOOP, ha="center", va="center", style="italic")
-    arrow(ax, exe["r"], der["l"], "P1", loff=(0, 0.07))
-    arrow(ax, chk["r"], (der["b"][0] - 0.25, der["b"][1]), "", rad=0.25)
-    ax.text(4.02, 0.83, "P2", fontsize=5.3, color=EDGE, ha="left", va="center", style="italic")
-    arrow(ax, der["t"], suites["b"], "P1, P2", loff=(0.17, 0.0))
+    arrow(ax, exe["r"], der["l"], "P1, P2", loff=(0, 0.07))
+    arrow(ax, prb["r"], (rl["l"][0], rl["l"][1] + 0.1))
+    arrow(ax, rl["t"], der["b"], "Q-table", loff=(0.2, 0.0))
+    arrow(ax, der["t"], suites["b"], "P1–P3", loff=(0.17, 0.0))
     arrow(ax, p0["r"], suites["l"], "P0 tests", lpos=0.5, loff=(0, 0.07))
     arrow(ax, suites["r"], sev["l"], rad=-0.2)
     arrow(ax, gt["b"], sev["t"])
     arrow(ax, sev["b"], mut["t"], "correct tests", loff=(0.27, 0.0))
-    arrow(ax, (chk["r"][0], chk["r"][1] - 0.12), tev["l"], "tables (P1, P2)", lpos=0.5, loff=(0, -0.07))
+    arrow(ax, (chk["r"][0], chk["r"][1] - 0.12), (tev["l"][0], tev["l"][1] - 0.08), "tables (P1, P2)", lpos=0.5,
+          loff=(0, -0.07))
+    arrow(ax, rl["r"], (tev["l"][0], tev["l"][1] + 0.1))
     # ground truth bus on the right edge
     xb = 6.97
     ax.plot([gt["r"][0], xb, xb], [gt["r"][1], gt["r"][1], tev["r"][1]], color=EDGE, lw=0.8)

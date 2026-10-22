@@ -1,0 +1,63 @@
+state,C1: day <= 31,C2: month == 2,"C3: month in (1, 3, 5, 7, 8, 10, 12) or day == 29 or day == 28","C4: month in (4, 6, 9, 11) or day == 30",C5: year % 4 == 0 and year % 100 != 0,C6: year % 400 == 0,C7: day == 31,C8: month == 12,C9: day == 29,C10: month == 2 and year % 4 == 0,C11: month == 2 and year % 4 != 0,C12: day == 28,C13: month == 2 and year % 4 != 0,C14: day == 28,C15: month == 12 and day == 31,Q[Invalid date],Q[Next day same month],Q[First day of next month],Q[First day of next year],visits,inputs,decision
+0,T,F,T,F,F,F,F,F,F,F,F,F,F,F,F,-0.5695,1.0000,-0.4095,-0.7458,150,883,Next day same month
+1,T,F,T,F,T,F,F,F,F,F,F,F,F,F,F,-0.6862,1.0000,-0.6126,-0.6513,150,229,Next day same month
+2,T,F,T,F,F,T,F,F,F,F,F,F,F,F,F,-0.6862,1.0000,-0.4095,-0.5695,150,34,Next day same month
+3,T,T,F,F,F,F,F,F,F,T,F,F,F,F,F,-0.6126,1.0000,-0.5695,-0.7176,150,11,Next day same month
+4,T,T,F,F,F,F,F,F,F,F,T,F,T,F,F,-0.6126,1.0000,-0.4686,-0.4095,150,117,Next day same month
+5,T,T,F,F,T,F,F,F,F,T,F,F,F,F,F,-0.5695,1.0000,-0.7712,-0.4095,150,39,Next day same month
+6,T,T,F,F,F,T,F,F,F,T,F,F,F,F,F,-0.6126,1.0000,-0.7712,-0.6513,150,6,Next day same month
+7,T,F,F,T,F,F,F,F,F,F,F,F,F,F,F,-0.6126,0.7583,-0.6126,-0.5217,150,635,Next day same month
+8,T,F,F,T,T,F,F,F,F,F,F,F,F,F,F,-0.4686,0.8138,-0.6513,-0.5695,150,165,Next day same month
+9,T,F,F,T,F,T,F,F,F,F,F,F,F,F,F,-0.5695,0.6633,-0.5217,-0.6513,150,28,Next day same month
+10,T,F,T,F,F,F,F,T,F,F,F,F,F,F,F,-0.5217,1.0000,-0.2710,-0.7712,150,143,Next day same month
+11,T,F,T,F,T,F,F,T,F,F,F,F,F,F,F,-0.5695,1.0000,-0.5695,-0.5217,150,31,Next day same month
+12,T,F,T,F,F,T,F,T,F,F,F,F,F,F,F,-0.6862,1.0000,-0.8147,-0.5217,150,7,Next day same month
+13,T,F,T,F,F,F,F,F,F,F,F,T,F,T,F,-0.4095,1.0000,-0.6513,-0.8147,150,62,Next day same month
+14,T,F,T,F,T,F,F,F,F,F,F,T,F,T,F,-0.6126,1.0000,-0.6862,-0.6126,150,14,Next day same month
+15,T,F,T,F,F,T,F,F,F,F,F,T,F,T,F,-0.6862,1.0000,-0.6126,-0.4686,150,6,Next day same month
+16,T,T,T,F,F,F,F,F,F,T,F,T,F,T,F,-0.7176,-0.6126,1.0000,-0.6126,150,2,First day of next month
+17,T,T,T,F,F,F,F,F,F,F,T,T,T,T,F,-0.5217,-0.7458,1.0000,-0.4095,150,8,First day of next month
+18,T,T,T,F,T,F,F,F,F,T,F,T,F,T,F,-0.6862,1.0000,-0.4686,-0.6513,150,1,Next day same month
+19,T,T,T,F,F,T,F,F,F,T,F,T,F,T,F,-0.5695,1.0000,-0.6862,-0.6513,150,1,Next day same month
+20,T,F,T,T,F,F,F,F,F,F,F,T,F,T,F,-0.7176,1.0000,-0.5217,-0.3439,150,38,Next day same month
+21,T,F,T,T,T,F,F,F,F,F,F,T,F,T,F,-0.4095,1.0000,-0.6513,-0.6862,150,10,Next day same month
+22,T,F,T,T,F,T,F,F,F,F,F,T,F,T,F,-0.6513,1.0000,-0.4095,-0.6862,150,4,Next day same month
+23,T,F,T,F,F,F,F,T,F,F,F,T,F,T,F,-0.4686,1.0000,-0.6126,-0.5695,150,8,Next day same month
+24,T,F,T,F,T,F,F,T,F,F,F,T,F,T,F,-0.5695,1.0000,-0.3439,-0.5695,150,2,Next day same month
+25,T,F,T,F,F,T,F,T,F,F,F,T,F,T,F,-0.6126,1.0000,-0.6513,-0.6126,150,1,Next day same month
+26,T,F,T,F,F,F,F,F,T,F,F,F,F,F,F,-0.5695,1.0000,-0.6513,-0.3439,150,55,Next day same month
+27,T,F,T,F,T,F,F,F,T,F,F,F,F,F,F,-0.6513,1.0000,-0.6862,-0.5217,150,21,Next day same month
+28,T,F,T,F,F,T,F,F,T,F,F,F,F,F,F,-0.6126,1.0000,-0.6862,-0.4095,150,6,Next day same month
+29,T,T,T,F,F,F,F,F,T,T,F,F,F,F,F,1.0000,-0.4095,-0.7176,-0.6513,150,2,Invalid date
+30,T,T,T,F,F,F,F,F,T,F,T,F,T,F,F,1.0000,-0.6126,-0.6862,-0.6126,150,9,Invalid date
+31,T,T,T,F,T,F,F,F,T,T,F,F,F,F,F,-0.4686,-0.6126,1.0000,-0.4686,150,2,First day of next month
+32,T,T,T,F,F,T,F,F,T,T,F,F,F,F,F,-0.6126,-0.4095,1.0000,-0.5695,150,1,First day of next month
+33,T,F,T,T,F,F,F,F,T,F,F,F,F,F,F,-0.3439,1.0000,-0.7176,-0.5217,150,39,Next day same month
+34,T,F,T,T,T,F,F,F,T,F,F,F,F,F,F,-0.5695,1.0000,-0.6126,-0.5695,150,10,Next day same month
+35,T,F,T,T,F,T,F,F,T,F,F,F,F,F,F,-0.4686,1.0000,-0.6513,-0.5695,150,4,Next day same month
+36,T,F,T,F,F,F,F,T,T,F,F,F,F,F,F,-0.6126,1.0000,-0.5217,-0.5695,150,10,Next day same month
+37,T,F,T,F,T,F,F,T,T,F,F,F,F,F,F,-0.6126,1.0000,-0.6126,-0.7176,150,3,Next day same month
+38,T,F,T,F,F,T,F,T,T,F,F,F,F,F,F,-0.6862,1.0000,-0.6126,-0.6126,150,1,Next day same month
+39,T,F,T,T,F,F,F,F,F,F,F,F,F,F,F,-0.6513,1.0000,-0.5217,-0.6513,150,63,Next day same month
+40,T,F,T,T,T,F,F,F,F,F,F,F,F,F,F,-0.5217,1.0000,-0.6513,-0.3439,150,13,Next day same month
+41,T,F,T,T,F,T,F,F,F,F,F,F,F,F,F,-0.5695,1.0000,-0.5217,-0.6862,150,6,Next day same month
+42,T,T,F,T,F,F,F,F,F,T,F,F,F,F,F,1.0000,-0.7176,-0.6126,-0.6513,150,2,Invalid date
+43,T,T,F,T,F,F,F,F,F,F,T,F,T,F,F,1.0000,-0.4686,-0.4686,-0.6862,150,12,Invalid date
+44,T,T,F,T,T,F,F,F,F,T,F,F,F,F,F,1.0000,-0.4095,-0.6126,-0.6513,150,1,Invalid date
+45,T,T,F,T,F,T,F,F,F,T,F,F,F,F,F,1.0000,-0.5695,-0.5217,-0.7176,150,1,Invalid date
+46,T,F,T,T,F,F,F,T,F,F,F,F,F,F,F,-0.6862,1.0000,-0.6126,-0.5695,150,9,Next day same month
+47,T,F,T,T,T,F,F,T,F,F,F,F,F,F,F,-0.6126,1.0000,-0.5695,-0.5217,150,2,Next day same month
+48,T,F,T,T,F,T,F,T,F,F,F,F,F,F,F,-0.5695,1.0000,-0.7176,-0.5217,150,1,Next day same month
+49,T,F,T,F,F,F,T,F,F,F,F,F,F,F,F,-0.6513,-0.4686,1.0000,-0.7712,150,67,First day of next month
+50,T,F,T,F,T,F,T,F,F,F,F,F,F,F,F,-0.6126,-0.5217,1.0000,-0.6862,150,8,First day of next month
+51,T,F,T,F,F,T,T,F,F,F,F,F,F,F,F,-0.4686,-0.6126,1.0000,-0.7176,150,6,First day of next month
+52,T,T,F,F,F,F,T,F,F,T,F,F,F,F,F,1.0000,-0.7176,-0.3439,-0.3439,150,2,Invalid date
+53,T,T,F,F,F,F,T,F,F,F,T,F,T,F,F,1.0000,-0.6513,-0.7712,-0.5217,150,9,Invalid date
+54,T,T,F,F,T,F,T,F,F,T,F,F,F,F,F,1.0000,-0.6126,-0.2710,-0.5217,150,3,Invalid date
+55,T,T,F,F,F,T,T,F,F,T,F,F,F,F,F,1.0000,-0.5695,-0.6862,-0.4686,150,1,Invalid date
+56,T,F,F,T,F,F,T,F,F,F,F,F,F,F,F,1.0000,-0.6126,-0.5695,-0.5217,150,41,Invalid date
+57,T,F,F,T,T,F,T,F,F,F,F,F,F,F,F,1.0000,-0.5217,-0.5217,-0.6862,150,10,Invalid date
+58,T,F,F,T,F,T,T,F,F,F,F,F,F,F,F,1.0000,-0.5217,-0.4095,-0.5695,150,4,Invalid date
+59,T,F,T,F,F,F,T,T,F,F,F,F,F,F,T,-0.5695,-0.7458,-0.6862,1.0000,150,10,First day of next year
+60,T,F,T,F,T,F,T,T,F,F,F,F,F,F,T,-0.5695,-0.5217,-0.6862,1.0000,150,1,First day of next year
+61,T,F,T,F,F,T,T,T,F,F,F,F,F,F,T,-0.6862,-0.6862,-0.5217,1.0000,150,1,First day of next year

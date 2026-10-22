@@ -1,0 +1,13 @@
+{
+ "model": "gemma3-4b",
+ "spec": "S09",
+ "conditions": 4,
+ "states": 12,
+ "actions": 2,
+ "training_inputs": 2079,
+ "episodes": 150,
+ "steps": 1800,
+ "final_policy_accuracy": 0.999,
+ "final_epsilon": 0.05,
+ "seconds": 0.06
+}

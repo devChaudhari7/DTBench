@@ -1,0 +1,65 @@
+state,C1: age >= 18,C2: national_resident == True,C3: theory == 'excellent',C4: driving == 'excellent',C5: maneuvering == 'excellent',C6: anticipation == 'excellent',Q[Eligible],Q[Not eligible],visits,inputs,decision
+0,F,F,T,T,T,T,-0.8332,1.0000,150,4,Not eligible
+1,F,F,T,T,T,F,-0.8784,1.0000,150,7,Not eligible
+2,F,F,T,T,F,T,-0.7712,1.0000,150,7,Not eligible
+3,F,F,T,T,F,F,-0.8332,1.0000,150,12,Not eligible
+4,F,F,T,F,T,T,-0.8649,1.0000,150,6,Not eligible
+5,F,F,T,F,T,F,-0.8332,1.0000,150,13,Not eligible
+6,F,F,T,F,F,T,-0.8906,1.0000,150,13,Not eligible
+7,F,F,T,F,F,F,-0.8332,1.0000,150,25,Not eligible
+8,F,F,F,T,T,T,-0.8499,1.0000,150,6,Not eligible
+9,F,F,F,T,T,F,-0.8332,1.0000,150,12,Not eligible
+10,F,F,F,T,F,T,-0.8906,1.0000,150,12,Not eligible
+11,F,F,F,T,F,F,-0.7941,1.0000,150,25,Not eligible
+12,F,F,F,F,T,T,-0.7458,1.0000,150,12,Not eligible
+13,F,F,F,F,T,F,-0.8147,1.0000,150,25,Not eligible
+14,F,F,F,F,F,T,-0.8784,1.0000,150,26,Not eligible
+15,F,F,F,F,F,F,-0.8332,1.0000,150,49,Not eligible
+16,F,T,T,T,T,T,-0.8906,1.0000,150,3,Not eligible
+17,F,T,T,T,T,F,-0.8499,1.0000,150,6,Not eligible
+18,F,T,T,T,F,T,-0.7176,1.0000,150,7,Not eligible
+19,F,T,T,T,F,F,-0.9202,1.0000,150,13,Not eligible
+20,F,T,T,F,T,T,-0.7941,1.0000,150,8,Not eligible
+21,F,T,T,F,T,F,-0.8499,1.0000,150,12,Not eligible
+22,F,T,T,F,F,T,-0.7176,1.0000,150,12,Not eligible
+23,F,T,T,F,F,F,-0.6862,1.0000,150,27,Not eligible
+24,F,T,F,T,T,T,-0.8649,1.0000,150,6,Not eligible
+25,F,T,F,T,T,F,-0.7712,1.0000,150,13,Not eligible
+26,F,T,F,T,F,T,-0.7712,1.0000,150,12,Not eligible
+27,F,T,F,T,F,F,-0.7176,1.0000,150,26,Not eligible
+28,F,T,F,F,T,T,-0.8649,1.0000,150,14,Not eligible
+29,F,T,F,F,T,F,-0.6862,1.0000,150,27,Not eligible
+30,F,T,F,F,F,T,-0.8649,1.0000,150,27,Not eligible
+31,F,T,F,F,F,F,-0.9282,1.0000,150,49,Not eligible
+32,T,F,T,T,T,T,-0.7176,1.0000,150,18,Not eligible
+33,T,F,T,T,T,F,-0.7458,1.0000,150,33,Not eligible
+34,T,F,T,T,F,T,-0.8499,1.0000,150,35,Not eligible
+35,T,F,T,T,F,F,-0.8649,1.0000,150,64,Not eligible
+36,T,F,T,F,T,T,-0.8906,1.0000,150,31,Not eligible
+37,T,F,T,F,T,F,-0.8499,1.0000,150,71,Not eligible
+38,T,F,T,F,F,T,-0.8147,1.0000,150,60,Not eligible
+39,T,F,T,F,F,F,-0.7458,1.0000,150,136,Not eligible
+40,T,F,F,T,T,T,-0.7712,1.0000,150,41,Not eligible
+41,T,F,F,T,T,F,-0.7941,1.0000,150,67,Not eligible
+42,T,F,F,T,F,T,-0.7712,1.0000,150,66,Not eligible
+43,T,F,F,T,F,F,-0.9015,1.0000,150,141,Not eligible
+44,T,F,F,F,T,T,-0.8906,1.0000,150,58,Not eligible
+45,T,F,F,F,T,F,-0.7941,1.0000,150,135,Not eligible
+46,T,F,F,F,F,T,-0.8332,1.0000,150,128,Not eligible
+47,T,F,F,F,F,F,-0.8906,1.0000,150,252,Not eligible
+48,T,T,T,T,T,T,1.0000,-0.8906,150,15,Eligible
+49,T,T,T,T,T,F,0.3537,-0.3235,150,37,Eligible
+50,T,T,T,T,F,T,-0.3986,0.0735,150,36,Not eligible
+51,T,T,T,T,F,F,-0.6645,0.8877,150,70,Not eligible
+52,T,T,T,F,T,T,-0.0479,-0.2690,150,36,Eligible
+53,T,T,T,F,T,F,-0.2965,0.5201,150,72,Not eligible
+54,T,T,T,F,F,T,-0.6092,0.7051,150,65,Not eligible
+55,T,T,T,F,F,F,-0.6232,0.8799,150,137,Not eligible
+56,T,T,F,T,T,T,-0.1814,-0.4114,150,35,Eligible
+57,T,T,F,T,T,F,-0.4198,0.1726,150,64,Not eligible
+58,T,T,F,T,F,T,-0.0803,0.8102,150,68,Not eligible
+59,T,T,F,T,F,F,-0.6250,0.9874,150,137,Not eligible
+60,T,T,F,F,T,T,-0.4156,0.6935,150,62,Not eligible
+61,T,T,F,F,T,F,-0.7788,0.7758,150,147,Not eligible
+62,T,T,F,F,F,T,-0.6576,0.9046,150,148,Not eligible
+63,T,T,F,F,F,F,-0.4895,0.9730,150,268,Not eligible

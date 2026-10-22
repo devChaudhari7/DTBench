@@ -1,0 +1,9 @@
+state,C1: grades == 'excellent' or grades == 'good',C2: annual_income < 50000,C3: not received_other_scholarship,Q[Eligible],Q[Not eligible],visits,inputs,decision
+0,T,T,T,1.0000,-0.8332,150,139,Eligible
+1,T,T,F,-0.7941,1.0000,150,148,Not eligible
+2,T,F,T,-0.8499,1.0000,150,376,Not eligible
+3,T,F,F,-0.8784,1.0000,150,406,Not eligible
+4,F,T,T,-0.9202,1.0000,150,128,Not eligible
+5,F,T,F,-0.9015,1.0000,150,143,Not eligible
+6,F,F,T,-0.7712,1.0000,150,385,Not eligible
+7,F,F,F,-0.8332,1.0000,150,353,Not eligible

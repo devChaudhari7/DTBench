@@ -1,0 +1,222 @@
+{
+ "conditions": [
+  {
+   "id": "C1",
+   "expr": "grades == 'excellent' or grades == 'good'"
+  },
+  {
+   "id": "C2",
+   "expr": "annual_income < 50000"
+  },
+  {
+   "id": "C3",
+   "expr": "received_other_scholarship == False"
+  },
+  {
+   "id": "C4",
+   "expr": "annual_income <= 0"
+  },
+  {
+   "id": "C5",
+   "expr": "grades == 'average' or grades == 'poor'"
+  },
+  {
+   "id": "C6",
+   "expr": "annual_income > 50000"
+  }
+ ],
+ "rules": [
+  {
+   "id": "R1",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Eligible"
+  },
+  {
+   "id": "R2",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R3",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Eligible"
+  },
+  {
+   "id": "R4",
+   "when": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R5",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R6",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R7",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R8",
+   "when": {
+    "C1": true,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": false,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R9",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R10",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R11",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R12",
+   "when": {
+    "C1": false,
+    "C2": true,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R13",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R14",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": false
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R15",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": true,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  },
+  {
+   "id": "R16",
+   "when": {
+    "C1": false,
+    "C2": false,
+    "C3": false,
+    "C4": false,
+    "C5": true,
+    "C6": true
+   },
+   "output": "Not eligible"
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 \begin{table}[t]
 \centering
-\caption{Decision-table quality before (P1) and after (P2) repair (Acc., Gap, Confl.\ and Correct in \%).}
+\caption{Decision-table quality: the LLM's table (P1), after repair (P2) and learned by Q-learning on the LLM's conditions (P3); Acc., Gap, Confl.\ and Correct in \%.}
 \label{tab:tables}
 \footnotesize
 \setlength{\tabcolsep}{3.4pt}
@@ -10,10 +10,15 @@ Model & & Usable & Clean & Acc. & Gap & Confl. & Correct \\
 \midrule
 Qwen3-4B & P1 & 12/12 & 1/12 & 59.2 & 34.8 & 3.5 & 53.9 \\
  & P2 & 12/12 & 4/12 & 72.9 & 16.8 & 3.8 & 64.5 \\
+ & P3 & 12/12 & 12/12 & 99.9 & 0.0 & 0.0 & 98.5 \\
 Llama-3.2-3B & P1 & 10/12 & 1/12 & 12.3 & 63.6 & 2.0 & 6.4 \\
  & P2 & 10/12 & 1/12 & 15.6 & 50.9 & 6.8 & 9.4 \\
+ & P3 & 11/12 & 11/12 & 80.4 & 0.0 & 0.0 & 74.2 \\
 Gemma-3-4B & P1 & 12/12 & 0/12 & 39.4 & 39.7 & 12.8 & 17.7 \\
  & P2 & 12/12 & 0/12 & 36.3 & 39.3 & 13.8 & 17.3 \\
+ & P3 & 12/12 & 12/12 & 94.4 & 0.0 & 0.0 & 82.2 \\
+\addlinespace
+GT cond. & P3 & 12/12 & 12/12 & 100.0 & 0.0 & 0.0 & 100.0 \\
 \bottomrule
 \end{tabular}
 \end{table}
