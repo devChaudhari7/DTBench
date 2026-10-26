@@ -105,6 +105,7 @@ scripts/
   schema2gbnf.cpp          converts the JSON schemas to the GBNF grammars in dtbench/grammars
   make_results.py          aggregates metrics, Wilcoxon tests, LaTeX tables, figures
   make_diagram.py          architecture diagram
+  make_diagram_simple.py   simple plain-language version of the diagram
   make_notebook.py         builds the walkthrough notebook
 notebooks/DTBench_Experiment.ipynb   walkthrough that reproduces every result (incl. a Q-learning run)
 results/raw/<model>/<spec>/*.json   every prompt and raw model response (cached)
