@@ -314,7 +314,7 @@ def tab_main(agg, models):
     look = {(a["model"], a["strategy"]): a for a in agg}
     lines = [r"\begin{table*}[t]", r"\centering",
              r"\caption{Test-suite results per model and strategy.}",
-             r"\label{tab:main}", r"\small",
+             r"\label{tab:main}", r"\footnotesize", r"\setlength{\tabcolsep}{3pt}",
              r"\begin{tabular}{@{}llrrrrrr@{}}", r"\toprule",
              r"Model & Strategy & Tests & Valid (\%) & Oracle acc. (\%) & Rule cov. (\%) & Missed rules & "
              r"Mutation score (\%) \\", r"\midrule"]
